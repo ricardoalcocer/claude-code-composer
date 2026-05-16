@@ -274,4 +274,4 @@ Design choices that fall out of that:
 
 ## License
 
-MIT. See `LICENSE`.
+[MIT](https://alco.mit-license.org) © Ricardo Alcocer
