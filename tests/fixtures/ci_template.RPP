@@ -1,0 +1,35 @@
+<REAPER_PROJECT 0.1 "ci-fixture" 1700000000 0
+  TEMPO 120 4 4
+  <NOTES 0 2
+  >
+  <TRACK
+    NAME "BASS"
+  >
+  <TRACK
+    NAME "DRUMS"
+  >
+  <TRACK
+    NAME "PIANO"
+  >
+  <TRACK
+    NAME "MIDI-RHY-GTR-L"
+  >
+  <TRACK
+    NAME "MIDI-RHY-GTR-R"
+  >
+  <TRACK
+    NAME "MIDI-CLEAN"
+  >
+  <TRACK
+    NAME "MIDI-STRUM"
+  >
+  <TRACK
+    NAME "MIDI-LEAD"
+  >
+  <TRACK
+    NAME "MIDI-CHUGG"
+  >
+  <TRACK
+    NAME "SURGE XT"
+  >
+>

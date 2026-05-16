@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Module imports cleanly
+        run: python3 -c "import composer; print('ok')"
+
+      - name: Point config.json at the CI fixture template
+        run: |
+          cat > config.json <<'JSON'
+          {
+            "template_path": "tests/fixtures/ci_template.RPP",
+            "output_root": "/tmp/ci_out"
+          }
+          JSON
+
+      - name: Compose smoke test
+        run: |
+          cat > /tmp/spec.json <<'JSON'
+          {
+            "song_name": "ci",
+            "key": "Em",
+            "tempo": 120,
+            "time_sig": [4, 4],
+            "sections": [
+              {
+                "name": "verse",
+                "feel": "halftime",
+                "chords": [
+                  {"name": "Em9",   "beats": 4},
+                  {"name": "D",     "beats": 4},
+                  {"name": "Cmaj7", "beats": 4},
+                  {"name": "B7",    "beats": 4}
+                ]
+              }
+            ],
+            "form": ["verse"]
+          }
+          JSON
+          mkdir -p /tmp/out
+          python3 composer.py compose /tmp/spec.json /tmp/out
+          test -f /tmp/out/ci.RPP
+          test -f /tmp/out/full.mid
+          test -f /tmp/out/verse.mid
+          test -f /tmp/out/spec.json
+          grep -q "claude_composer_spec_b64" /tmp/out/ci.RPP
+
+      - name: Analyze without COMPOSER region — expect graceful exit 2
+        run: |
+          set +e
+          python3 composer.py analyze /tmp/out/ci.RPP
+          rc=$?
+          set -e
+          test "$rc" = "2"
+
+      - name: Fill smoke test (rename verse-1 region to COMPOSER, fill it)
+        run: |
+          sed -i 's/"verse-1"/"COMPOSER"/' /tmp/out/ci.RPP
+          cat > /tmp/fill.json <<'JSON'
+          {
+            "roles": ["bass", "pad"],
+            "feel": "sparse",
+            "drums": "none",
+            "move": "ci smoke fill",
+            "chords": [
+              {"name": "Em9", "beats": 8},
+              {"name": "Cmaj7", "beats": 8}
+            ]
+          }
+          JSON
+          python3 composer.py fill /tmp/fill.json /tmp/out/ci.RPP
+          grep -q "composer-fill-bass" /tmp/out/ci.RPP
+          grep -q "composer-fill-pad" /tmp/out/ci.RPP
+          grep -q "COMPOSER-FILL feel=" /tmp/out/ci.RPP
