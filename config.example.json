@@ -1,0 +1,7 @@
+{
+  "_help": "Copy this file to config.json (next to composer.py) and edit the paths to match your machine. config.json is gitignored so your local paths never get committed.",
+
+  "template_path": "~/Library/Application Support/REAPER/ProjectTemplates/claude-composer-1.RPP",
+
+  "output_root": "~/Documents/MIDI-SONGS"
+}

@@ -1,0 +1,13 @@
+# Local config & personal notes — both shipped as `.example` files; copy and edit.
+config.json
+style.md
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Per-user Claude Code settings (project-level settings.json is fine to commit).
+.claude/settings.local.json
