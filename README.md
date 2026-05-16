@@ -2,6 +2,12 @@
   <img src="assets/logo.png" alt="claude-composer — AI · CODE · MUSIC" width="480">
 </p>
 
+<p align="center">
+  <em>requires</em><br>
+  <a href="https://www.reaper.fm/"><img src="assets/reaper-logo.jpg" alt="REAPER — Digital Audio Workstation" height="90"></a><br>
+  <sub><a href="https://www.reaper.fm/">REAPER</a> — the script writes <code>.RPP</code> project files you open directly in REAPER</sub>
+</p>
+
 <p align="center"><em>A bandmate that hands you sketches.</em></p>
 
 <p align="center">
