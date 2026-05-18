@@ -115,6 +115,24 @@ CHUGG_PATTERNS = {
         (2.0,  0.30,  +5), (2.5,  0.25,  -3),
         (3.0,  0.30,  +3), (3.5,  0.25,  -3),
     ],
+    "clave-3-2": [
+        # Son clave 3-2 — TWO-BAR pattern (the chugg loop adapts its period).
+        # 3-side first: bar-1 beat 1, "and of 2", beat 4. Then 2-side: bar-2 beat 2, beat 3.
+        # Fires the chord root at low octave like a wood-block clave under the band.
+        (0.0,  0.20,  +5),   # bar 1, beat 1
+        (1.5,  0.20,  +0),   # bar 1, "and of 2"
+        (3.0,  0.20,  +3),   # bar 1, beat 4
+        (5.0,  0.20,  +3),   # bar 2, beat 2  (4 + 1)
+        (6.0,  0.20,  +0),   # bar 2, beat 3  (4 + 2)
+    ],
+    "clave-2-3": [
+        # Son clave 2-3 — reversed: 2-side first, 3-side second. The "Cuban son" cousin.
+        (1.0,  0.20,  +3),   # bar 1, beat 2
+        (2.0,  0.20,  +0),   # bar 1, beat 3
+        (4.0,  0.20,  +5),   # bar 2, beat 1  (4 + 0)
+        (5.5,  0.20,  +0),   # bar 2, "and of 2"  (4 + 1.5)
+        (7.0,  0.20,  +3),   # bar 2, beat 4  (4 + 3)
+    ],
 }
 
 # Pitch-name → MIDI-number parser (e.g., "E3" → 52, "F#4" → 66, "Ab2" → 44).
@@ -170,9 +188,49 @@ FEEL_BAR_PATTERNS = {
         (2.0, 0.45, +1),
         (3.5, 0.40, +5),   # the push on 4-and
     ],
+    "skank": [
+        # Reggae skank — chord chops ONLY on the upbeats (and-of-2, and-of-4).
+        # The silent downbeats ARE the sound. Choked short duration (no ring) so it
+        # reads as a chop, not a strum. Apply to clean/rhy guitars; swap to a clean
+        # tone VST on those tracks if you want authentic reggae.
+        (1.5, 0.20, +5),   # and-of-2
+        (3.5, 0.20, +5),   # and-of-4
+    ],
+    "montuno": [
+        # Salsa montuno — syncopated 8th-note rhythm guitar comp. The primary
+        # placement for montuno is the `pad` (piano) role, which handles montuno
+        # specially as a chord-tone arpeggio; this pattern is for rhy_l/rhy_r if
+        # you want guitar chops doubling the figure (Steve Khan / "Eyewitness").
+        (0.5, 0.25, +0),   # and-of-1
+        (1.0, 0.25, +5),   # beat 2 (accent)
+        (1.5, 0.25, -3),   # and-of-2
+        (2.5, 0.25, +0),   # and-of-3
+        (3.0, 0.25, +5),   # beat 4 (accent)
+        (3.5, 0.25, -3),   # and-of-4
+    ],
+    "locked-16": [
+        # J-fusion (Casiopea / T-Square / Naniwa Express) tight 8th-note pocket.
+        # Choked short durations — percussive, not strummy. Upbeats (the "ands")
+        # are LOUDER than downbeats — that's the Japanese fusion lift, and it
+        # inverts the rock-default accent pattern (which puts the weight on 1 and 3).
+        # Pairs with the j-fusion-kit drum pattern (16th hi-hat under it).
+        (0.0, 0.20,  +0),   # beat 1: medium, choked
+        (0.5, 0.22,  +5),   # and-of-1: ACCENT (the lift)
+        (1.0, 0.20,  -2),   # beat 2: medium
+        (1.5, 0.22,  +5),   # and-of-2: ACCENT
+        (2.0, 0.20,  +0),   # beat 3: medium
+        (2.5, 0.22,  +5),   # and-of-3: ACCENT
+        (3.0, 0.20,  -2),   # beat 4: medium
+        (3.5, 0.22,  +5),   # and-of-4: ACCENT
+    ],
 }
 
-GM_DRUMS = {"kick": 36, "snare": 38, "chat": 42, "ohat": 46, "crash": 49, "ride": 51}
+GM_DRUMS = {"kick": 36, "snare": 38, "chat": 42, "ohat": 46, "crash": 49, "ride": 51,
+            # Latin / world percussion (GM standard pitches) — used by one-drop, latin-fusion.
+            # Swap the drum-track plugin to a GM-compliant kit (BFD, AD2, MT Power Drum) to hear them.
+            "cowbell": 56, "bongo_hi": 60, "bongo_lo": 61, "conga_mute": 62,
+            "conga_open": 63, "conga_lo": 64, "timbale_hi": 65, "timbale_lo": 66,
+            "claves": 75, "guiro_short": 73, "guiro_long": 74}
 
 DRUM_BAR_PATTERNS = {
     "none": [],
@@ -194,13 +252,49 @@ DRUM_BAR_PATTERNS = {
         (0.0, "chat", 78), (0.5, "chat", 68), (1.0, "chat", 78), (1.5, "chat", 68),
         (2.0, "chat", 78), (2.5, "chat", 68), (3.0, "chat", 78), (3.5, "chat", 68),
     ],
+    "one-drop": [
+        # Classic reggae one-drop: kick AND snare together on beat 3 (the "drop").
+        # Beats 1, 2, 4 have no kick — the silence is the groove. Hi-hat 8ths ride underneath.
+        (2.0, "kick", 95),
+        (2.0, "snare", 100),
+        (0.0, "chat", 68), (0.5, "chat", 58), (1.0, "chat", 68), (1.5, "chat", 58),
+        (2.0, "chat", 68), (2.5, "chat", 58), (3.0, "chat", 68), (3.5, "chat", 58),
+    ],
+    "latin-fusion": [
+        # Standard kit + cowbell + conga — bridges salsa percussion vocabulary into
+        # a jazz-fusion drummer's frame (think Steve Gadd doing Latin, not a salsa charanga).
+        (0.0, "kick", 100), (2.0, "kick", 90),
+        (1.0, "snare", 92), (3.0, "snare", 92),
+        (0.0, "chat", 70), (0.5, "chat", 60), (1.0, "chat", 70), (1.5, "chat", 60),
+        (2.0, "chat", 70), (2.5, "chat", 60), (3.0, "chat", 70), (3.5, "chat", 60),
+        # Cowbell on every beat — cáscara-style timekeeping
+        (0.0, "cowbell", 85), (1.0, "cowbell", 78),
+        (2.0, "cowbell", 85), (3.0, "cowbell", 78),
+        # Open conga on the "ands" of 2 and 4 — Latin offbeat push
+        (1.5, "conga_open", 80), (3.5, "conga_open", 80),
+    ],
+    "j-fusion-kit": [
+        # J-fusion drum kit — Akira Jimbo (Casiopea) / Hiroyuki Noritake (T-Square) style.
+        # Kick on 1, "and of 2," and 3 (slight syncopation, the kick lift). Snare 2 + 4.
+        # Hi-hat 16ths underneath — the locked-16 feel needs this density.
+        (0.0, "kick", 95), (1.5, "kick", 85), (2.0, "kick", 90),
+        (1.0, "snare", 95), (3.0, "snare", 95),
+        # 16th-note hi-hat — open enough to breathe, tight enough to drive
+        (0.0, "chat", 72), (0.25, "chat", 60), (0.5, "chat", 68), (0.75, "chat", 60),
+        (1.0, "chat", 72), (1.25, "chat", 60), (1.5, "chat", 68), (1.75, "chat", 60),
+        (2.0, "chat", 72), (2.25, "chat", 60), (2.5, "chat", 68), (2.75, "chat", 60),
+        (3.0, "chat", 72), (3.25, "chat", 60), (3.5, "chat", 68), (3.75, "chat", 60),
+    ],
 }
 
 FEEL_TO_DRUMS = {
-    "sparse":   "halftime",
-    "driving":  "basic-rock",
-    "halftime": "halftime",
-    "pushed":   "basic-rock",
+    "sparse":    "halftime",
+    "driving":   "basic-rock",
+    "halftime":  "halftime",
+    "pushed":    "basic-rock",
+    "skank":     "one-drop",
+    "montuno":   "latin-fusion",
+    "locked-16": "j-fusion-kit",
 }
 
 NOTE_NAMES = {"C": 0, "C#": 1, "Db": 1, "D": 2, "D#": 3, "Eb": 3, "E": 4,
@@ -411,6 +505,13 @@ def build_track_notes(form, sections_by_name, role):
         if role == "chugg":
             pattern_name = sec.get("chugg", "single-hit")
             pattern = CHUGG_PATTERNS.get(pattern_name, CHUGG_PATTERNS["single-hit"])
+            # Derive the pattern period from the max offset — supports both 1-bar
+            # patterns (gallop, syncopated, etc.) and 2-bar patterns (clave-3-2, clave-2-3).
+            if pattern:
+                max_offset = max(o for o, _, _ in pattern)
+                period = (int(max_offset) // 4 + 1) * 4.0
+            else:
+                period = 4.0
             chord_cursor = cursor_beats
             for chord_spec in sec["chords"]:
                 beats = chord_spec["beats"]
@@ -423,7 +524,7 @@ def build_track_notes(form, sections_by_name, role):
                         if t >= beats:
                             continue
                         out.append((chord_cursor + t, dur, pitch, 95 + vd))
-                    bar_cursor += 4.0
+                    bar_cursor += period
                 chord_cursor += beats
             cursor_beats = chord_cursor
             continue
@@ -440,14 +541,41 @@ def build_track_notes(form, sections_by_name, role):
                 else:
                     out.append((chord_cursor, beats, pitches[0], 85))
             elif role == "pad":
-                pitches = voice_pad(root_pc, intervals, bass_pc)
-                pad_vel = 65 if feel == "sparse" else 72
-                # Let chords ring into the next change — more pianistic, less choppy.
-                # Generous on sparse sections so atmospheric moments breathe.
-                overhang = 2.0 if feel == "sparse" else 1.25
-                note_len = beats + overhang
-                for p in pitches:
-                    out.append((chord_cursor, note_len, p, pad_vel))
+                if feel == "montuno":
+                    # Salsa montuno on piano — a syncopated 8th-note arpeggio of chord
+                    # tones (root / 3rd / 5th) in the mid-register. Replaces the held-
+                    # chord pad emission. Per-bar pattern, looped across the chord's span.
+                    # Pattern: (offset_in_bar, tone_index, dur, vel)
+                    base = 60  # C4 — mid-register where montuno comping lives
+                    tones = intervals[:3]
+                    while len(tones) < 3:   # ensure index 2 access for triads/sus
+                        tones = tones + tones
+                    montuno_figure = [
+                        (0.5, 1, 0.40, 70),   # and-of-1: 3rd (anticipation)
+                        (1.0, 0, 0.40, 78),   # beat 2: root (accent)
+                        (1.5, 2, 0.40, 66),   # and-of-2: 5th
+                        (2.5, 1, 0.40, 70),   # and-of-3: 3rd (anticipation)
+                        (3.0, 0, 0.40, 78),   # beat 4: root (accent)
+                        (3.5, 2, 0.40, 66),   # and-of-4: 5th
+                    ]
+                    bar_cursor = 0.0
+                    while bar_cursor < beats:
+                        for offset, tone_idx, dur, vel in montuno_figure:
+                            t = bar_cursor + offset
+                            if t >= beats:
+                                continue
+                            pitch = root_pc + base + tones[tone_idx]
+                            out.append((chord_cursor + t, dur, pitch, vel))
+                        bar_cursor += 4.0
+                else:
+                    pitches = voice_pad(root_pc, intervals, bass_pc)
+                    pad_vel = 65 if feel == "sparse" else 72
+                    # Let chords ring into the next change — more pianistic, less choppy.
+                    # Generous on sparse sections so atmospheric moments breathe.
+                    overhang = 2.0 if feel == "sparse" else 1.25
+                    note_len = beats + overhang
+                    for p in pitches:
+                        out.append((chord_cursor, note_len, p, pad_vel))
             elif role == "synth_pad":
                 pitches = voice_synth_pad(root_pc, intervals, bass_pc, octave=3)
                 # Long sustain — pad blurs into next chord, the synth's release tail handles fadeout.

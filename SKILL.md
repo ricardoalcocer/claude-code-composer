@@ -113,7 +113,10 @@ Write a spec file to `/tmp/composer_spec.json`. Full example:
   - `"sparse"` — One hit per chord, ringing. Atmospheric intros, breathing verses.
   - `"halftime"` — Two hits per bar (beats 1 and 3), held. Big and slow-feeling at same tempo.
   - `"pushed"` — Syncopated stabs on 1, *and of 2*, 3, *and of 4*. Funk-rock push.
-- **`sections[].drums`** — Optional override. Defaults from `feel` (sparse→halftime, driving→basic-rock, halftime→halftime, pushed→basic-rock). Values: `"basic-rock"`, `"halftime"`, `"four-on-floor"`, `"none"`.
+  - `"skank"` — Reggae chord chops ONLY on the upbeats (and-of-2, and-of-4). Silent downbeats are the point. Pairs with the `one-drop` drum pattern. For fusion: put Dorian or Lydian-dom changes under it.
+  - `"montuno"` — Salsa engine. On the `pad` (piano) role this triggers a syncopated chord-tone arpeggio (root/3rd/5th) in mid-register — the actual montuno figure. On `rhy_l`/`rhy_r` it becomes a syncopated guitar comp doubling the figure. Pairs with `latin-fusion` drums and a `clave-3-2` chugg.
+  - `"locked-16"` — J-fusion (Casiopea / T-Square) tight 8th-note pocket. Choked-short chord stabs with **upbeats accented louder than downbeats** — the Japanese-fusion lift. Pairs with the `j-fusion-kit` drum pattern (16th hi-hat underneath). This is the feel that makes the J-fusion pack actually *sound* like Casiopea instead of generic rock.
+- **`sections[].drums`** — Optional override. Defaults from `feel` (sparse→halftime, driving→basic-rock, halftime→halftime, pushed→basic-rock, skank→one-drop, montuno→latin-fusion, locked-16→j-fusion-kit). Values: `"basic-rock"`, `"halftime"`, `"four-on-floor"`, `"one-drop"` (reggae — kick+snare together on beat 3), `"latin-fusion"` (kit + cowbell + open conga on the "ands"), `"j-fusion-kit"` (16th hi-hat + syncopated kick — Akira Jimbo / Hiroyuki Noritake style), `"none"`.
 - **`sections[].voicing`** — Rhythm guitar chord voicing. `"power"` *(default)* plays root+fifth power chords (rock/metal). `"full"` plays the full chord tones (root + 3rd + 5th + 7th) — required for jazz-funk/fusion comping; otherwise power chords kill the genre.
 - **`sections[].move`** *(optional but strongly recommended)* — Short human-readable description of the harmonic strategy. Goes into the Reaper project notes so the user can read what each section is doing when they open the .RPP. Examples: `"pedal-tone vamp (F# in bass)"`, `"diatonic descending bass E→D→C→B→A→G→F#→B"`, `"bVI-bVII-i lift"`, `"chromatic descending bass"`, `"Phrygian-dom (Em-F-Em-B7)"`. **Fill this in for every section** — it's the "bandmate handing you a sketch" part of the experience.
 - **`sections[].scales`** *(strongly recommended — improvisation guidance)* — Which scale(s) to play over this section when soloing. Goes into the Reaper project notes as an `improv:` line below the chords. Format: name the scale with its note spelling, and optionally a second scale option for color. Examples:
@@ -129,7 +132,7 @@ Write a spec file to `/tmp/composer_spec.json`. Full example:
 - **`form`** — Section names in order. Repeat freely.
 - **`sections[].melody`** *(optional — opt-in lead/riff line)* — A composed melodic line for the `lead` role (MIDI-LEAD track). List of `[start_beat, "pitch_name", duration_beats]` tuples. Pitch format: `"E3"`, `"F#4"`, `"Ab2"`. `start_beat` is the beat offset from the start of the section. Plays once across the section by default; for a looping riff/motif, set `melody_loop_beats` below. The melody is a **starting point** — the user can play it as-is to learn the bed, then deviate and improvise.
 - **`sections[].melody_loop_beats`** *(optional)* — If set (e.g., `4`), the melody loops every N beats across the section (riff/motif mode). If omitted, the melody plays once through the whole section (full composed melodic line mode).
-- **`sections[].chugg`** *(optional — opt-in palm-mute pattern)* — Pattern name from `CHUGG_PATTERNS` for the `chugg` role (MIDI-CHUGG track). The chugg plays the current chord's root at low octave (E2-D#3) with the chosen rhythm. Values: `"straight-16ths"`, `"gallop"`, `"polyrhythm-3"`, `"syncopated"`, `"halftime"`, `"single-hit"`, `"open-8ths"`. The MIDI-CHUGG track typically has ReaPitch loaded — the user can shift the whole track down for drop-D / drop-C / drop-B feel.
+- **`sections[].chugg`** *(optional — opt-in palm-mute pattern)* — Pattern name from `CHUGG_PATTERNS` for the `chugg` role (MIDI-CHUGG track). The chugg plays the current chord's root at low octave (E2-D#3) with the chosen rhythm. Values: `"straight-16ths"`, `"gallop"`, `"polyrhythm-3"`, `"syncopated"`, `"halftime"`, `"single-hit"`, `"open-8ths"`, `"clave-3-2"` (son clave 3-2, **2-bar pattern** — bar 1: 1 / and-of-2 / 4; bar 2: 2 / 3), `"clave-2-3"` (son clave 2-3, the reverse — bar 1: 2 / 3; bar 2: 1 / and-of-2 / 4). The MIDI-CHUGG track typically has ReaPitch loaded — the user can shift the whole track down for drop-D / drop-C / drop-B feel, OR swap to a wood-block / clave VST for the actual son-clave timbre in salsa-fusion.
 - **`roles`** (optional) — Which layers to write. Valid: `bass`, `pad`, `rhy_l`, `rhy_r`, `clean`, `strum`, `lead`, `chugg`, `synth_pad`, `drums`. **Default** (when omitted) is `[bass, pad, rhy_l, rhy_r, drums]` — a standard rock band. `clean`, `strum`, `lead`, `chugg`, and `synth_pad` are opt-in. Use when user says "no drums" or "ballad, no rhythm guitars," or when the style needs additional layers.
   - **`clean`** (MIDI-CLEAN, picked patch): fingerpicked 8th-note arpeggio cycling through chord tones. For ballads, cinematic, math rock, post-rock intros.
   - **`strum`** (MIDI-STRUM, body/strum patch): staggered chord strum — each chord tone offset ~40ms (low-to-high pick rake) with velocity taper. For ballad choruses, anthemic acoustic-y moments where rhythm guitars would be too heavy.
@@ -170,8 +173,13 @@ When the user describes the song with mood or genre words ("emotional," "Spanish
 - "synthwave," "retrowave," "Carpenter Brut," "Kavinsky," "Mitch Murder," "80s," "Stranger Things" → **Synthwave**
 - "Jack Thammarat," "jazz-funk," "fusion," "smooth fusion," "neo-soul," "Tomo Fujita," "Cory Henry," "Snarky Puppy," "smooth jazz instrumental" → **Jazz-funk**
 - "math rock," "midwest emo," "American Football," "TTNG," "Toe," "fingerpicked indie," "jangly," "open-tuning indie" → **Math rock**
+- "reggae-fusion," "reggae," "skank," "Scofield reggae," "jazz reggae," "dub jazz" → **Reggae-fusion**
+- "salsa-fusion," "salsa," "Latin fusion," "montuno," "Eddie Palmieri fusion," "Michel Camilo," "Hiromi Latin," "Steve Khan Eyewitness" → **Salsa-fusion**
+- "Casiopea," "T-Square," "Naniwa Express," "J-fusion," "Japanese fusion," "Issei Noro," "Akira Jimbo," "city-pop fusion," "Mint Jams," "Asayake" → **J-fusion**
 
 If unclear: ask a one-line question. Don't guess across packs.
+
+**Reggae-fusion, Salsa-fusion, and J-fusion are all explicitly fusion packs** — the user lifts the rhythmic engine (skank, montuno, clave, locked-16, Latin/J-fusion kit) but keeps an interesting harmonic frame on top. For Reggae and Salsa: modal-jazz (Dorian, Lydian-dom, ii-V-i). For J-fusion: major-key brightness with maj7/9/sus2/add9 voicings and **mandatory composed lead melody** (the genre is melody-first). Don't write authentic reggae I-IV-V, 3-chord salsa, or generic pop-fusion — put Lydian-dom over a skank, Dorian over a montuno, locked-16 under modal-rock harmony for Zaza-meets-Casiopea. See the packs below for touchstones.
 
 ### Rock *(default — instrumental melodic rock/metal — NOT classic rock or arena rock)*
 
@@ -352,6 +360,89 @@ These progressions are vintage-pop, NOT instrumental melodic rock. They will tri
 - **Avoid:** power chords, distortion-implying voicings, jazz extensions (it should sound college-dorm, not jazz club), Phrygian, fast harmonic motion
 - **Touchstones:** American Football "Never Meant," TTNG "Crocodile" / "In Praise of Idleness," Toe "Goodbye," Don Caballero, Tortoise (post-rock-math-adjacent)
 
+### Reggae-fusion *(skank as engine — modal-jazz harmony on top — Scofield / Khan / Eyewitness)*
+
+This pack is **fusion**, not authentic reggae. The user lifts the reggae *rhythmic feel* (skank guitar chops + one-drop drums + walking bass) and drops modal-jazz or fusion harmony on top. Authentic reggae harmony is I-IV-V — we DON'T do that here. The whole point is the contrast between the reggae groove and surprising harmonic vocabulary.
+
+- **Tempo:** 70–95 BPM (classic reggae sits 70–85; fusion-reggae often slightly faster at 80–95).
+- **Key:** modal preferred — `D Dorian`, `G Mixolydian`, `Em Aeolian`, `A Dorian`, `F Lydian`. Major-key Lydian works (the raised 4 shimmer over the skank is gorgeous — Scofield "Bone Yard" territory). For minor-key vibes use Aeolian with extended chords (m9, m11 voicings).
+- **Roles:** `[bass, pad, rhy_l, rhy_r, drums]`. The skank lives on `rhy_l`/`rhy_r` (with `voicing: "full"` so the extensions ring). `pad` (piano) can do the "bubble" — 8th-note arpeggios on upbeats — but the **default sustained-chord pad behavior also works**, voicing it as an organ via VST swap (Hammond/Wurli) gets you the classic reggae bubble timbre. Add `clean` if you want a separate clean guitar doing arpeggios alongside the skank.
+- **Feel:** **`skank`** is the centerpiece — silent downbeats, chord chops on the upbeats only. For contrast, bridges can use `halftime` (band breathing) or `sparse` (dub-style breakdown).
+- **Drums:** `one-drop` (auto-mapped from `skank` feel) — kick + snare together on beat 3, hi-hat 8ths underneath. For variation, `halftime` works in bridges.
+- **Chord durations:** 4 or 8 beats per chord — skank groove needs chords to LAND and stay for the feel to develop. Fast harmonic motion kills the groove.
+- **Moves to reach for:**
+  - **Dorian vamp under skank** — `Dm9 – G7 – Dm9 – Em7`. Two chords, modal, locked. Pure Scofield.
+  - **Lydian shimmer under skank** — `Fmaj7 – G/F – Em7 – Am7`. The raised 4 (B natural over F) sings against the upbeat chops.
+  - **Lydian-dominant turn** — `D7#11 – G/D – Am7 – D7sus4`. Bring jazz-fusion chord vocab to a roots-reggae groove.
+  - **ii-V-i with delayed resolution** — `Dm7 – G7 – Dm9`. The V doesn't fully resolve; we sit in the suspension over the skank.
+  - **bVII–IV vamp** — `Cmaj7 – G – Cmaj7 – G` (in G Mixolydian). Classic reggae harmonic frame, but voiced as maj7 not plain triads.
+- **Voicings:** `"voicing": "full"` is mandatory — extensions and 7ths are the fusion signature. Power chords KILL reggae (and kill fusion). Use m9, m11, maj7, 7#11 chord names liberally.
+- **VST plugin swaps (manual, after generation):**
+  - `rhy_l`/`rhy_r` → clean amp sim (no distortion) for authentic skank tone
+  - `pad` (PIANO) → Hammond / Wurli VST for the "bubble" organ sound
+  - `bass` → fingered/round-tone preset (no slap, no pick)
+- **Avoid:** distortion on the rhythm guitars (kills the genre), I-IV-V harmony (boring authentic-reggae), 4-chord pop loops (the "no 4-chord loops" rule still applies), fast harmonic motion (the groove needs to lock), V7 cadences with full resolution (modal hangs are the fusion-reggae move).
+- **Touchstones:** John Scofield "Bone Yard" / "Boozer" / "Did You Have a Good Time" (the textbook), Steve Khan "Eyewitness" era, Pat Metheny "American Garage" reggae moments, Grant Green's late jazz-reggae crossovers.
+
+### Salsa-fusion *(montuno + clave as engine — modal jazz / Lydian-dom on top — Camilo / Khan / Hiromi)*
+
+Also explicitly **fusion**, not authentic salsa. Real salsa is dom7-heavy and structurally rigid (verso-coro-mambo); fusion-salsa lifts the montuno piano figure, the clave foundation, and the Latin kit, then drops jazz-fusion harmony over the top. The harmonic vocabulary of authentic salsa (mostly ii-V chains in major) is fine on its own but uninteresting for a fusion player; we deliberately bring more modal complexity.
+
+- **Tempo:** 95–130 BPM (authentic salsa lives 90–115; fusion can push a bit faster). Slower side for "salsa ballads" (the bolero-fusion zone), faster for charanga-energy bridges.
+- **Key:** modal jazz frame — `Dorian`, `Lydian-dominant`, `Mixolydian`, with ii-V-i chains for development. Minor modes work great. **Avoid** straight-major Ionian (boring) and dense Aeolian (clashes with the Latin lift).
+- **Roles:** `[bass, pad, drums]` is the minimal montuno trio. Add `chugg` for clave on a wood-block VST. Add `lead` for horn-section lines (the typical fusion sub is to play horn lines on guitar or synth lead — Steve Khan does this constantly). Optional `rhy_l`/`rhy_r` for montuno comp doubling (the figure becomes a guitar-piano unison hook).
+- **Feel:** **`montuno`** on the `pad` role — this triggers a syncopated chord-tone arpeggio (root/3rd/5th) in mid-register, replacing the usual sustained-chord pad. THE engine. Bridges can shift to `pushed` (for breakdown moments) or `halftime` (for "mambo break" moments).
+- **Drums:** `latin-fusion` (auto-mapped from `montuno` feel) — kit + cowbell on every beat (cáscara timekeeping) + open conga on the "ands." Swap the drum-track plugin to a GM-compliant kit so the cowbell/conga pitches sound right.
+- **Chugg:** **`clave-3-2`** (default; 2-bar pattern with 3 hits on the first bar, 2 on the second) or **`clave-2-3`** (reversed — 2-side first). Pick one and stay with it across a section. The clave is the timekeeping ANCHOR — everything else aligns to it. Swap the chugg-track VST to a wood-block or claves patch for the authentic clave timbre.
+- **Chord durations:** 4 or 8 beats per chord — montuno needs the harmony to sit for the figure to develop. Two-bar chord lengths are ideal (each bar of montuno feels complete; two bars lets the syncopation breathe).
+- **Moves to reach for:**
+  - **ii-V-i in minor with extensions** — `Dm9 – G7 – Cmaj9`. The classic jazz-fusion frame; the montuno rhythm makes it Latin.
+  - **Lydian-dominant vamp** — `D7#11 – Em7 – D7#11 – G7`. Pure Joe Henderson / Eddie Palmieri fusion overlap. The #11 sings against the montuno.
+  - **Modal montuno** — Single Dorian/Lydian vamp for 8+ bars; the montuno is the variety, not the chord changes (a-la Eddie Palmieri's "Vámonos Pa'l Monte" but with jazz extensions).
+  - **Mambo break** — Sudden chord change + hit on beat 1 then silence for half a bar (use `feel: "halftime"` and a leading-tone chord like dom7 with #11/b9 extensions where the parser allows).
+  - **bVII-I in major** — `Bb – C` cycle (in C Lydian). Salsa's bIII-IV-V is too pop; bVII-I gives the modal/Mixolydian fusion frame.
+- **Voicings:** `"voicing": "full"` MANDATORY. The montuno figure outlines chord tones; if rhy guitars do power chords, the chord-tone arpeggio in the pad sounds disconnected from the band. m7/m9/maj7/maj9/9/7sus4-equivalent (use sus4 or 7 since 7sus4 isn't parser-supported).
+- **VST plugin swaps (manual, after generation):**
+  - `pad` (PIANO) — keep as electric/acoustic piano (montuno belongs on piano). For more authentic salsa: a percussive electric piano (Wurli, Rhodes Mark I) for the Camilo/Eyewitness sound.
+  - `chugg` → wood-block or claves VST (the chord-root low-octave default is wrong for clave timbre — claves are a high pitched percussion sound).
+  - `lead` → brass section / trumpet / sax for horn lines, OR keep as fusion guitar/synth for the Khan/Metheny sub.
+  - `drums` → GM-compliant kit so cowbell (56), open conga (63), open hi-hat etc. all sound correctly.
+- **Avoid:** straight-major Ionian (no fusion interest), Aeolian (clashes with the bright Latin feel — Dorian is the minor-mode default here), power chords, fast harmonic motion (montuno needs space), 4-chord loops, V7 cadences that fully resolve (modal hangs are the move).
+- **Touchstones:** Michel Camilo Trio ("Caribe," "On Fire," "From Within"), Hiromi Trio Project Latin moments, Eddie Palmieri's harmonic vocabulary applied to fusion, Steve Khan "Eyewitness" Latin moments, Pat Metheny Group "Are You Going With Me?" / "Last Train Home" (the cinematic-Latin tinge), Chick Corea "Spain" (the canonical jazz-Latin fusion overlap).
+
+### J-fusion *(Casiopea / T-Square / Naniwa Express — Japanese melodic fusion)*
+
+The **Japanese fusion school** — distinct from American Jazz-funk (which is improvisational, modal, neo-soul). J-fusion is **composed melody-first**, major-key bright, locked tight 16ths, glassy clean tones, DX7 synth-brass beds. The melody IS the song; the rhythm section is the engine the melody rides on. Casiopea's "Mint Jams" and T-Square's "Truth" are the textbook records.
+
+- **Tempo:** 105–135 BPM. Sweet spot is 110–125 — fast enough for the locked 16ths to drive, slow enough for the melody to sing. Ballads can go down to 90.
+- **Key:** **MAJOR preferred** — `C`, `F`, `G`, `Bb`, `A`, `D`. Minor keys are fine but lean toward Dorian (i with major IV) or Aeolian-with-major-mixture — avoid the dark modal-jazz Aeolian dwelling that defines Jazz-funk. Bright is the default mood.
+- **Roles:** `[bass, pad, rhy_l, rhy_r, drums, lead]`. The bass is PROMINENT — Tetsuo Sakurai (Casiopea) / Mitsuru Sutoh (T-Square) play melodic basslines that are half lead, half rhythm. `pad` (piano) typically gets swapped to electric piano (Wurli, Rhodes, DX7 FM). **`lead` is REQUIRED** — every section (except sparse intro/outro) must have a composed `melody` array. The genre is melody-first; without a composed lead, the output is just a generic funk groove.
+- **Feel:** `locked-16` is the centerpiece — tight 8th-note chord stabs with **upbeats accented louder than downbeats** (the Japanese-fusion lift, inverting rock-default accents). Ballads use `sparse` or `halftime`; bridges can shift to `pushed` for breakdown moments.
+- **Drums:** `j-fusion-kit` (auto-mapped from `locked-16` feel) — 16th-note hi-hat with syncopated kick on 1 / "and of 2" / 3. Akira Jimbo / Hiroyuki Noritake style. Swap to a fusion-style kit VST (BFD or AD2 with a "studio" preset) for the proper tight sound.
+- **Chord durations:** 2–4 beats per chord. Casiopea moves through harmony FAST — don't dwell. Two-bar chord lengths only on intro/outro/sparse moments.
+- **Composed melody (mandatory):** every non-intro section needs a composed lead line in the `melody` array. The melody should:
+  - Be **8 or 16 bars** of phrase length
+  - Have a clear **contour** (rises and falls — not random walk)
+  - Land on **chord tones** at section boundaries
+  - Use **rhythmic interest** matching the locked-16 feel (16th-note pickups, syncopated landings)
+  - Have **hooky landings** — long notes after busy 16th passages, repeated motifs
+- **Moves to reach for:**
+  - **Asayake lift** — diatonic descending bass with maj7/9 voicings. In F: `Fmaj7 – Em7 – Dm7 – Cmaj7 – Bbmaj7 – Am7 – Gm7 – C7`. Famous Casiopea descent.
+  - **Pop-fusion I-vi-IV-V with extensions** — `Cmaj9 – Am9 – Fmaj9 – G7sus4 → G7` (sus resolution as the hook). The Asayake/Take Me / Mid-Manhattan frame, but with maj9/m9 not plain triads.
+  - **Pedal-tone with melody-led changes** — bass pedals on tonic while chord QUALITIES shift above; the lead carries the song. `C – C/B – Am9 – G/B – C/E – Fmaj7 – G7sus4 – Cmaj9`.
+  - **Quick ii-V passing chains** — not destination harmony, transient color. `Dm7 – G7 – Em7 – A7 – Dm7 – G7 – Cmaj9 – Fmaj9`. Each ii-V passes through, never resolves.
+  - **Sus2 → maj9 hook** — `Csus2 – Cmaj9`. The sus2 is the surprise, the maj9 is the home. T-Square's "Omens of Love" lives in this gesture.
+  - **Bass-and-drums unison locks** — bass plays a melodic 16th-note line in unison with the kick pattern. The pocket IS the hook. Casiopea "Galactic Funk" / T-Square "Twilight in Upper West."
+- **Voicings:** **`"voicing": "full"` mandatory.** maj7/maj9/m7/m9/add9/sus2/sus4. Bright extensions only — never power chords (kills the entire aesthetic). 7th-chord ambiguity (dom7 used as passing color) is fine.
+- **VST plugin swaps** *(critical for the genre to sound right)*:
+  - `pad` (PIANO) → Wurlitzer / Rhodes Mark I / Yamaha DX7 / FM electric piano (the *actual* Casiopea/T-Square keyboard sound — acoustic piano is wrong)
+  - `rhy_l`/`rhy_r` → clean amp with chorus pedal (the Issei Noro / Masahiro Andoh glassy tone)
+  - `synth_pad` (SURGE XT) → DX7 brass / E.Piano 2 / TX802 preset for the 80s J-fusion synth bed
+  - `lead` → clean electric guitar with light overdrive + chorus, OR a DX7 lead synth for the synth-melody moments
+  - `bass` → fingered round-tone preset, slight compression (no slap, no pick — Sakurai uses fingers)
+- **Avoid:** distortion (kills the clean glassy tone), dark Aeolian dwelling (different fusion school — that's Jazz-funk territory), modal-jazz Lydian-dom (also Jazz-funk's lane), 4-chord pop loops, melodies without rhythmic interest, slow harmonic motion (Casiopea moves fast), power chords, dwelling on V7 cadences (J-fusion prefers passing color over resolution).
+- **Touchstones:** Casiopea "Mint Jams" (1982 live record — the textbook), "4x4," "Eyes of the Mind," "Asayake," "Take Me," "Mid-Manhattan," "Galactic Funk," "Domino Line"; T-Square "Truth," "Omens of Love," "Travelers," "Twilight in Upper West," "Sole Sisters"; Naniwa Express; Akira Jimbo solo records; Issei Noro Inspirits; Hiroyuki Noritake; Tetsuo Sakurai's bass-led work.
+
 ### Mixing packs
 
 Real songs blend. Examples:
@@ -359,6 +450,7 @@ Real songs blend. Examples:
 - **Spanish bridge in a rock song** — verses/choruses use Rock pack, the bridge section uses Spanish moves (Andalusian, Phrygian-dom)
 - **Cinematic intro into rock verse** — intro section uses Cinematic pack (sparse, no drums, suspended hang), then `roles` add back guitars + drums for the rock verse onward
 - **Synthwave verse with djent bridge** — verses are synthwave (four-on-floor, arpeggio), bridge drops to djent (pushed rhythm guitars, halftime drums)
+- **Zaza + Casiopea** *(the canonical melodic-rock-meets-J-fusion fusion)* — Rock-pack **chord harmony** (modal minor, Aeolian descent, pedal tones, bVI-bVII-i lift, sus2/add9 voicings) + J-fusion's **`locked-16` feel** under it + **composed lead melody** with Zaza-style melodic contour (singable, hooky, with bends and slides implied). Use roles `[bass, pad, rhy_l, rhy_r, drums, lead]`. The lead carries the Zaza melodicism; the rhythm section grooves tight J-fusion underneath. Result: melodic instrumental rock with a Japanese-fusion engine instead of straight 8th-note rock chops. Best in minor keys (Em, Bm, F#m, Am) so the Zaza melodic vocabulary translates directly.
 
 When mixing, keep one section's `feel` and `move` consistent within itself — don't put Spanish moves in the same section as synthwave voicings. The packs blend at section boundaries, not within sections.
 
