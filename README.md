@@ -137,7 +137,7 @@ Everything user-specific lives in `config.json` (gitignored). Two keys:
 
 ```json
 {
-  "template_path": "~/Library/Application Support/REAPER/ProjectTemplates/claude-composer-1.RPP",
+  "template_path": "~/Library/Application Support/REAPER/ProjectTemplates/claude-composer.RPP",
   "output_root": "~/Documents/MIDI-SONGS"
 }
 ```
@@ -145,7 +145,7 @@ Everything user-specific lives in `config.json` (gitignored). Two keys:
 | Key | Purpose |
 |---|---|
 | `template_path` | Path (`~/...` OK) to your Reaper template `.RPP`. The script reads, patches, and writes to your output folder. |
-| `output_root` | Where compositions land: `<output_root>/_<YEAR>/composer/<DATE>_<slug>_<NN>/`. |
+| `output_root` | Where compositions land: `<output_root>/_<YEAR>/composer/<week-folder>/<key>-<bpm>-<slug>/`. Key is lowercase with `#`/`b` and an `m` suffix for minor (`f#m`, `ebm`); bpm is zero-padded to 3 digits so `ls` sorts numerically. See SKILL.md §3 for the full rule. |
 
 Want a personal scratchpad for "what I've found works"? Copy `style.example.md` to `style.md` — Claude reads it at the start of every composition, so guidance you give it persists across sessions. Example entries:
 
@@ -171,12 +171,14 @@ Want a personal scratchpad for "what I've found works"? Copy `style.example.md` 
 Each generated song goes to:
 
 ```
-<output_root>/_<YEAR>/composer/<DATE>_<slug>_<NN>/
+<output_root>/_<YEAR>/composer/<week-folder>/<key>-<bpm>-<slug>/
 ├── <slug>.RPP                 ← open this in Reaper
 ├── full.mid                   ← full-song arrangement, any DAW
 ├── <section>.mid              ← per-section MIDI files
 └── spec.json                  ← the JSON spec that produced this song
 ```
+
+Folder names use `<key>-<bpm>-<slug>` (e.g. `em-128-iron-mile`) so `ls` groups the directory first by key, then by tempo. The `<week-folder>` is optional — for one-offs you can put the song directly under `composer/` — but weekly sessions keep things organized.
 
 `spec.json` is the most useful archive artifact. It captures every musical decision the skill made — key, tempo, form, feel-arc, arrangement, every chord. If a song works, you can read the spec to see why. If it doesn't, hand-edit the spec and re-run the generator.
 

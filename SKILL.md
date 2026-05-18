@@ -34,12 +34,20 @@ Arrangement: **pick from the Arrangement archetypes catalog below.** Don't inven
 
 ### 3. Determine the output folder
 
-Read `<output_root>` from `config.json` in this skill directory. Output goes to `<output_root>/_<YEAR>/composer/<DATE>_<slug>_<NN>/` where:
+Read `<output_root>` from `config.json` in this skill directory. Output goes to `<output_root>/_<YEAR>/composer/<WEEK_OR_DATE>/<key>-<bpm>-<slug>/` where:
 
 - `<YEAR>` = current year (e.g. `_2026`).
-- `<DATE>` = today's date as `YYYY-MM-DD`. Use the date from the system context — do not ask.
+- `<WEEK_OR_DATE>` = the parent grouping folder:
+  - **Weekly session (preferred)**: `week-YYYY-MM-DD` where the date is the Monday of the current week. Ask the user (or create one if they've told you they're starting a session) — keep all songs from one week's session together.
+  - **Sub-set inside a week** (same-key/same-style group): nest another folder like `fsharp-minor-set/` inside the week folder.
+  - **Standalone one-off**: skip the wrapper and put the song folder directly under `composer/`.
+- `<key>` = the song's key, lowercase, with `#`/`b` preserved and `m` suffix for minor. Examples: `em`, `f#m`, `dm`, `gm`, `c#m`, `ebm`, `bbm`, `c`, `f`, `bb`, `f#`. This is the first sort key — songs in the same key cluster together.
+- `<bpm>` = tempo, **zero-padded to 3 digits** so `ls` sorts numerically (`070` before `104`, not `104` before `70`). Examples: `070`, `086`, `104`, `135`.
 - `<slug>` = a short kebab-case song slug. Invent one if the user didn't name it.
-- `<NN>` = two-digit increment. **Find the next available number** — if `<DATE>_<slug>_01` exists, try `_02`, etc.
+
+Example: `~/Documents/MIDI-SONGS/_2026/composer/week-2026-01-06/em-128-iron-mile/`
+
+**Collisions:** If the exact `<key>-<bpm>-<slug>` already exists, append `-2`, `-3`, etc. to the slug (`em-128-iron-mile-2`). Don't try to disambiguate by changing the bpm/key — they're the sort keys, they need to be accurate.
 
 ### 4. Write the spec JSON
 
