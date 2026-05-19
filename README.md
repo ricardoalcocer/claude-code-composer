@@ -8,6 +8,11 @@
   <em>A bandmate that hands you sketches.</em>
 </p>
 
+
+Demo
+<a href="https://youtu.be/sGqa-7_V1t8">Demo</a>
+
+
 <p align="center">
   <a href="https://github.com/ricardoalcocer/claude-code-composer/actions/workflows/ci.yml">
     <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/ricardoalcocer/claude-code-composer/ci.yml?branch=master&style=for-the-badge&label=CI&logo=githubactions&logoColor=white">
