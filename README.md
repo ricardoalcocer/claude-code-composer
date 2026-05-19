@@ -9,9 +9,9 @@
 </p>
 
 
-<center>
+<p align="center">
 <a href="https://youtu.be/sGqa-7_V1t8">Demo</a>
-</center>
+</p>
 
 <p align="center">
   <a href="https://github.com/ricardoalcocer/claude-code-composer/actions/workflows/ci.yml">
