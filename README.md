@@ -10,7 +10,7 @@
 
 
 <p align="center">
-<a href="https://youtu.be/sGqa-7_V1t8"><img src="https://i.ytimg.com/vi/sGqa-7_V1t8/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGEMgWShlMA8=&rs=AOn4CLD4BYRZbTszsmDFboVhZatho_9N6w"></a>
+<a href="https://youtu.be/sGqa-7_V1t8"><img src="https://i.ytimg.com/vi/sGqa-7_V1t8/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGEMgWShlMA8=&rs=AOn4CLD4BYRZbTszsmDFboVhZatho_9N6w" width="750"></a>
 </p>
 
 <p align="center">
