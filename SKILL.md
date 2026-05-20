@@ -225,28 +225,72 @@ These progressions are vintage-pop, NOT instrumental melodic rock. They will tri
 - **bIII / bVI modal mixture** — borrow chords from parallel minor (e.g. `D major` in B major = bIII, gives a Vai modal-shift moment).
 - **Relative-minor detours** — verses can briefly visit `vi` as a center (G#m in B major) but DON'T just hop through it as `I-vi-IV-V`; pedal on it or use it as a real key center for 4+ bars.
 
-- **Touchstones:** Joe Satriani, Steve Vai, Neil Zaza, Plini, Polyphia, Animals as Leaders (melodic moments)
+- **Touchstones:** Joe Satriani, Steve Vai, Neil Zaza, Plini, Polyphia, Animals as Leaders (melodic moments), Dream Theater (especially Awake / Images and Words era — verified from "Voices" MIDI: static-triad chorus with chromatic bass walk, 9/8 modal-mixture intros, 3/4↔2/4 hemiola transitions, Phrygian-dominant unresolved endings), Alan Parsons Project (verified from "Sirius" / "Some Other Time" / "Walrus" MIDIs: plagal-only intro fanfares, modal modulation by mode-shift on same tonic, bII-maj7 chromatic chorus pivots, additive 8-bar layer-stack arrangement)
 
 ### Cinematic / emotional / sad
 
-- **Tempo:** **60–80 BPM** (don't drift higher unless user pushes back)
-- **Key:** minor (`Am`, `Dm`, `Em`, `Cm`), or major with persistent minor moments (`C` with `Fm` borrowed)
-- **Roles:** **`[bass, pad]` only.** Drop `rhy_l`, `rhy_r`, `drums`. The whole point is sparse breath.
-- **Feel:** all sections `sparse`
-- **Drums:** `none` everywhere (don't add drums even on chorus)
-- **Chord durations:** longer — 8 or 16 beats per chord so each one has time to be felt
-- **Moves to reach for:**
-  - **Suspended hangs** — `Asus2 → Asus4 → Asus2`, floating, never resolving
-  - **Anti-cadence** — end the verse on V or sus, never i. Leave the listener hanging.
-  - **Subdominant minor in major** — in C major, use `Fm` or `Abmaj7` (Lana del Rey's "saddest" chord)
-  - **Descending suspensions** — each chord more open than the last (`Am – G/B – C – Cadd9/B – Am`)
-  - **Single-chord meditation** — 4-8 bars on one chord, slow piano motion within it
+**CRITICAL DISAMBIGUATION:** Three distinct subschools live under this label and want different specs. Pick the one matching the user's words BEFORE composing. All three share core principles (sparse feel, longer chord durations, anti-cadence endings) but differ on harmonic vocabulary, the meaning of "V chord," and how the build mechanism works.
+
+- **A. Modal-cinematic (Zimmer / Einaudi / Sigur Rós / Ólafur Arnalds)** — strict Aeolian or strict modal-diatonic, **NO V CHORD AT ALL** (no V7, no leading-tone resolution). Build via **density and register expansion only** — same 4-chord loop iterated 30-100+ times. Tonic often permanently delayed via inversion. Verified from Zimmer "First Step," Zimmer "Time" (16-bar loop × 7), Einaudi "Nuvole Bianche" (4-chord loop × ~30+), Einaudi "I Giorni" (4-chord loop × ~50+).
+- **B. Diatonic-cinematic (Yiruma / "River Flows In You" / instrumental piano pop)** — diatonic major key, V chord present and RESOLVES (unlike subschool A), single 2-bar loop iterated through the whole piece with one descending-inversion bridge as the only variation. Tonic permanently in 1st inversion. Verified from Yiruma "River Flows In You" (vi-I/3-I-V cycle for 47 bars).
+- **C. Cinematic-pop (Skyfall / Bond themes / modern cinematic-vocal)** — minor key with **harmonic minor V7** (the "Bond chord" — V7 with raised leading tone). Verse/chorus pop form preserved. **Stepwise chorus descent** as signature device. Verified from Adele "Skyfall."
+
+Settings below default to **A (modal-cinematic)** since that's the most "purely cinematic" of the three. For B and C, see their specific notes.
+
+- **Tempo:**
+  - A: **60–80 BPM** primary, but 125 BPM works if the harmonic rhythm is glacial (2-bars-per-chord) — Zimmer "Time" is 125 BPM and feels slow. Built-in tempo automation common (slow intro → accel to climax → ritard out — Einaudi's signature, ~40 BPM intro → ~130 BPM climax → ~40 BPM coda).
+  - B: 65–80 BPM with rubato (Yiruma drops to ~56 BPM at fermatas).
+  - C: 75–85 BPM (Skyfall is 79 BPM).
+- **Key:**
+  - A: strict Aeolian minor (`Am`, `Fm`, `Dm`, `Em`, `Cm`) — natural minor only, NO harmonic-minor V7. Diatonic major Aeolian-mood (D major treated as relative major of Bm — start chord cycles on vi) also works.
+  - B: diatonic major (`A`, `G`, `D`, `C`) — V chord present and resolves.
+  - C: minor with **harmonic minor leading tone** on V — Cm with G7 (B natural), Em with B7 (D# natural).
+- **Roles:**
+  - A: `[bass, pad]` minimal. Add `clean` for Einaudi-style arpeggio variants. Add `synth_pad` (SURGE XT) as harmonic glue under the pad for the climax sections — Zimmer/Einaudi build by layering, so even within "no rhy guitars / no drums," texture entries matter.
+  - B: `[bass, pad, clean]` — the `clean` role carries the iconic Yiruma LH arpeggio (see "Yiruma LH pattern" memory for verbatim pattern).
+  - C: `[bass, pad, drums]` minimum — Skyfall has drums (sparse kick + occasional snare). Add `rhy_l/rhy_r` with `"voicing": "full"` in the chorus for orchestral-strings-as-rhythm-guitar simulation. The contrast between verse (no drums) and chorus (drums + orch strings) is the cinematic-pop dynamic mechanism.
+- **Feel:** all sections `sparse` (A and B). C uses `sparse` in verse and `halftime` in chorus.
+- **Drums:**
+  - A: `"none"` everywhere — drums never enter. Build via texture only.
+  - B: `"none"` everywhere.
+  - C: `"none"` in verse, `"halftime"` in chorus and bridge.
+- **Chord durations:** longer — 8 or 16 beats per chord (4-bar held chords) for A and B, so each chord has time to be felt. C uses faster motion (especially in the chorus stepwise descent — half-bar = 2 beats per chord).
+- **Loop discipline:** Subschools A and B are LOOP-FORM songs. The same 4-bar or 2-bar harmonic loop iterates many times. Don't write a different chord progression for verse vs. chorus vs. bridge — write ONE loop and let `skip_roles` + section names control texture build. See the "Single-loop iterated build" arrangement principle below.
+- **Moves to reach for (shared across A/B/C):**
+  - **Suspended hangs** — `Asus2 → Asus4 → Asus2`, floating, never resolving.
+  - **Anti-cadence** — end the verse on V or sus or in 1st inversion, never root-position i. Leave the listener hanging.
+  - **Subdominant minor in major** — in C major, use `Fm` or `Abmaj7` (Lana del Rey's "saddest" chord).
+  - **Descending suspensions** — each chord more open than the last (`Am – G/B – C – Cadd9/B – Am`).
+  - **Single-chord meditation** — 4-8 bars on one chord, slow piano motion within it.
   - **Anti-Picardy** — refuse the major 3rd at cadences. Stay minor.
   - **Plagal cadence** (IV-i) — softer than the dominant V-i. More resigned.
-- **Voicings:** open fifths (sometimes drop the third entirely for that "huge open" sound), wide spacing, low bass with high pad and a gap in the middle
-- **Time signatures:** 4/4, 6/8 (compound feel = inherently emotional), occasionally 3/4 (waltz-sad)
-- **Avoid:** rhythm guitar chops, driving drums, fast tempos, bright Lydian moves
-- **Touchstones:** Sigur Rós, Ólafur Arnalds, Max Richter, late Talk Talk, Kid A-era Radiohead, "All Is Found" (Frozen 2 opener)
+- **Moves specific to subschool A (modal-cinematic):**
+  - **No V chord at all** — exclude V7 (and dominant-functioning V triads) from the entire palette. Pure Aeolian-anthem `i – bVII – bVI – bVII` (Zimmer "First Step") or `i – v(minor) – bIII – bVII` (Zimmer "Time") or `i – bVI – bIII – bVII` (Einaudi "Nuvole Bianche" — Aeolian descent).
+  - **Tonic delay via inversion** — never voice the i chord in root position on a downbeat. Use `i/3` or `i/5` instead. Tonic is implied, not asserted.
+  - **Einaudi common-tone RH pedal** — the piano comping pattern doesn't track chord tones. Instead it plays a constant root-and-5th dyad of the tonic on a steady 8th-note pulse, while the bass changes underneath. Document this in the section's `move` field; the script's default `pad` behavior approximates by holding sustained chord-tones, but the user can swap a sequenced VST patch to get the actual texture.
+  - **Climax via register expansion** — bass drops an octave, treble climbs an octave, RH note density doubles — all while the chord loop stays the SAME. The script can't auto-do this, but document it in `move` so the user knows what to mix toward.
+  - **Coda mirrors intro** — last section is literally the intro re-stated (same chord durations, same `skip_roles`). Use the same section name for first and last form entries: `["intro", ..., "intro"]`. The piece "un-builds" instead of resolving.
+- **Moves specific to subschool B (diatonic-cinematic / Yiruma):**
+  - **vi-I/3-I-V loop** — single 2-bar loop. In A major: `F#m – A/D | A – E`. Looped for 40+ bars.
+  - **Bridge via descending-inversion chain** — only harmonic surprise. Walk the bass down via inversions: in A major, `Bm/F# → A/D → A → C#m/E → F#m/C# → A/D`. Stepwise descending bass (F# → D → A → E → C# → D).
+  - **Yiruma LH arpeggio** — see [memory entry] for the verbatim 3-note ascending pattern (root → 5th → 10th, beats 1/1.5/2 + rest).
+- **Moves specific to subschool C (cinematic-pop / Skyfall):**
+  - **Bond chord harmonic-minor V7** — in minor keys, use V7 with raised leading tone (G7 in Cm with B natural, B7 in Em with D# natural). Place at every cadence point. This is the "James Bond" sonority.
+  - **Skyfall stepwise chorus descent** — 8-chord chorus walking down the scale: `i – ♭VII – ♭VI – V – iv – ♭III – ii(°)` in half-bar rhythm. In Cm: `Cm – Bb – Ab – G – Fm – Eb – Dm7 – D7`. Eight distinct changes per chorus, bass walks down by step. No 4-chord repeat — the descent IS the chorus.
+  - **♭VI lift** — Abmaj7 (♭VI in Cm) at the emotional peak of the chorus. Held longer than other chords (1 full bar in a half-bar chorus = a moment of breath).
+  - **Wide-to-close voicing contrast** — verses use wide-spread voicings (12-31 semitones bass-to-top), choruses contract to close-position drop-2 voicings. The contrast is the dynamic build.
+  - **Chromatic bass walk-up into final chorus** — last bridge climbs `♭VI – ♭VII – VII – I` chromatically by semitone into the final chorus arrival (Skyfall: `Ab – Bb – B – C`).
+- **Voicings:** open 5ths (sometimes drop the 3rd entirely for that "huge open" sound), wide spacing, low bass with high pad and a gap in the middle. **Zimmer hollow-middle voicing** is the extreme version — bass octave-doubled at bottom (F1+F2), inner pedal note at E4, upper triad floating 3+ octaves above with the 3rd missing in the middle. Save for climax moments.
+- **Time signatures:**
+  - A: 4/4 most common, **3/4 waltz** for Zimmer-style (verified — "First Step" is 3/4, Einaudi "I Giorni" is 3/4), 6/8 or **12/8** for Einaudi-style flowing arpeggios (Nuvole's body is 12/8).
+  - B: 4/4.
+  - C: 4/4.
+- **Meter shift between intro and body (advanced)** — Einaudi's "Nuvole Bianche" uses 4/4 in the intro at 40 BPM, then shifts to 12/8 at ~117 BPM for the body, then back to 4/4 for the recap. SAME CHORDS, but the meter recasts them as flowing (12/8) vs. static (4/4). The skill's script doesn't yet support meter changes mid-song — document this in `move` for the user to add manually in Reaper.
+- **Avoid:** rhythm guitar chops in A/B, driving drums anywhere, fast tempos, bright Lydian moves. For A specifically: avoid V chord and harmonic-minor leading tones (you're STRICT Aeolian). For B specifically: avoid harmonic-minor or modal-mixture moves (you're diatonic-only). For C specifically: avoid pure modal harmony (you NEED the harmonic-minor V to land "cinematic-pop").
+- **Touchstones:**
+  - A (modal-cinematic): Hans Zimmer ("First Step," "Time," most Inception/Interstellar cues), Ludovico Einaudi ("Nuvole Bianche," "I Giorni," "Experience"), Sigur Rós, Ólafur Arnalds, Max Richter, Stars of the Lid, late Talk Talk, Kid A-era Radiohead.
+  - B (diatonic-cinematic): Yiruma, Joe Hisaishi (Ghibli piano cues), Yann Tiersen (Amelie), Olafur Arnalds piano-side, instrumental piano-pop.
+  - C (cinematic-pop): Adele/Paul Epworth "Skyfall," Lana del Rey, James Bond theme idiom, Billie Eilish "No Time To Die," modern cinematic-vocal ballads.
 
 ### Spanish / Phrygian / flamenco
 
@@ -322,24 +366,36 @@ These progressions are vintage-pop, NOT instrumental melodic rock. They will tri
 
 ### Jazz-funk / fusion *(Jack Thammarat, Tomo Fujita, neo-soul)*
 
-- **Tempo:** 88–110 (smooth) or 100–126 (groovier funk)
-- **Key:** sophisticated major or modal — `Cmaj`, `Dmaj`, `Fmaj`, `Bbmaj`. Also `Am`, `Dm`, `Cm` with borrowed major chords.
-- **Roles:** all five — but **set `"voicing": "full"`** in each section so the rhythm guitars comp full jazz chords (m7, maj7, 9ths) instead of power chords. The power-chord default kills the jazz-funk vibe instantly.
-- **Feel:** `driving` or `pushed` — the comping rhythm comes from the chord-tone density, not from chops
-- **Drums:** `basic-rock` works fine. `four-on-floor` for groovier moments.
-- **Chord durations:** **often 2 beats per chord** — jazz-funk moves harmonically faster than rock. A bar can hold two chords.
+**CRITICAL DISAMBIGUATION:** There are TWO distinct subschools under this label and they want different specs. Pick the one matching the user's words BEFORE composing:
+
+- **A. Melodic-fusion (Jack Thammarat / Mateus Asato)** — singable instrumental tunes. **Mixolydian I-♭VII-IV-V is the primary frame**, not ii-V-i. Rhythm guitars play **single-note arpeggiation + occasional dyad**, NOT full m7 stacks. Chord identity lives in **bass + piano combined**, never stated as a block chord. This is verified from MIDI transcription of "On The Way": rhythm gtr is mid-register picking, piano comps with perfect-4th dyads (`E+A`, `F#+B`). **Default to subschool A** when the user says "Jack Thammarat" by name.
+- **B. Modal-jazz fusion (Coltrane / Snarky Puppy / Cory Henry)** — denser harmonic motion, ii-V-i, secondary dominants, tritone subs, Coltrane changes. Full m7/maj9/13 voicings as block chord comps. Use when the user names these touchstones or says "smooth jazz instrumental."
+
+The settings below default to **A**. For **B**, swap to `"voicing": "full"` everywhere, use ii-V-i chains, and let rhythm guitars block-comp.
+
+- **Tempo:** 80–110 (Jack / smooth) or 100–126 (denser funk)
+- **Key:** major frame — `Dmaj` (Jack's "On The Way"), `Cmaj`, `Fmaj`, `Bbmaj`. Approach as **Mixolydian** (raised tonic of the IV — so D major treated like the V of G means you can use Cmaj7 freely). Minor-key fusion (`Am`, `Dm`) for subschool B.
+- **Roles:** `[bass, pad, drums, clean, rhy_l, rhy_r]`. For subschool A: rhy guitars OPTIONAL; if included keep `"voicing": "power"` AND have them play arpeggiated single-note lines via the chord changes (the script's default rhythm guitar treatment is too block-y for the Jack aesthetic — the cleaner approach is to *drop rhy_l/rhy_r entirely* and let `clean` (picked arpeggio) + `pad` (block chord comp) carry the harmony). For subschool B: include rhy guitars with `"voicing": "full"`.
+- **Feel:** `driving` (Jack moves harmonically in 8th notes via the arpeggio) or `pushed` (denser funk subschool).
+- **Drums:** `basic-rock` works. `four-on-floor` for groovier subschool-B moments. **Energy-without-tempo trick:** Jack uses kit patterns mismatched to song BPM (e.g. 185-BPM "Punkish" drum patterns at 80 BPM song tempo — busy 16ths become driving 8ths). Not directly expressible in this skill's drum-pattern enum, but design choruses with `"drums": "basic-rock"` knowing the user can swap drum kit/pattern later.
+- **Chord durations:** 4 beats per chord (Jack — `D-C-G-A` one bar each) or 2 beats (subschool B — twice the harmonic density).
 - **Moves to reach for:**
-  - **ii-V-I** — `Dm7 → G7 → Cmaj7`. The building block. Repeat in different keys to modulate.
-  - **Secondary dominants** — `A7 → Dm7` (V7 of ii) even in C major. Adds chromatic spice.
-  - **Tritone substitution** — `Db7 → Cmaj7` instead of `G7 → Cmaj7`. Same resolution, fancier.
+  - **Mixolydian I-♭VII-IV-V** *(Jack's primary frame)* — `D – C – G – A` in D major. The ♭VII (Cmaj7) is the signature flavor. Loop this as a verse engine, like Jack on "On The Way."
+  - **Stepwise diatonic chorus walk** *(Jack)* — bass climbs scalewise instead of jumping by 4ths/5ths. In D: `Em7 – F#m7 – Gmaj7 – A` (iii-iii#?-IV-V). Vocal/horn-melody feeling.
+  - **♭VI passing surprise** *(Jack)* — in D major, briefly drop `Bb` between two diatonic chords (`G – Bb – C – G`). Resolves *backwards* through cycle of 4ths, not forward to a cadence.
+  - **Quartal dyads in piano** *(Jack)* — comp the piano in perfect 4ths instead of stacked 3rds: `E+A`, `F#+B`, `G+C`. Implies extended harmony without naming m7s.
+  - **Anti-cadence intro** *(Jack)* — start the intro on V (`A` in D major) and avoid the tonic for 3+ bars. Verse downbeat resolves.
+  - **ii-V-I** *(subschool B)* — `Dm7 → G7 → Cmaj7`. The building block. Repeat in different keys to modulate.
+  - **Secondary dominants** — `A7 → Dm7` (V7 of ii). Adds chromatic spice.
+  - **Tritone substitution** — `Db7 → Cmaj7` instead of `G7 → Cmaj7`. Identical resolution, fancier.
   - **Cycle of fourths** — `Cmaj7 → Fmaj7 → Bm7b5 → Em7 → Am7 → Dm7 → G7 → Cmaj7`. The Autumn Leaves loop.
   - **Modal mixture (IV minor in major)** — `C → F → Fm → C`. The bittersweet pull.
-  - **bVII rock color in major** — `C → Bb → F → C`. Classic Jack Thammarat / mixolydian rock.
-  - **Chromatic chord planing** — `Cmaj7 → C#m7 → Dm7 → D#dim → Em7`. Walks by half-steps.
-- **Voicings:** ALWAYS m7/maj7/m9/9/13 chord names — plain triads are wrong here. Color tones are mandatory.
+  - **Chromatic chord planing** *(subschool B)* — `Cmaj7 → C#m7 → Dm7 → D#dim → Em7`. Walks by half-steps.
+- **Voicings:** **Subschool A:** `"voicing": "power"` is fine — chord identity comes from bass + clean arp + piano dyads, not from rhythm-guitar block chords. **Subschool B:** ALWAYS m7/maj7/m9/9/13 chord names with `"voicing": "full"` — color tones are mandatory.
 - **Time signatures:** 4/4 (occasional 12/8 for slow funk, but rare)
-- **Avoid:** power chords (which is why `voicing: "full"` is non-negotiable), Phrygian-dom, djent territory, synthwave four-on-floor straightness, post-rock pedal stasis
-- **Touchstones:** Jack Thammarat ("Beautiful Resonance," "On the Way," "Light at the Edge"), Tomo Fujita, Cory Henry, Snarky Puppy, Lee Ritenour, Tom Misch instrumental moments
+- **Aesthetic principle (subschool A):** "Chord identity lives in the BAND, not in any one instrument." Bass states roots, piano implies via dyads, clean arp outlines chord tones, rhy guitars pick single notes — none of them plays the full m7. The chord *emerges* from the combination.
+- **Avoid:** power chords as the dominant texture in subschool B, Phrygian-dom, djent territory, synthwave four-on-floor straightness, post-rock pedal stasis. For subschool A specifically: avoid ii-V-i chains (too dense for the Jack vibe) and avoid block-comp m7 chords (too jazzy).
+- **Touchstones:** **A (Jack):** Jack Thammarat ("Beautiful Resonance," "On the Way," "Light at the Edge"), Mateus Asato, Tomo Fujita, Tom Misch instrumental moments. **B (modal-jazz):** Cory Henry, Snarky Puppy, Lee Ritenour, Robben Ford, John Scofield.
 
 ### Math rock / Midwest emo *(American Football, TTNG, Toe, fingerpicked indie)*
 
@@ -464,6 +520,7 @@ Reach for these before inventing from scratch. Pick a few per section. All examp
 - **Dorian color** — Brighten Aeolian with a major IV: `Em – A – Em – A`. The raised 6th is the magic note.
 - **Phrygian-dom** — `i – bII – i – V7`. `Em – F – Em – B7`. Heavy/Spanish/exotic.
 - **Zimmer all-minor modal** — `i – iv – v` all minor, dwell on iv as the emotional center, NO V7 (no leading tone). `Am – Dm – Em`, looped. From Hans Zimmer "Interstellar Main Theme."
+- **Modal-mixture intro on drone** *(Dream Theater "Voices")* — Over a single pedal root (e.g. A bass), have the upper voice cycle through `1 – b3 – 3 – 4 – #4 – 5` of the minor scale, mixing Aeolian (b3) with Lydian (#4) inside the same line. Gives a riff a Lydian flick inside Aeolian without ever changing chord. Voices does this for 12 bars on an A pedal in 9/8. Use as an INTRO device — single-chord-but-not-static. In Bm: bass on B, upper line cycles `B-D-D#-E-F-F#` (b3 and #4 both present).
 
 ### Bass-led patterns
 - **Pedal-tone vamp** — Hold one bass note while harmony shifts above: `Em – Cmaj7/E – Am/E – B7/E`. The E never moves.
@@ -476,6 +533,7 @@ Reach for these before inventing from scratch. Pick a few per section. All examp
 - **Polyphia parallel-major slide** — `bVI(maj) – V(maj) – i – v(maj)`. In Bm: `G – F# – Bm – F#m`. The major v (F# major instead of F#m) creates bright/dark juxtaposition over the minor tonic. From "G.O.A.T."
 - **Zimmer common-tone reharm** — Where you'd expect `vi`, substitute `IVmaj7` (shared third). In G: `Am – G – D – Cmaj7` (where Em was expected). Common tones bind it; avoids tonic emphasis. From "Time" (Inception).
 - **Hisaishi descending-bass maj9 cascade** — `IVmaj9 – Imaj9/3 – bVIImaj9/3 – vii°m7/3`. Bass descends chromatically under shimmering maj9 voicings. In F: `Fmaj9 – Cmaj7/E – Bbmaj7/D – Bm7b5/C#` (approximating quartal Hisaishi color with parser-friendly chords). From "One Summer's Day."
+- **Static-triad chorus with chromatic bass walk** *(Dream Theater "Voices")* — Upper voice **freezes on a single major triad** while the bass walks chromatically underneath. In A major upper voicing: bass walks `A → F → E → C# → F# → F → E → C# → C → A` while the top stays at `C#-E-A`. Reads as `I → bVI → V → III → #IV → bVI → V → III → bIII → I` but is harmonically ILLUSORY — the chord identity is the bass, not the triad. The fixed upper triad means every bar gets reinterpreted by the bass move. **Don't notate these as separate chord symbols in the spec; instead pick the chord names that match each bass note + the fixed triad** (e.g. `A, F/A→Fmaj7add#5, E/A→A/E inversion, C#/A→Aadd6/C#`, etc. — but those won't parse, so simplify with the closest parser-supported chord per bar). The aesthetic insight is the **perceived modulation** without a real key change. Use as a chorus device when the song needs a big "lift" without abandoning the verse's key.
 
 ### Rock cadences
 - **Pink Floyd** — `i – bVII – bVI – V7`. `Em – D – C – B7`. Classic dramatic minor.
@@ -495,14 +553,22 @@ Reach for these before inventing from scratch. Pick a few per section. All examp
 - **Modulate by fifth (down)** — `Dm → Am`. Move to the dominant key. Common in jam-style extended sections. Shares 6 of 7 scale notes — smooth transition.
 - **Cycle through related minors** — `Dm → Am → Em`. Each new tonic is a fifth lower than the last. Used in extended instrumental rock pieces and post-rock builds.
 - **Dream Theater sequential key shifts** — Bridge moves through abrupt diatonic key changes — no common-tone smoothing, just cuts. Like `Dm section → G major section → F major section`, each ~8 bars. From "Hollow Years."
+- **bIV → i chorus modulation** *(Symphony X "The Odyssey")* — verse in a major key, chorus drops to the minor of the verse's IV. In G major verse: chorus modulates to **C minor** (the IV-as-minor-tonic). Mechanism: G is V/Cm, so the verse's tonic functions as the chorus's dominant — pivot is built in. More gravity than relative-minor switching; less abrupt than direct half-step modulation. Verified across multiple Symphony X choruses.
+- **Chromatic-mediant lift up a major third** *(Symphony X "The Odyssey" bar 250)* — bridge or post-solo section jumps UP a major 3rd from the current tonic. Cm bridge → C# major section. Classic "Strauss/Star Wars" cinematic lift; also Romeo signature for "the band shifts to a brighter universe" without modal-mixture preparation.
+- **Half-step descent ending** *(Symphony X "The Odyssey" bar 676)* — final section modulates DOWN a half-step from the previous section's tonic. F minor → Eb minor. Anti-pop: most prog modulations go UP for triumph; descending modulation gives a more grief-laden, resigned color. Pair with a slow ritardando outro.
+- **Common-tone diminished turnaround** *(APP "Where's the Walrus?")* — use a diminished 7 chord that shares notes with both the previous and next chord as a passing chord. In A Dorian: `G6 → A11 → ... → Fdim7 → E7 → G/A` — Fdim7 is the common-tone dim7 of A minor (shares F-Ab-B-D with vii°7/A), resolving deceptively to bVII-i instead of i. Used as an 8-bar turnaround in fusion contexts.
 
 ### Time/feel moves
 - **Halftime bridge** — Same chord changes, `feel: "halftime"`. Massive contrast without changing tempo.
 - **Build via density** — `sparse` intro → `halftime` verse → `driving` chorus. The `feel` field is your dynamics knob.
 - **Odd time** — 7/8 for Plini, 5/4 for Polyphia. Try it occasionally.
+- **3/4↔2/4 alternating hemiola transition** *(Dream Theater / Portnoy "Voices")* — alternate bars of 3/4 and 2/4 on a single chord, repeating. Creates a 5-beat pseudo-cycle inside a metric-modulation transition. Use as a "lift" between sections in a prog/heavy song. The skill's script doesn't support time-sig changes mid-song, so document in `move` for the user to apply manually in Reaper — OR generate the whole transition section in a "5/4" time sig that feels like 3+2.
+- **Single 7/4 turnaround** *(APP "Some Other Time")* — insert ONE bar of 7/4 between two normal 4/4 sections to drop a beat — feels like a held breath before the next section. Quick prog gesture; the rest of the song stays in 4/4. Same script limitation — document in `move`.
+- **Hemiola bass cell with modal flip** *(Dream Theater "Voices")* — repeating bass cell like `A-G-A-C` (4 beats) under an upper triad that swaps Dorian (raised 6 = F#) and Aeolian (natural 6 = F natural) every other bar. The bass is static, the *mode* is the variable. In Am: bass `A-G-A-C` looping, upper triad alternates `Am6 → Am` every two bars. Use as a vamp-with-instability before resolving to a chorus.
 
 ### Cinematic / sad cadences
 - **Anti-cadence (end on V)** — `Am – G – F – E` then... stop. The E (V7) never resolves to Am. Massive emotional hang.
+- **Phrygian-dominant unresolved fade** *(Dream Theater "Voices" outro)* — end the song on V with BOTH the ♭2 and the major 7 (leading tone) active simultaneously. In Am: final chord stack `E + G# + B + D + F (natural)` — Phrygian-dominant V7♭9 with no resolution. The clash of G# (raised 7) and F natural (♭2 of E Phrygian-dom) is the signature. Then fade. Heavier than a plain anti-cadence; suits prog-metal endings.
 - **Suspended hang** — `Asus2 – Asus4 – Asus2 – Asus4` over a static A bass. Floating, no decision.
 - **Subdominant minor in major** — In C major, sneak in `Fm` or `Abmaj7` (Lana del Rey's "saddest chord"). Modal interchange that pulls heartstrings.
 - **Anti-Picardy** — At a final cadence that wants the major i, refuse. Stay minor. Cling.
@@ -512,6 +578,12 @@ Reach for these before inventing from scratch. Pick a few per section. All examp
 - **Single-chord meditation** — 8-16 bars on one chord. The "song" is the dynamic shape, not the harmony.
 - **Hisaishi plagal substitution** — Where you'd use `ii – V – I` (jazz), substitute `IV – V – I` (Ghibli cadence). In C: `F – G – C`. Bigger plagal lift, simpler, more melodic-pop. Common across Joe Hisaishi's Ghibli scores.
 - **Hisaishi deceptive-restart loop** — A modal chord chain that loops back to its start instead of resolving via V. In Cm: `Abmaj7 – Gm7 – Fm7` (bVI-v-iv), then restart from Abmaj7. Never offers the listener "home."
+- **Modal Aeolian with NO V chord** *(Zimmer / Einaudi)* — strictly exclude V7 (and the dominant V triad) from the palette. Use only `i, bIII, iv, v(minor), bVI, bVII`. The piece must be PURELY natural-minor — no leading tone resolution allowed. Verified from Zimmer "First Step" (loop = `bVI – bVII – i – bVII` for 30 bars), Zimmer "Time" (`Am – Em – G – D` with Em as v not V), Einaudi "Nuvole" (`i – bVI – bIII – bVII`). The harmonic gravity sits on bVI more than on i.
+- **Tonic delay via inversion** *(Yiruma / Einaudi)* — never voice the tonic (i or I) in root position on a downbeat. Use `I/3` or `I/5` (or for minor, `i/3` or `i/5`). Tonic is implied, never asserted. Verified from Yiruma "River Flows In You" (A/D every other half-bar — A chord never in root position 2nd half of any bar) and Einaudi "I Giorni" (D/F# every fourth bar — tonic in 1st inversion).
+- **Skyfall stepwise chorus descent** *(Adele / cinematic-pop)* — 8-chord chorus walking down the scale: `i – ♭VII – ♭VI – V – iv – ♭III – ii(°) – V7` in half-bar rhythm (2 beats per chord). In Cm: `Cm – Bb – Ab – G – Fm – Eb – Dm7 – G7`. Eight distinct changes, bass walks down by step (C–Bb–Ab–G–F–Eb–D–G), final V7 with raised leading tone (the "Bond chord"). Don't loop a 4-chord pattern — the descent IS the chorus.
+- **Bridge via descending-inversion chain** *(Yiruma)* — when an otherwise loop-form piece needs ONE bridge, walk the bass down through chord inversions. In A major: `Bm/F# → A/D → A → C#m/E → F#m/C# → A/D`. Stepwise descending bass (F# → D → A → E → C# → D). The only chromatic motion in the piece is right here.
+- **Bond chord (harmonic-minor V7)** *(cinematic-pop)* — in minor keys, use V7 with the raised leading tone: G7 in Cm (B natural), B7 in Em (D# natural), F#7 in Bm (A# natural), E7 in Am (G# natural). Place at every cadence point in cinematic-pop arrangements. The leading-tone pull is the cinematic-pop signature — distinct from modal-cinematic (subschool A) which excludes V7 entirely.
+- **Einaudi common-tone RH pedal** — when the script's `pad` role plays sustained chord-tones, document in the section's `move` field that the user should swap the pad VST patch to a sequenced/arpeggiated pattern playing the root+5th of the TONIC (not of each chord). The RH should NOT track chord tones — it should sit on tonic-and-5th 8th-notes while the bass changes underneath. Verified from Einaudi "Nuvole Bianche" (RH plays F4+Bb4 dyad + Ab4 fills over Fm AND over Db, Ab, Eb chords — common-tone glue). Effect: the upper voice barely moves while harmony shifts — opposite of normal chord-tone arpeggio.
 
 ### Spanish / Phrygian moves
 - **Andalusian cadence** — `i – bVII – bVI – V7`. `Em – D – C – B7`. THE Spanish move. Loop it forever.
@@ -522,6 +594,13 @@ Reach for these before inventing from scratch. Pick a few per section. All examp
 - **Picardy 3rd ending (Spanish version)** — End on E major (Picardy of Em). The flamenco "olé" close.
 - **Cycle of fourths in Phrygian** — `Em – Am – Dm – G – Cmaj7 – F – B7 – Em`. Walks through the mode.
 - **Avoid 7ths and 9ths** — Plain triads are correct here. Add a 7th and it sounds jazz, not Spanish.
+
+### Neoclassical metal moves *(Symphony X / Yngwie / Romeo)*
+- **bII voiced as maj7 chord** *(Symphony X "The Odyssey," "Candlelight Fantasia")* — in Phrygian-dominant contexts, voice the bII not as a plain triad but as a full maj7. In E Phrygian-dominant: `Bbmaj7` instead of `Bb`. In C Phrygian-dominant: `Dbmaj7` instead of `Db`. The 7th of the bIImaj7 chord doubles as the natural leading tone of the tonic minor (Bbmaj7 contains A natural = the leading tone of Bm; Dbmaj7 contains C natural = the leading tone of Cm). Double-function dissonance: b2→1 (Phrygian pull) AND 7→1 (leading-tone pull) in the same chord. **Romeo neoclassical-metal signature.**
+- **Minor-third ladder climb** *(Symphony X "Candlelight Fantasia" solo section)* — all-major-triad ascending chord cycle with roots in minor 3rds: `F – G# – Bb – C#`. 2 bars per chord. The chord roots outline a diminished 7 (F-Ab-B-D enharmonic), creating maximum tonal ambiguity while staying tonal. Pure neoclassical shred bed — soloists improvise harmonic-minor scales centered on the ROOT MOTION rather than a single home key.
+- **Whole-step modulation post-solo sequence** *(Symphony X "Candlelight Fantasia")* — after a solo section, modulate up in whole-step (or alternating whole-step + minor 3rd) sequences as a "lift": `Cmaj7 → Ebmaj7 → Fmaj7 → Abmaj7`. Each chord 2-4 bars. Functions as a giant pre-chorus build that arrives in a new key entirely.
+- **Phrygian-dominant locked riff in odd time** *(Symphony X "The Odyssey" 11/8 section)* — single-chord-or-two-chord riff in odd time (11/8, 7/8, 15/8) where the upper structure rotates through Phrygian-dominant scale tones: in E Phrygian-dom: `E5 - Bbsus4maj7 - E5 - Bsus4 - A# - D - E5`. The Bb (b5/#4) and F (b2) ARE the scale signature. Locked in odd time = neoclassical math-metal hybrid.
+- **Augmented triad as functional dominant** *(Symphony X "The Odyssey" bar 608)* — instead of plain V or V7 cadencing to i, use V+ (augmented). In Fm: `C+ → Fm` instead of `C7 → Fm`. The augmented 5 (G#) doubles as the leading tone (G# is half-step from A natural = b3 of Fm). Baroque cadence material — Bach used this constantly. Pair with maj7 pivots (`Gmaj7 → E+7 → C+ → Fm`) for fully baroque sequencing.
 
 ### Synthwave loops
 - **Classic synthwave** — `Am – G – F – G`. Loops. The whole song.
@@ -570,6 +649,10 @@ Vocal-rock idioms — work in any minor-key rock song. Notation uses major-key r
 - **Coltrane changes (major-third cycle)** — Tonal centers move by major thirds, each preceded by its own V7. In C: `Cmaj7 → Eb7 → Abmaj7 → B7 → Emaj7 → G7 → Cmaj7`. From Coltrane "Giant Steps." Substitutes for a long ii-V-I.
 - **Neo-soul chromatic diminished passing** — Slip a #IVdim7 (or #ii dim7) between IV and V for smooth chromatic voice-leading. In C: `Fmaj7 – F#dim7 – C/G – G7`. Adds the soulful chromatic slide.
 - **Sus over dominant (V13sus4)** — Voice the IVmaj7 over the V bass to imply both subdominant and dominant at once. `Fmaj7/G = G13sus4` essentially. In C: `Cmaj9 – Am11 – Fmaj7/G – Cmaj9`.
+- **Quartal dyads** *(Jack Thammarat / Larry Carlton)* — comp the piano in **perfect 4ths** instead of stacked 3rds: over an Em7 chord, play `E+A` (not `E+G`); over F#m7, play `F#+B`. Two notes only, narrow mid-register span (octaves 3-4). Implies extended/sus harmony without ever naming m7. The chord identity is *inferred* from bass + dyad, not stated. Verified from "On The Way" MIDI transcription.
+- **Mixolydian I-♭VII-IV-V verse** *(Jack Thammarat)* — `D – C – G – A` looped, in D major. The ♭VII (Cmaj7) is the signature — sounds like rock but is functionally Mixolydian. NOT a borrowed iv chord; it's the natural ♭VII of Mixolydian. Use as a 4-chord verse engine with each chord lasting 1 bar (4 beats).
+- **Stepwise diatonic bass chorus** *(Jack Thammarat)* — bass climbs scalewise rather than leaping. In D: `Em7(E) – F#m7(F#) – Gmaj7(G) – A(A)` — bass walks E→F#→G→A. Gives the chorus a vocal/horn-melody quality.
+- **♭VI passing detour** *(Jack Thammarat)* — drop a `bVI` between two diatonic chords as a momentary surprise. In D major: `G – Bb – C – G`. The Bb resolves *backwards* through C (♭VII) → G (IV), not forward to V or I. Modal-mixture detour without commitment.
 
 ### Post-rock builds
 - **The Mogwai inversion** — Start sparse and dissonant (sus2 over wrong bass), resolve to consonant and LOUD.
@@ -580,7 +663,15 @@ Vocal-rock idioms — work in any minor-key rock song. Notation uses major-key r
 
 ## Song forms catalog
 
-When choosing a `form` array, pick from this catalog. **Don't default to the same `I-V-C-V-C-B-C-O` every time.** Forms below use letter notation: **A** = verse-like, **B** = chorus-like, **C** = bridge, **I** = intro, **O** = outro, **P** = pre-chorus, **S** = solo/instrumental.
+When choosing a `form` array, pick from this catalog. **Don't default to the same `I-V-C-V-C-B-C-O` every time.** Forms below use letter notation: **A** = verse-like, **B** = chorus-like, **C** = bridge, **I** = intro, **O** = outro, **P** = pre-chorus, **S** = solo/instrumental, **T** = setup turnaround, **H** = halftime breakdown.
+
+### Section-type vocabulary (beyond verse/chorus/bridge)
+
+Real songs use connector and breather sections that aren't captured by the basic A/B/C labels. Reach for these when designing form:
+
+- **Setup / turnaround (T)** — 3-bar (or 4-bar) connector between two main sections. Functions as a "harmonic exhale and reset." Often reuses the verse's harmonic loop compressed to a shorter length, ending on V to launch the next section. Verified usage: Jack Thammarat "On The Way" uses 3-bar `D · C · G | D · C · G · A` setups before each verse. Use spec section name `"setup"` or `"turnaround"`. Roles often: bass + pad + clean only (rhy guitars and drums minimal or absent).
+- **Halftime breakdown (H)** — Sparse 2-chord or single-chord vamp that breathes before a final chorus. Drums shift to halftime feel (or drop entirely), rhy guitars drop, harmony moves to one root for 4-8 bars. Verified usage: Jack Thammarat "On The Way" has a 7-bar `D · C · D` halftime breakdown immediately before chorus 2. Use spec section name `"halftime-break"` or `"breakdown"`.
+- **Coda / outro vamp (O)** — Extended outro that vamps on the verse loop (or a slight variant) for 8-12 bars before fading or landing on a sustained tonic. Different from a short `outro` section that just bookends — the coda is the song's "extended exit." Use when a song earns a long tail.
 
 ### Important: literal repetition vs. variant sections
 
@@ -661,6 +752,11 @@ Verse-chorus twice and STOP. No bridge, no final return, no outro. Leaves the li
 Verse, bridge as middle contrast, verse return. Three sections total. Suits short pieces or sketches.
 `["verse", "bridge", "verse"]`
 
+**15. I-T-A-P-B-T-A-P-H-B-O** *(Jack Thammarat "On The Way" form — verified from MIDI transcription)*
+Intro, setup-turnaround, verse-long, prechorus, chorus-short, setup-turnaround, verse-short, prechorus, halftime-breakdown, chorus-long (extended), coda outro. **Key signature: section-length asymmetry.** Verse 1 is *long* (12 bars), verse 2 is *short* (6 bars). Chorus 1 is *short* (6 bars), chorus 2 is *long* (12 bars). The second half FLIPS the ratio so the song lifts at the end. The halftime-breakdown right before chorus 2 is the "earned arrival" device.
+`["intro", "setup", "verse-long", "prechorus", "chorus-short", "setup", "verse-short", "prechorus", "halftime-break", "chorus-long", "coda"]`
+Best for: jazz-funk / melodic fusion. Pair with the Jazz-funk pack subschool A.
+
 ### How to pick
 
 1. Look at recent outputs (`ls <output_root>/_<year>/composer/ | tail -5` and read their `spec.json`). If the last 2-3 songs were standard `I-V-C-V-C-B-C-O` (the overused default), pick something different.
@@ -671,7 +767,7 @@ Verse, bridge as middle contrast, verse return. Three sections total. Suits shor
    - **Brutally short / sketch**: forms 2, 14
    - **Symmetric / classical-influenced**: form 8 (ABACABA)
    - **Build-via-density**: form 10 (strophic with variants — use different section names)
-3. Don't fight the genre: synthwave loops a lot (forms 2, 3, 13). AABA fits jazz-funk. Through-composed fits cinematic.
+3. Don't fight the genre: synthwave loops a lot (forms 2, 3, 13). AABA fits jazz-funk. Through-composed fits cinematic. **Jazz-funk subschool A specifically** wants form 15 (Jack Thammarat verified) or form 7 (APBAPBCB) — both have prechorus and lots of setup/connector space.
 
 ## Arrangement archetypes catalog
 
@@ -679,6 +775,45 @@ After choosing form and feel-arc, pick an **arrangement archetype** — *which l
 
 Each archetype below sketches a per-section role plan using these abbreviations:
 - `B` = bass, `P` = pad (PIANO), `D` = drums, `RL`/`RR` = rhy_l/rhy_r, `C` = clean, `S` = strum, `SP` = synth_pad (SURGE XT)
+
+### The single-loop-iterated build *(meta-principle, not an archetype)*
+
+Before picking an archetype, decide whether the song is **multi-section** (verse/chorus/bridge each with distinct chords — most archetypes below) or **single-loop** (ONE chord progression iterated many times, with sections distinguished only by texture).
+
+The single-loop build is the modal-cinematic and post-rock default. Verified from:
+- Zimmer "Time" — 16-bar `Am-Em-G-D / Am-C-G-D` loop iterated **7 times** across 112 bars, climax via density only
+- Zimmer "First Step" — `bVI-bVII-i-bVII` 4-bar loop iterated ~12 times across 50+ bars
+- Einaudi "Nuvole Bianche" — `Fm-Db-Ab-Eb` 4-bar loop iterated ~30+ times across 144 bars
+- Einaudi "I Giorni" — `Bm7-A-Gmaj9-D/F#` 4-bar cycle iterated ~50+ times across 256 bars
+- Yiruma "River Flows In You" — `F#m-A/D-A-E` 2-bar loop iterated across 47 bars (one descending-inversion bridge breaks the loop)
+
+**How to write a single-loop song:**
+1. Write ONE chord progression in the `sections` array (e.g. `"name": "loop", "chords": [...]`).
+2. Reference that same section multiple times in the `form` array, but with **different section names** that each have `skip_roles` controlling which layers play.
+3. Alternative: define multiple sections with **identical `chords` arrays** but different `name`s, `skip_roles`, and `move` descriptions to encode the textural progression.
+
+Example spec sketch (single-loop modal-cinematic):
+
+```json
+"sections": [
+  {"name": "intro",          "feel": "sparse", "drums": "none", "skip_roles": ["clean","rhy_l","rhy_r","drums","synth_pad"], "chords": [<the loop>]},
+  {"name": "v1",             "feel": "sparse", "drums": "none", "skip_roles": ["rhy_l","rhy_r","drums","synth_pad"],         "chords": [<same loop>]},
+  {"name": "v2",             "feel": "sparse", "drums": "none", "skip_roles": ["rhy_l","rhy_r","drums"],                     "chords": [<same loop>]},
+  {"name": "climax",         "feel": "sparse", "drums": "none", "skip_roles": ["rhy_l","rhy_r","drums"],                     "chords": [<same loop, doubled durations or compressed>]},
+  {"name": "outro",          "feel": "sparse", "drums": "none", "skip_roles": ["clean","rhy_l","rhy_r","drums","synth_pad"], "chords": [<same loop>]}
+],
+"form": ["intro", "v1", "v2", "v1", "climax", "v2", "outro"]
+```
+
+**Don't:** in a single-loop song, write a "chorus" with different chords. The point is the harmony stays IDENTICAL while the arrangement evolves. If you have time to write new chord progressions per section, you're doing multi-section, not single-loop.
+
+**When to choose single-loop over multi-section:**
+- User says "modal-cinematic," "Zimmer-like," "Einaudi-like," "Sigur Rós," "Mogwai," "Yiruma."
+- User says "atmospheric," "ambient," "drone build."
+- User asks for "a piece that builds slowly without changing chords."
+- Cinematic-pop (Skyfall, subschool C) is NOT single-loop — it has distinct verse/chorus/bridge chord progressions. Stick to multi-section for that.
+
+The arrangement archetypes below (1-10) are MULTI-section by default; for single-loop songs, archetypes 4 (Mogwai inversion) and 6 (Drone build) describe the texture progression to use over the unchanging harmony.
 
 ### 1. Slow build *(track-by-track entry, climax mid-song)*
 
@@ -832,6 +967,68 @@ chorus:   B P D RL RR SP
 outro:    B P D
 ```
 **Touchstones:** Many pop-rock songs, some metal breakdowns. **Pairs with:** Rock, Djent.
+
+### 11. Plagal Intro Fanfare *(short dense layered build with NO V chord)*
+
+Verified from APP "Sirius" (2 min instrumental opening Eye in the Sky). A short-form INTRO archetype that establishes mood + key + builds anticipation before segueing to the main track. Key principles:
+
+1. **One chord held for many bars before anything moves.** Sirius holds an A pedal for 14 bars (4 cycles!) before harmonic motion begins.
+2. **The motif enters BEFORE the chord changes.** Establish the hook over static tonic; let harmonic motion be the *second* surprise, not the first.
+3. **Plagal-only harmony — i-bVI-iv-i, NO V chord.** Sustains anticipation without releasing it. Critical for "intro that segues into the main track."
+4. **Same chord loop iterated 5-7+ times** with additive layering — never subtractive within the intro.
+5. **Layer entry sequence** (Sirius verified, 7 stages over 38 bars):
+   - pad + drone (root pedal)
+   - ostinato motif (the hook)
+   - first percussion (subtle kick)
+   - first chord-change layer (e.g. pad shifts to bVI)
+   - orchestral colors (strings + harp glissandi)
+   - backbeat (snare + bass)
+   - lead (the high note that sells the climax)
+
+```
+bars 1-14:   B P            (drone — pedal root + sweep pad only)
+bars 7+:     B P C          (motif enters)
+bars 11+:    B P C D[kick]  (subtle pulse)
+bars 15+:    B P C D RL     (first harmonic motion — bVI arrives)
+bars 22+:    B P C D RL SP  (orchestral bloom)
+bars 30+:    B P C D RL RR  (full kit + bass)
+bars 38+:    B P C D RL RR + lead  (peak — segue to next track)
+```
+
+**Touchstones:** APP "Sirius," APP "Voyager," Pink Floyd "Shine On You Crazy Diamond" intro, intro-fanfare instrumental tracks generally. **Pairs with:** Rock, Cinematic-prog, Post-rock. Use for short opener tracks that lead into another track rather than for full standalone songs.
+
+### 12. Modal Shapeshift *(single tonic, different mode per section)*
+
+Verified from APP "Where's the Walrus?" (1985 Stereotomy). The piece never modulates keys — the tonal center stays on A throughout — but it **modulates by MODE**, shifting through Dorian (verse) → Aeolian (bridge) → Phrygian (interlude) → back. SAME TONIC, different scale. The listener perceives modulation without actually leaving the key center.
+
+```
+verse:    chords drawn from A Dorian   (uses raised 6 = F# — A-B-C-D-E-F#-G)
+bridge:   chords drawn from A Aeolian  (uses natural 6 = F — A-B-C-D-E-F-G)
+interlude: chords drawn from A Phrygian (uses b2 = Bb — A-Bb-C-D-E-F-G)
+return:   back to A Dorian
+```
+
+The trick: keep the A bass pedal (or A-as-tonic) throughout, but let the chords drawn from each mode color the same root differently. Em7 (modal v of A) sounds totally different than E7 (dominant V of A) over an A pedal.
+
+**Use when:** the song needs harmonic variety without committing to a new key. **Touchstones:** APP fusion-rock instrumentals, Miles Davis modal jazz, Snarky Puppy. **Pairs with:** Jazz-funk subschool B (modal jazz), Rock for fusion-rock, Spanish/Phrygian for the interlude moments.
+
+### 13. Parsons Stack *(strictly additive layer build — 8-bar increments)*
+
+Verified from APP "Some Other Time" (1977 I Robot) and similar APP arrangements. The Parsons signature: **every 8 bars a new instrumental color enters, NEVER subtractive until the bridge** (where one or two layers drop out briefly before returning fuller). The arrangement is monotonically additive across the song's first ~80% — the dynamic build IS the song.
+
+```
+bars 1-8:   ac.gtr + piano                                  (intro — minimal)
+bars 9-16:  + synth strings                                 (theme A instrumental)
+bars 17-24: + lead melody (replacing piano)                 (theme A expansion)
+bars 25-32: + bass + drums + french horns + trombones       (full band slam)
+bars 33-42: (strip back to vocals + minimal — verse)        (one-time strip for vocal entry)
+bars 43-48: + choir aahs                                    (chorus 1)
+bars 49-58: + distorted electric guitar                     (instrumental break)
+bars 59-68: bridge — strip horns out                        (the only subtractive moment)
+bars 69-104: full ensemble + new colors                     (rest of song fully maxed)
+```
+
+**Touchstones:** Alan Parsons Project (literally), Beatles "A Day in the Life" build, Pink Floyd "Wish You Were Here" arrangement-by-section. **Pairs with:** Rock, sophisticated rock with prog leanings, anything where the arrangement craft is the point.
 
 ### How to pick an arrangement archetype
 

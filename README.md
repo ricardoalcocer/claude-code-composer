@@ -30,8 +30,23 @@
 </p>
 
 <p align="center">
-  <strong>11 style packs</strong> &nbsp;·&nbsp; <strong>14 song forms</strong> &nbsp;·&nbsp; <strong>10 arrangement archetypes</strong> &nbsp;·&nbsp; all blendable
+  <strong>11 style packs</strong> &nbsp;·&nbsp; <strong>15 song forms</strong> &nbsp;·&nbsp; <strong>13 arrangement archetypes</strong> &nbsp;·&nbsp; all blendable
 </p>
+
+---
+
+## What's New <sub>(May 2026)</sub>
+
+We reverse-engineered MIDI transcriptions of **13 canonical reference tracks** — Jack Thammarat, Hans Zimmer, Ludovico Einaudi, Yiruma, Adele's "Skyfall," Dream Theater, Alan Parsons Project, Symphony X — and baked the verified idioms straight into the skill. Highlights:
+
+- **Cinematic pack now splits into 3 subschools** — *A. modal* (Zimmer / Einaudi: no V chord, single-loop build, hollow-middle voicings), *B. diatonic* (Yiruma: vi-I/3-I-V loop with V resolving, 3-note ascending arpeggio cells), *C. cinematic-pop* (Skyfall: harmonic-minor V "Bond chord," stepwise i-♭VII-♭VI-V-iv-♭III-ii chorus descent). Pick the subschool *before* composing — they want different specs.
+- **Jazz-funk pack splits into 2** — *A. Jack Thammarat melodic-fusion* (Mixolydian I-♭VII-IV-V verses, quartal piano dyads, chord identity emerges from the BAND combined, not block-comped m7s) and *B. Coltrane/Snarky modal-jazz fusion* (ii-V-i chains, full m7 stacks, dense changes).
+- **New Neoclassical-metal moves section** — Symphony X / Romeo / Yngwie idioms: bII voiced as maj7 (double-function dissonance), minor-3rd ladder climbs in all-major triads, whole-step modulation post-solo, augmented triad as functional dominant (Bach-flavored cadences).
+- **3 new arrangement archetypes** — *Plagal Intro Fanfare* (Sirius: i-♭VI-iv-i, no V, 14 bars on pedal, motif enters BEFORE chord changes), *Modal Shapeshift* (Walrus: same tonic, different mode per section — Dorian → Aeolian → Phrygian), *Parsons Stack* (additive 8-bar layer increments, never subtractive). Plus a *Single-Loop-Iterated Build* meta-principle for songs where ONE chord progression iterates 30-200+ times and sections are defined by texture alone (verified Zimmer/Einaudi).
+- **Form #15 — Jack Thammarat "On The Way"** — verified `I·T·A·P·B·T·A·P·H·B·O` form with signature verse/chorus length-flip in the second half.
+- **20+ verified chord moves** added to the moves library — including static-triad chorus with chromatic bass walk (Dream Theater "Voices"), Hisaishi descending-bass maj9 cascade, Yiruma bridge via descending-inversion chain, ♭VI-as-Lana-del-Rey saddest chord, modal Aeolian with no V (Zimmer/Einaudi rule), Phrygian-dominant unresolved fade ending, common-tone diminished turnaround (APP), bIV→i chorus modulation (Symphony X).
+- **6 new style memories** capturing tactical patterns — Yiruma's verbatim LH 3-note arpeggio (root → 5th → 10th with breath rests), Zimmer's hollow-middle voicing principle (bass octave-doubled + high stack + empty middle), Einaudi tempo arcs (40 → 125 → 40), prog multi-meter construction, rock voicing tricks (never put the 3rd in the distorted guitar — strings get it).
+- **Touchstones extended** — Dream Theater and Alan Parsons Project added to the Rock pack with verified-from-MIDI citations.
 
 ---
 
@@ -98,9 +113,9 @@ Each pack is a self-contained recipe — tempo range, default key, roles, feel a
     <td>Sparse build → climax → ebb · Mogwai inversion</td>
   </tr>
   <tr>
-    <td><strong>Cinematic</strong></td>
-    <td>Hisaishi · Zimmer · Ólafur · Sigur Rós</td>
-    <td>Sparse · piano-led · parallel-minor chorus · anti-cadence endings</td>
+    <td><strong>Cinematic</strong> <sub>(3 subschools)</sub></td>
+    <td>Zimmer · Einaudi · Sigur Rós · Yiruma · Hisaishi · Adele "Skyfall"</td>
+    <td><em>A. modal</em>: no V, single-loop, hollow voicings · <em>B. diatonic</em>: vi-I/3-I-V loop · <em>C. cinematic-pop</em>: Bond chord + stepwise chorus descent</td>
   </tr>
 </table>
 
@@ -138,9 +153,9 @@ Each pack is a self-contained recipe — tempo range, default key, roles, feel a
     <th>Engine</th>
   </tr>
   <tr>
-    <td><strong>Jazz-funk</strong> <sub>(American)</sub></td>
-    <td>Snarky Puppy · Cory Henry · Tomo Fujita · Jack Thammarat</td>
-    <td><code>pushed</code> feel · ii-V-i · Dorian / Lydian-dom · full voicings</td>
+    <td><strong>Jazz-funk</strong> <sub>(2 subschools)</sub></td>
+    <td>Jack Thammarat · Tomo Fujita · Snarky Puppy · Cory Henry · Robben Ford</td>
+    <td><em>A. Jack melodic-fusion</em>: Mixolydian I-♭VII-IV-V · quartal piano dyads · single-note arp · <em>B. modal-jazz</em>: ii-V-i chains · full m7 stacks · Coltrane changes</td>
   </tr>
   <tr>
     <td><strong>Reggae-fusion</strong></td>
