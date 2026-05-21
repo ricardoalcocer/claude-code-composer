@@ -159,6 +159,39 @@ open "<output_dir>/<song_name>.RPP"
 
 If the user reacted to the output ("yes, that's the vibe" / "less dense" / "I like 88 BPM"), save it to `style.md` or the user memory.
 
+## Composition quality metrics *(Hooktheory framework)*
+
+Before designing a song's chords/sections, run through this 5-axis mental checklist. Each axis is a *deliberate target*, not an emergent property. The framework is adapted from [Hooktheory's chord-and-melody metrics](https://www.hooktheory.com/song-metrics/about) — a data-driven model of what makes popular-music compositions feel a certain way. Use the checklist to AVOID drift toward defaults.
+
+### The 5 axes
+
+1. **Chord Complexity** *(per chord)* — how many notes per chord beyond the basic triad? Are chords drawn from the song's scale or are there borrowed chords / secondary dominants / non-diatonic alterations? A plain C triad is low complexity; Cmaj7 adds 7th-intervals (more dissonance, more processing for the ear); a borrowed Fm in C major is even higher (non-scale tone). **Use to gate "is this a sketch or a sophisticated piece?"**
+2. **Melodic Complexity** *(per melody line)* — for the `melody` field. Two sub-axes:
+   - **Pitch**: diatonic (in-scale, simple) vs. non-diatonic (chromatic, complex)
+   - **Rhythm**: on-beat (natural) vs. off-beat / syncopated (complex, groovy)
+   Stairway-style folk-rock melodies sit low; Stevie Wonder funk melodies sit high. **Use when designing composed lead lines — match complexity to the genre's expectation.**
+3. **Chord-Melody Tension** *(per section)* — does the melody land on chord tones (stable) or non-chord tones (tense)? "Twinkle Twinkle" = 100% stable = safe but unambitious. Pure dissonance = unlistenable. **The middle ground — intentionally building and releasing tension at the right moments — is where good melodies live.** Affects how the `scales:` line should be written: don't just name the scale, identify which scale degrees over each chord are STABLE chord tones (land on strong beats) vs. TENSE non-chord tones (pass through on weak beats). Don't bake STABLE/TENSE markup into every spec — too verbose — but TARGET it when designing lead-melody-heavy sections.
+4. **Chord Progression Novelty** *(per progression)* — how rare is this progression vs. the canonical pop corpus? `I-V-vi-IV` is the most common (boring); a deceptive cadence into bIII is rarer (interesting). **Use as the rotation check: scan recent outputs and pick something with higher novelty.** The skill already tracks this implicitly via "rotate keys/archetypes" rules but Hooktheory formalizes it.
+5. **Chord Bass Melody** *(per progression)* — does the bass line ascend/descend stepwise? Hooktheory elevates this as a TOP-TIER metric, not a sub-move. Songs scoring high on this metric: Iris, Stairway to Heaven, Your Song, Someone Like You, Living on a Prayer, Levon, Lean on Me, This Love, You're Beautiful, Mardy Bum. **Pattern: piano-led ballads dominate this list — stepwise bass IS the ballad-arrangement signature.** See the "Bass-line-first design" principle in the Moves library.
+
+### How to use the checklist
+
+Before writing a `sections` array, for each section briefly target where it sits on each axis. Example for a Cinematic ballad chorus:
+
+> Chord Complexity: medium (m7/maj9 voicings, no plain triads, possibly one borrowed chord). Melodic Complexity: low (diatonic, on-beat — the vocal/melodic hook should sing). Chord-Melody Tension: medium-high (lean into the tension before the bVI lift). Chord Progression Novelty: medium (the Skyfall stepwise descent is a known move but not a 4-chord cliché). Chord Bass Melody: HIGH (ballad chorus — bass walks down by step).
+
+Example for a Djent prog verse:
+
+> Chord Complexity: low (power chords only). Melodic Complexity: high (chugg pattern + odd time). Chord-Melody Tension: low (no melody — riff IS the song). Novelty: medium-high (use Polyrhythm of 3 over 4 or tritone displacement). Bass Melody: low (root chugs, no stepwise motion).
+
+Different genres want different positions on the axes — there's no universal "good" target. The checklist FORCES the design choice rather than letting it emerge by default.
+
+### Why this matters
+
+Without the checklist, the skill drifts toward "medium everything" — chord complexity is whatever the pack defaults to, melody complexity is whatever feels natural, tension is whatever happens. With the checklist, every section has a CONSCIOUS sonic identity that distinguishes it from the others.
+
+Cross-cutting insight: the 5 axes are mostly INDEPENDENT — a song can be high Chord Complexity AND low Melodic Complexity (sophisticated harmony + simple melody = Steely Dan), or low Chord Complexity AND high Melodic Complexity (3-chord folk with a winding vocal line = Bob Dylan). Mixing the axes gives variety; clamping them all to the same level gives monochrome.
+
 ## Style packs
 
 When the user describes the song with mood or genre words ("emotional," "Spanish," "cinematic," "djent," "synthwave"), match it to a pack below. The pack tells you tempo range, key/scale defaults, which `roles` to include, which `feel`s to reach for, and which **moves** fit. Packs can be mixed — a "Spanish bridge in a synthwave song" is valid; use the synthwave pack for verse/chorus and Spanish moves in the bridge.
@@ -523,6 +556,17 @@ Reach for these before inventing from scratch. Pick a few per section. All examp
 - **Modal-mixture intro on drone** *(Dream Theater "Voices")* — Over a single pedal root (e.g. A bass), have the upper voice cycle through `1 – b3 – 3 – 4 – #4 – 5` of the minor scale, mixing Aeolian (b3) with Lydian (#4) inside the same line. Gives a riff a Lydian flick inside Aeolian without ever changing chord. Voices does this for 12 bars on an A pedal in 9/8. Use as an INTRO device — single-chord-but-not-static. In Bm: bass on B, upper line cycles `B-D-D#-E-F-F#` (b3 and #4 both present).
 
 ### Bass-led patterns
+
+**META-PRINCIPLE — Bass-line-first design** *(for ballad-form sections)*: when a section needs ballad gravitas, **sketch the bass line FIRST**, then pick chords that put the right notes in the bass. Hooktheory's "Chord Bass Melody" metric ranks stepwise ascending/descending bass as one of the TOP-FIVE composition quality axes (alongside chord complexity, melody complexity, chord-melody tension, and progression novelty) — and the exemplar list is overwhelmingly piano-led ballads: Iris (Goo Goo Dolls), Stairway to Heaven, Your Song (Elton John), Someone Like You (Adele), Living on a Prayer, This Love (Maroon 5), You're Beautiful, Levon, Lean on Me, Mardy Bum (Arctic Monkeys), Whataya Want From Me, Walt Grace's Submarine Test, My Heart Will Go On. **Stepwise bass IS the ballad-arrangement signature.** The chords are the consequence, not the cause.
+
+Common stepwise bass shapes (write the bass walk first, then voice chords above):
+- **Descending diatonic** (most common ballad move) — In G major: bass G→F#→E→D→C→B→A→G → chords `G – D/F# – Em – D – C – G/B – Am – G`. Verified Iris, Whataya Want From Me, Stairway intro.
+- **Ascending diatonic** (build/lift) — In C major: bass C→D→E→F→G → chords `C – Dm – C/E – F – G`. Verified Lean on Me, "Heart and Soul" but with extensions.
+- **Descending chromatic** — bass walks down in half-steps (E→Eb→D→Db→C). Each chord re-harmonizes the bass note. Verified Whiter Shade of Pale, Stairway middle.
+- **Ascending then descending** (arch) — bass climbs then falls within the section. Verified Hey Jude, Your Song.
+
+Design discipline: when composing a ballad chorus, **write the 8 bass notes you want first**, drawing a line on paper or in your head. THEN pick chords for each. THEN add `voicing` decisions. Reversing the order (chords first → see what bass falls out) leads to the static-tonic-pedal default that's harder to make compelling.
+
 - **Pedal-tone vamp** — Hold one bass note while harmony shifts above: `Em – Cmaj7/E – Am/E – B7/E`. The E never moves.
 - **Chromatic walk-down** — Bass descends in half-steps through passing chords: `Em – Eb° – D – Db° – Cmaj7 – Bm7`.
 - **Tonic-pedal chorus** — In a major chorus, keep I in the bass: `E – A/E – B/E – E`.

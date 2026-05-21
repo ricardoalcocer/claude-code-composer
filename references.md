@@ -50,3 +50,8 @@ This file is a curated bibliography for the moves in SKILL.md. When you want to 
 
 ## General chord progressions
 - GMC Forum article — "Chord Progressions Explained (modern Rock, metal, etc)" (shared by user 2026-05-14)
+
+## Composition quality framework
+- Hooktheory "Chord and Melody Metrics" — https://www.hooktheory.com/song-metrics/about — the 5-axis quality framework documented in SKILL.md's "Composition quality metrics" section: Chord Complexity, Melodic Complexity, Chord-Melody Tension, Chord Progression Novelty, Chord Bass Melody. Each metric links to a curated list of exemplar songs from their TheoryTab database.
+- Hooktheory stable/unstable scale degrees — https://www.hooktheory.com/support/musicreference?concept=music-concepts-stable-unstable-scale-degree — the canonical "is this melody note IN the current chord?" reference. Backs the chord-melody tension axis.
+- Hooktheory TheoryTab — https://www.hooktheory.com/theorytab — searchable database of chord+melody breakdowns for thousands of popular songs. Browse the Bass Melody / Chord Complexity exemplar lists for new moves worth absorbing.
