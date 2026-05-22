@@ -21,22 +21,34 @@
   <a href="https://alco.mit-license.org">
     <img alt="License MIT" src="https://img.shields.io/badge/license-MIT-22C55E?style=for-the-badge">
   </a>
-  <img alt="Any DAW via MIDI" src="https://img.shields.io/badge/any%20DAW-via%20MIDI-3B82F6?style=for-the-badge">
-  <a href="https://www.reaper.fm/">
-    <img alt="REAPER native .RPP" src="https://img.shields.io/badge/REAPER-native%20.RPP-F26122?style=for-the-badge">
-  </a>
-  <img alt="11 style packs" src="https://img.shields.io/badge/style%20packs-11-A855F7?style=for-the-badge">
   <a href="https://claude.ai/code">
     <img alt="Built with Claude Code" src="https://img.shields.io/badge/built%20with-Claude%20Code-D97757?style=for-the-badge">
   </a>
 </p>
 
+<p align="center"><em>Works with any DAW that opens MIDI:</em></p>
+
 <p align="center">
-  Tell <a href="https://claude.ai/code">Claude Code</a> what you want to play over — a style, a mood, a chord change — and get back MIDI: bass, drums, guitars, pad, lead, laid out across sections. Drop it into <strong>any DAW</strong> (Logic, Ableton, Cubase, FL Studio, GarageBand, Bitwig…), or open the bundled <a href="https://www.reaper.fm/">REAPER</a> project for a one-click playable session. Improvise over it. Mine it for ideas. Throw it away. Ask for another.
+  <a href="https://www.reaper.fm/"><img alt="REAPER" src="https://img.shields.io/badge/REAPER-native%20.RPP-F26122?style=for-the-badge"></a>
+  <a href="https://www.apple.com/logic-pro/"><img alt="Logic Pro" src="https://img.shields.io/badge/Logic%20Pro-via%20MIDI-FA243C?style=for-the-badge&logo=apple&logoColor=white"></a>
+  <a href="https://www.ableton.com/"><img alt="Ableton Live" src="https://img.shields.io/badge/Ableton%20Live-via%20MIDI-000000?style=for-the-badge&logo=abletonlive&logoColor=white"></a>
+  <a href="https://www.steinberg.net/cubase/"><img alt="Cubase" src="https://img.shields.io/badge/Cubase-via%20MIDI-C8102E?style=for-the-badge"></a>
+  <a href="https://www.image-line.com/fl-studio/"><img alt="FL Studio" src="https://img.shields.io/badge/FL%20Studio-via%20MIDI-F5821F?style=for-the-badge&logo=flstudio&logoColor=white"></a>
+  <a href="https://www.apple.com/mac/garageband/"><img alt="GarageBand" src="https://img.shields.io/badge/GarageBand-via%20MIDI-FB6B47?style=for-the-badge&logo=apple&logoColor=white"></a>
+  <a href="https://www.bitwig.com/"><img alt="Bitwig Studio" src="https://img.shields.io/badge/Bitwig-via%20MIDI-FF5400?style=for-the-badge"></a>
+</p>
+
+<p align="center"><em>What's inside:</em></p>
+
+<p align="center">
+  <img alt="11 style packs" src="https://img.shields.io/badge/style%20packs-11-A855F7?style=for-the-badge">
+  <img alt="15 song forms" src="https://img.shields.io/badge/song%20forms-15-9333EA?style=for-the-badge">
+  <img alt="13 arrangement archetypes" src="https://img.shields.io/badge/arrangement%20archetypes-13-7E22CE?style=for-the-badge">
+  <img alt="127 mood progressions" src="https://img.shields.io/badge/mood%20progressions-127-4338CA?style=for-the-badge">
 </p>
 
 <p align="center">
-  <strong>11 style packs</strong> &nbsp;·&nbsp; <strong>15 song forms</strong> &nbsp;·&nbsp; <strong>13 arrangement archetypes</strong> &nbsp;·&nbsp; all blendable
+  Tell <a href="https://claude.ai/code">Claude Code</a> what you want to play over — a style, a mood, a chord change — and get back MIDI: bass, drums, guitars, pad, lead, laid out across sections. Drop it into <strong>any DAW</strong> (<a href="https://www.apple.com/logic-pro/">Logic</a>, <a href="https://www.ableton.com/">Ableton</a>, <a href="https://www.steinberg.net/cubase/">Cubase</a>, <a href="https://www.image-line.com/fl-studio/">FL Studio</a>, <a href="https://www.apple.com/mac/garageband/">GarageBand</a>, <a href="https://www.bitwig.com/">Bitwig</a>…), or open the bundled <a href="https://www.reaper.fm/">REAPER</a> project for a one-click playable session. Improvise over it. Mine it for ideas. Throw it away. Ask for another.
 </p>
 
 ---
@@ -44,7 +56,7 @@
 ## What's New <sub>(May 2026)</sub>
 
 - **MIDI-only mode + zero-friction starter template** — two changes that make the skill usable without any REAPER setup:
-  - `composer.py compose --midi-only <spec.json> <out_dir>` skips the `.RPP` entirely and just writes per-section `.mid` + `full.mid` + `spec.json`. **No `config.json`, no REAPER template required.** Drop the MIDI into Logic, Ableton, Cubase, FL Studio, GarageBand, Bitwig — anywhere that opens `.mid`.
+  - `composer.py compose --midi-only <spec.json> <out_dir>` skips the `.RPP` entirely and just writes per-section `.mid` + `full.mid` + `spec.json`. **No `config.json`, no REAPER template required.** Drop the MIDI into [Logic](https://www.apple.com/logic-pro/), [Ableton](https://www.ableton.com/), [Cubase](https://www.steinberg.net/cubase/), [FL Studio](https://www.image-line.com/fl-studio/), [GarageBand](https://www.apple.com/mac/garageband/), [Bitwig](https://www.bitwig.com/) — anywhere that opens `.mid`.
   - The repo now ships a bundled `assets/starter_template.RPP` with all named tracks pre-created (empty — bring your own instruments). `config.example.json` defaults to it, so `cp config.example.json config.json` and you can run `compose` against REAPER immediately, no manual template setup. Build your own template later when you want your own sounds.
 - **Mood → progression seed bank** — distilled 7,620 labeled reference MIDI files (Songwriter's Helpful Library Database, Minor + Modal only) into [`data/shld_mood_bank.json`](data/shld_mood_bank.json) — **127 unique progressions indexed by 19 emotional moods** (Mysterious, Nostalgic, Sad, Triumphant, Hopeful, Dark, Romantic, Surprised, Cadence, etc.). When a brief names a mood word, the skill consults this bank for verified non-default chord skeletons, then voices them in the chosen pack's idiom. Pre-screened against the FORBIDDEN pop-rock progressions list — zero conflicts.
 
@@ -81,7 +93,7 @@ You're in Claude Code. You type:
 
 > *Give me a Plini-style instrumental in Bm — through-composed, no lead, leave room for me to play over it.*
 
-A few seconds later you have `~/Documents/MIDI-SONGS/_2026/.../blue-meridian/` on disk — 48 bars across six unique sections, drums entering at the halftime setup, full band at the climb, a sparse bridge break in the middle. The folder holds per-section `.mid` files, a `full.mid` you can drag straight into Logic / Ableton / Cubase / GarageBand / Bitwig, and `spec.json` with every chord and the scale to solo over it. (If you set up REAPER, you also get a `.RPP` with everything wired to tracks and a NOTES pane that displays the chord/scale guidance inline.)
+A few seconds later you have `~/Documents/MIDI-SONGS/_2026/.../blue-meridian/` on disk — 48 bars across six unique sections, drums entering at the halftime setup, full band at the climb, a sparse bridge break in the middle. The folder holds per-section `.mid` files, a `full.mid` you can drag straight into [Logic](https://www.apple.com/logic-pro/) / [Ableton](https://www.ableton.com/) / [Cubase](https://www.steinberg.net/cubase/) / [GarageBand](https://www.apple.com/mac/garageband/) / [Bitwig](https://www.bitwig.com/), and `spec.json` with every chord and the scale to solo over it. (If you set up REAPER, you also get a `.RPP` with everything wired to tracks and a NOTES pane that displays the chord/scale guidance inline.)
 
 Then you decide the bridge needs more. In REAPER you drag a region named `COMPOSER` over 16 empty bars and ask:
 
@@ -95,7 +107,7 @@ That's the whole skill: a bandmate that hands you sketches.
 
 | Mode | When | What you say | What you get | DAW |
 |---|---|---|---|---|
-| **Compose** | Starting fresh | *"a sad piano piece in 6/8"* · *"Polyphia-style loop"* · *"synthwave in Am"* · *"Zaza meets Casiopea in Em"* | Per-section `.mid` files + `full.mid` + `spec.json` + (optionally) a REAPER `.RPP` | **Any** (Logic, Ableton, Cubase, FL, GarageBand, Bitwig, REAPER…) |
+| **Compose** | Starting fresh | *"a sad piano piece in 6/8"* · *"Polyphia-style loop"* · *"synthwave in Am"* · *"Zaza meets Casiopea in Em"* | Per-section `.mid` files + `full.mid` + `spec.json` + (optionally) a REAPER `.RPP` | **Any** ([Logic](https://www.apple.com/logic-pro/), [Ableton](https://www.ableton.com/), [Cubase](https://www.steinberg.net/cubase/), [FL](https://www.image-line.com/fl-studio/), [GarageBand](https://www.apple.com/mac/garageband/), [Bitwig](https://www.bitwig.com/), [REAPER](https://www.reaper.fm/)…) |
 | **Fill** | Filling a gap in an existing project | *"fill the COMPOSER region"* · *"do a key mod here"* · *"arpeggiated guitars, 65bpm feel"* | MIDI items injected into the existing `.RPP` in place — only the tracks the fill needs | **REAPER only** (writes into `.RPP` structure directly) |
 
 ## Style packs
@@ -203,7 +215,7 @@ Each pack is a self-contained recipe — tempo range, default key, roles, feel a
   </tr>
   <tr>
     <td><strong>REAPER</strong> <em>(optional)</em></td>
-    <td>Only needed if you want a playable <code>.RPP</code> project. <strong>If you prefer Logic / Ableton / Cubase / FL Studio / GarageBand / Bitwig</strong>, use <code>--midi-only</code> mode and skip REAPER entirely. <a href="https://www.reaper.fm/">reaper.fm</a></td>
+    <td>Only needed if you want a playable <code>.RPP</code> project. <strong>If you prefer <a href="https://www.apple.com/logic-pro/">Logic</a> / <a href="https://www.ableton.com/">Ableton</a> / <a href="https://www.steinberg.net/cubase/">Cubase</a> / <a href="https://www.image-line.com/fl-studio/">FL Studio</a> / <a href="https://www.apple.com/mac/garageband/">GarageBand</a> / <a href="https://www.bitwig.com/">Bitwig</a></strong>, use <code>--midi-only</code> mode and skip REAPER entirely. <a href="https://www.reaper.fm/">reaper.fm</a></td>
   </tr>
   <tr>
     <td><strong>REAPER template</strong> <em>(optional)</em></td>
@@ -213,7 +225,7 @@ Each pack is a self-contained recipe — tempo range, default key, roles, feel a
 
 ## Install
 
-### Quickstart — non-REAPER users *(Logic, Ableton, Cubase, FL, GarageBand, Bitwig…)*
+### Quickstart — non-REAPER users *([Logic](https://www.apple.com/logic-pro/), [Ableton](https://www.ableton.com/), [Cubase](https://www.steinberg.net/cubase/), [FL](https://www.image-line.com/fl-studio/), [GarageBand](https://www.apple.com/mac/garageband/), [Bitwig](https://www.bitwig.com/)…)*
 
 ```bash
 git clone https://github.com/ricardoalcocer/claude-code-composer.git ~/.claude/skills/composer
@@ -436,7 +448,7 @@ Design choices that fall out of that:
 - **Reach wider, not higher.** No drum fills. No walking basslines. No voice leading optimization. No per-note velocity ramping. The energy budget is spent on chord-choice and arrangement variety across genres, not on polishing one output.
 - **Variety is enforced.** The skill scans recent outputs and deliberately rotates keys, forms, and arrangement archetypes. The `style.md` scratchpad lets you teach it your taste over time.
 - **Musical decisions are Claude's job.** The Python script is dumb — it converts a JSON spec into MIDI and an `.RPP`. Every musical choice — what chords, what key, what feel-arc, what arrangement, what moves to reach for — happens inside Claude's reasoning, guided by the catalogs in [`SKILL.md`](SKILL.md).
-- **Your DAW is the destination.** The MIDI files are the universal artifact — drop them into Logic, Ableton, Cubase, FL Studio, GarageBand, Bitwig, or anything else that opens `.mid`. The REAPER `.RPP` is a convenience for REAPER users who want a one-click playable session with tracks named and regions laid out. `spec.json` carries the structured recipe so you (or Claude) can hand-edit and re-run.
+- **Your DAW is the destination.** The MIDI files are the universal artifact — drop them into [Logic](https://www.apple.com/logic-pro/), [Ableton](https://www.ableton.com/), [Cubase](https://www.steinberg.net/cubase/), [FL Studio](https://www.image-line.com/fl-studio/), [GarageBand](https://www.apple.com/mac/garageband/), [Bitwig](https://www.bitwig.com/), or anything else that opens `.mid`. The REAPER `.RPP` is a convenience for REAPER users who want a one-click playable session with tracks named and regions laid out. `spec.json` carries the structured recipe so you (or Claude) can hand-edit and re-run.
 
 ## Limitations
 
