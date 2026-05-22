@@ -48,6 +48,8 @@ def load_template_path():
         sys.exit(2)
 
     template = Path(raw).expanduser()
+    if not template.is_absolute():
+        template = SKILL_DIR / template
     if not template.exists():
         sys.stderr.write(
             f"composer: template not found at {template}.\n"
@@ -1287,7 +1289,7 @@ def parse_items_in_range(rpp_lines, time_range, track_filter=None):
 
 # ---------- compose subcommand ----------
 
-def compose_main(spec_path, out_dir):
+def compose_main(spec_path, out_dir, midi_only=False):
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -1316,6 +1318,15 @@ def compose_main(spec_path, out_dir):
         notes, _ = build_track_notes(form, sections, role)
         full_tracks.append((f"full-{role}", notes))
     write_smf(out_dir / "full.mid", tempo, time_sig, full_tracks)
+
+    # MIDI-only mode skips the Reaper .RPP entirely — for users on Logic, Ableton,
+    # Cubase, FL Studio, etc. who just want the portable .mid files. No config.json
+    # or REAPER template required.
+    if midi_only:
+        with open(out_dir / "spec.json", "w") as f:
+            json.dump(spec, f, indent=2)
+        print(str(out_dir / "full.mid"))
+        return
 
     # Build the Reaper project from the template.
     template_path = load_template_path()
@@ -1878,9 +1889,13 @@ def fill_main(fill_spec_path, rpp_path):
 
 USAGE = (
     "usage:\n"
-    "  composer.py compose <spec.json> <output_dir>\n"
+    "  composer.py compose [--midi-only] <spec.json> <output_dir>\n"
     "  composer.py analyze <project.RPP>\n"
     "  composer.py fill <fill_spec.json> <project.RPP>\n"
+    "\n"
+    "  --midi-only  skip the Reaper .RPP — only write per-section .mid + full.mid\n"
+    "               (no config.json or REAPER template required; works for Logic,\n"
+    "                Ableton, Cubase, FL Studio, etc.)\n"
 )
 
 
@@ -1892,10 +1907,13 @@ def main():
 
     verb = argv[0]
     if verb == "compose":
-        if len(argv) != 3:
-            sys.stderr.write("usage: composer.py compose <spec.json> <output_dir>\n")
+        rest = argv[1:]
+        midi_only = "--midi-only" in rest
+        positional = [a for a in rest if a != "--midi-only"]
+        if len(positional) != 2:
+            sys.stderr.write("usage: composer.py compose [--midi-only] <spec.json> <output_dir>\n")
             sys.exit(2)
-        compose_main(argv[1], argv[2])
+        compose_main(positional[0], positional[1], midi_only=midi_only)
     elif verb == "analyze":
         if len(argv) != 2:
             sys.stderr.write("usage: composer.py analyze <project.RPP>\n")

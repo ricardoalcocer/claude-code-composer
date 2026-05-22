@@ -21,8 +21,9 @@
   <a href="https://alco.mit-license.org">
     <img alt="License MIT" src="https://img.shields.io/badge/license-MIT-22C55E?style=for-the-badge">
   </a>
+  <img alt="Any DAW via MIDI" src="https://img.shields.io/badge/any%20DAW-via%20MIDI-3B82F6?style=for-the-badge">
   <a href="https://www.reaper.fm/">
-    <img alt="DAW REAPER" src="https://img.shields.io/badge/DAW-REAPER-F26122?style=for-the-badge">
+    <img alt="REAPER native .RPP" src="https://img.shields.io/badge/REAPER-native%20.RPP-F26122?style=for-the-badge">
   </a>
   <img alt="11 style packs" src="https://img.shields.io/badge/style%20packs-11-A855F7?style=for-the-badge">
   <a href="https://claude.ai/code">
@@ -31,7 +32,7 @@
 </p>
 
 <p align="center">
-  Tell <a href="https://claude.ai/code">Claude Code</a> what you want to play over — a style, a mood, a chord change — and get back a <a href="https://www.reaper.fm/">REAPER</a> project with bass, drums, guitars, pad, and MIDI laid out across sections, regions, and tracks. Open it. Improvise over it. Mine it for ideas. Throw it away. Ask for another.
+  Tell <a href="https://claude.ai/code">Claude Code</a> what you want to play over — a style, a mood, a chord change — and get back MIDI: bass, drums, guitars, pad, lead, laid out across sections. Drop it into <strong>any DAW</strong> (Logic, Ableton, Cubase, FL Studio, GarageBand, Bitwig…), or open the bundled <a href="https://www.reaper.fm/">REAPER</a> project for a one-click playable session. Improvise over it. Mine it for ideas. Throw it away. Ask for another.
 </p>
 
 <p align="center">
@@ -42,6 +43,9 @@
 
 ## What's New <sub>(May 2026)</sub>
 
+- **MIDI-only mode + zero-friction starter template** — two changes that make the skill usable without any REAPER setup:
+  - `composer.py compose --midi-only <spec.json> <out_dir>` skips the `.RPP` entirely and just writes per-section `.mid` + `full.mid` + `spec.json`. **No `config.json`, no REAPER template required.** Drop the MIDI into Logic, Ableton, Cubase, FL Studio, GarageBand, Bitwig — anywhere that opens `.mid`.
+  - The repo now ships a bundled `assets/starter_template.RPP` with all named tracks pre-created (empty — bring your own instruments). `config.example.json` defaults to it, so `cp config.example.json config.json` and you can run `compose` against REAPER immediately, no manual template setup. Build your own template later when you want your own sounds.
 - **Mood → progression seed bank** — distilled 7,620 labeled reference MIDI files (Songwriter's Helpful Library Database, Minor + Modal only) into [`data/shld_mood_bank.json`](data/shld_mood_bank.json) — **127 unique progressions indexed by 19 emotional moods** (Mysterious, Nostalgic, Sad, Triumphant, Hopeful, Dark, Romantic, Surprised, Cadence, etc.). When a brief names a mood word, the skill consults this bank for verified non-default chord skeletons, then voices them in the chosen pack's idiom. Pre-screened against the FORBIDDEN pop-rock progressions list — zero conflicts.
 
 We reverse-engineered MIDI transcriptions of **13 canonical reference tracks** — Jack Thammarat, Hans Zimmer, Ludovico Einaudi, Yiruma, Adele's "Skyfall," Dream Theater, Alan Parsons Project, Symphony X — and baked the verified idioms straight into the skill. Highlights:
@@ -64,12 +68,12 @@ We reverse-engineered MIDI transcriptions of **13 canonical reference tracks** �
 ```mermaid
 flowchart LR
   A["You: <br/>'a Plini-style instrumental in Em'"] --> B["Claude: <br/>designs JSON spec from SKILL.md"]
-  B --> C["Python: <br/>writes MIDI + .RPP + spec.json"]
-  C --> D["You: <br/>open .RPP in REAPER, improvise"]
-  D -.->|"'fill the COMPOSER region'"| B
+  B --> C["Python: <br/>writes per-section .mid + full.mid<br/>(optionally also a REAPER .RPP)"]
+  C --> D["You: <br/>open in any DAW, improvise"]
+  D -.->|"'fill the COMPOSER region'<br/>(REAPER only)"| B
 ```
 
-The Python script does the mechanical RPP/MIDI work. Every musical decision — key, tempo, chord choices, form, feel-arc, arrangement, voicings — happens inside Claude, guided by the catalogs in [`SKILL.md`](SKILL.md).
+The Python script does the mechanical MIDI work. Every musical decision — key, tempo, chord choices, form, feel-arc, arrangement, voicings — happens inside Claude, guided by the catalogs in [`SKILL.md`](SKILL.md). The `.RPP` is a convenience for REAPER users; **the `.mid` files are the universal artifact**.
 
 ## What it feels like
 
@@ -77,22 +81,22 @@ You're in Claude Code. You type:
 
 > *Give me a Plini-style instrumental in Bm — through-composed, no lead, leave room for me to play over it.*
 
-A few seconds later you have `~/Documents/MIDI-SONGS/_2026/.../blue-meridian.RPP` on disk — 48 bars across six unique sections, drums entering at the halftime setup, full band at the climb, a sparse bridge break in the middle, and a NOTES pane in REAPER that documents every chord and the scale to solo over it.
+A few seconds later you have `~/Documents/MIDI-SONGS/_2026/.../blue-meridian/` on disk — 48 bars across six unique sections, drums entering at the halftime setup, full band at the climb, a sparse bridge break in the middle. The folder holds per-section `.mid` files, a `full.mid` you can drag straight into Logic / Ableton / Cubase / GarageBand / Bitwig, and `spec.json` with every chord and the scale to solo over it. (If you set up REAPER, you also get a `.RPP` with everything wired to tracks and a NOTES pane that displays the chord/scale guidance inline.)
 
 Then you decide the bridge needs more. In REAPER you drag a region named `COMPOSER` over 16 empty bars and ask:
 
 > *Fill the COMPOSER region with a cinematic key mod.*
 
-Claude reads what comes before and after the gap, picks a chromatic-mediant lift to D major then drops to Bb-major territory before walking back through B Aeolian, and writes the MIDI items into your project on bass, pad, clean, and synth pad — no drums, no rhythm guitars, because the brief said *cinematic*. The fill lands cleanly into the next chord on the other side.
+Claude reads what comes before and after the gap, picks a chromatic-mediant lift to D major then drops to Bb-major territory before walking back through B Aeolian, and writes the MIDI items into your project on bass, pad, clean, and synth pad — no drums, no rhythm guitars, because the brief said *cinematic*. The fill lands cleanly into the next chord on the other side. *(Fill mode is REAPER-specific — it rewrites the `.RPP` in place. The Compose flow works in any DAW.)*
 
 That's the whole skill: a bandmate that hands you sketches.
 
 ## Two modes
 
-| Mode | When | What you say | What you get |
-|---|---|---|---|
-| **Compose** | Starting fresh | *"a sad piano piece in 6/8"* · *"Polyphia-style loop"* · *"synthwave in Am"* · *"Zaza meets Casiopea in Em"* | A fresh `.RPP` + per-section `.mid` files + `full.mid` + `spec.json`, in a dated output folder |
-| **Fill** | Filling a gap in an existing project | *"fill the COMPOSER region"* · *"do a key mod here"* · *"arpeggiated guitars, 65bpm feel"* | MIDI items injected into the existing `.RPP` in place — only the tracks the fill needs, none of the others touched |
+| Mode | When | What you say | What you get | DAW |
+|---|---|---|---|---|
+| **Compose** | Starting fresh | *"a sad piano piece in 6/8"* · *"Polyphia-style loop"* · *"synthwave in Am"* · *"Zaza meets Casiopea in Em"* | Per-section `.mid` files + `full.mid` + `spec.json` + (optionally) a REAPER `.RPP` | **Any** (Logic, Ableton, Cubase, FL, GarageBand, Bitwig, REAPER…) |
+| **Fill** | Filling a gap in an existing project | *"fill the COMPOSER region"* · *"do a key mod here"* · *"arpeggiated guitars, 65bpm feel"* | MIDI items injected into the existing `.RPP` in place — only the tracks the fill needs | **REAPER only** (writes into `.RPP` structure directly) |
 
 ## Style packs
 
@@ -190,41 +194,58 @@ Each pack is a self-contained recipe — tempo range, default key, roles, feel a
 
 <table>
   <tr>
-    <td><strong>REAPER</strong></td>
-    <td>Any recent version. The script writes <code>.RPP</code> project files you open directly. <a href="https://www.reaper.fm/">reaper.fm</a></td>
-  </tr>
-  <tr>
     <td><strong>Python 3.8+</strong></td>
     <td>Stdlib only — zero external dependencies, single file (<code>composer.py</code>).</td>
-  </tr>
-  <tr>
-    <td><strong>REAPER template</strong></td>
-    <td>A project template with specific track names. See <a href="#template-setup">Template setup</a>.</td>
   </tr>
   <tr>
     <td><strong>Claude Code</strong></td>
     <td>The driver. <code>composer.py</code> can also be run standalone with a hand-written JSON spec — see <a href="#standalone-usage">Standalone usage</a>.</td>
   </tr>
+  <tr>
+    <td><strong>REAPER</strong> <em>(optional)</em></td>
+    <td>Only needed if you want a playable <code>.RPP</code> project. <strong>If you prefer Logic / Ableton / Cubase / FL Studio / GarageBand / Bitwig</strong>, use <code>--midi-only</code> mode and skip REAPER entirely. <a href="https://www.reaper.fm/">reaper.fm</a></td>
+  </tr>
+  <tr>
+    <td><strong>REAPER template</strong> <em>(optional)</em></td>
+    <td>A starter template ships with the repo (<code>assets/starter_template.RPP</code>) — empty named tracks. Replace with your own once you've built one you like. See <a href="#template-setup">Template setup</a>.</td>
+  </tr>
 </table>
 
 ## Install
 
-```bash
-# 1. Clone into your Claude Code skills directory.
-git clone https://github.com/ricardoalcocer/claude-code-composer.git ~/.claude/skills/composer
+### Quickstart — non-REAPER users *(Logic, Ableton, Cubase, FL, GarageBand, Bitwig…)*
 
-# 2. Set up your local config + personal-notes scratchpad (both gitignored).
+```bash
+git clone https://github.com/ricardoalcocer/claude-code-composer.git ~/.claude/skills/composer
+cd ~/.claude/skills/composer
+
+# That's it. No config.json, no template — just run:
+python3 composer.py compose --midi-only /path/to/spec.json /path/to/output_dir
+```
+
+You get `full.mid`, per-section `.mid` files, and `spec.json` in the output directory. Drag the MIDI into your DAW.
+
+### Quickstart — REAPER users
+
+```bash
+git clone https://github.com/ricardoalcocer/claude-code-composer.git ~/.claude/skills/composer
 cd ~/.claude/skills/composer
 cp config.example.json config.json
 cp style.example.md style.md
-$EDITOR config.json   # edit template_path and output_root
+# config.json already points at the bundled starter template — you can run immediately:
+python3 composer.py compose /path/to/spec.json /path/to/output_dir
 ```
+
+The starter template has empty named tracks. Open the resulting `.RPP` in REAPER and drop your own VST instruments onto the named tracks. When you've built a template you like, edit `template_path` in `config.json` to point at it.
 
 Restart Claude Code and the `composer` skill is discoverable. Try:
 
 > *Compose a melodic instrumental rock piece in Bm — make the bridge a halftime breakdown.*
 
 ## Template setup
+
+> [!NOTE]
+> **Only needed if you want a fully-loaded REAPER project with your own sounds.** The repo's bundled `assets/starter_template.RPP` has all the named tracks pre-created (empty — no VSTs). You can use that immediately and load your own instruments per track when you open the generated `.RPP`. Read this section when you're ready to bake a permanent template with your preferred VSTs/FX/sends so future generations open already-mixed.
 
 The script doesn't create instrument tracks — it inserts MIDI items into tracks **you have already set up** in a REAPER project template. That way your synths, FX chains, sends, and mixer balance are exactly the way you like them; the skill just supplies the notes.
 
@@ -296,15 +317,15 @@ Everything user-specific lives in `config.json` (gitignored). Two keys:
 
 ```json
 {
-  "template_path": "~/Library/Application Support/REAPER/ProjectTemplates/claude-composer.RPP",
+  "template_path": "assets/starter_template.RPP",
   "output_root": "~/Documents/MIDI-SONGS"
 }
 ```
 
 | Key | Purpose |
 |---|---|
-| `template_path` | Path (`~/...` OK) to your REAPER template `.RPP`. The script reads, patches, and writes to your output folder. |
-| `output_root` | Where compositions land: `<output_root>/_<YEAR>/composer/<week-folder>/<key>-<bpm>-<slug>/`. Key is lowercase with `#`/`b` and an `m` suffix for minor (`f#m`, `ebm`); bpm is zero-padded to 3 digits so `ls` sorts numerically. See [`SKILL.md §3`](SKILL.md) for the full rule. |
+| `template_path` | Path to a REAPER template `.RPP`. Defaults to the bundled `assets/starter_template.RPP` (empty named tracks). Replace with your own once you've built a template you like — relative paths resolve against the skill directory, absolute paths and `~/...` also work. **Not needed in `--midi-only` mode.** |
+| `output_root` | Where Claude tells the skill to write compositions: `<output_root>/_<YEAR>/composer/<week-folder>/<key>-<bpm>-<slug>/`. Key is lowercase with `#`/`b` and an `m` suffix for minor (`f#m`, `ebm`); bpm is zero-padded to 3 digits so `ls` sorts numerically. See [`SKILL.md §3`](SKILL.md) for the full rule. (Used by the skill, not directly by `composer.py`.) |
 
 Want a personal scratchpad for "what I've found works"? Copy `style.example.md` to `style.md` — Claude reads it at the start of every composition, so guidance you give it persists across sessions. Example entries:
 
@@ -345,10 +366,16 @@ Folder names use `<key>-<bpm>-<slug>` (e.g. `em-128-iron-mile`) so `ls` groups t
 
 You can drive `composer.py` directly without Claude.
 
-**Compose:**
+**Compose** *(REAPER + MIDI — needs `config.json`)*:
 
 ```bash
 python3 composer.py compose /path/to/spec.json /path/to/output_dir
+```
+
+**Compose — MIDI-only** *(no REAPER, no `config.json`, no template)*:
+
+```bash
+python3 composer.py compose --midi-only /path/to/spec.json /path/to/output_dir
 ```
 
 A minimal spec:
@@ -409,7 +436,7 @@ Design choices that fall out of that:
 - **Reach wider, not higher.** No drum fills. No walking basslines. No voice leading optimization. No per-note velocity ramping. The energy budget is spent on chord-choice and arrangement variety across genres, not on polishing one output.
 - **Variety is enforced.** The skill scans recent outputs and deliberately rotates keys, forms, and arrangement archetypes. The `style.md` scratchpad lets you teach it your taste over time.
 - **Musical decisions are Claude's job.** The Python script is dumb — it converts a JSON spec into MIDI and an `.RPP`. Every musical choice — what chords, what key, what feel-arc, what arrangement, what moves to reach for — happens inside Claude's reasoning, guided by the catalogs in [`SKILL.md`](SKILL.md).
-- **The DAW is the destination.** The REAPER project is the artifact you actually live in. Per-section `.mid` files exist for cross-DAW portability; `spec.json` exists as the recipe you can hand-edit. Everything else is in service of the `.RPP`.
+- **Your DAW is the destination.** The MIDI files are the universal artifact — drop them into Logic, Ableton, Cubase, FL Studio, GarageBand, Bitwig, or anything else that opens `.mid`. The REAPER `.RPP` is a convenience for REAPER users who want a one-click playable session with tracks named and regions laid out. `spec.json` carries the structured recipe so you (or Claude) can hand-edit and re-run.
 
 ## Limitations
 

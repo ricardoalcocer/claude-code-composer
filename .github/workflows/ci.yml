@@ -18,11 +18,11 @@ jobs:
       - name: Module imports cleanly
         run: python3 -c "import composer; print('ok')"
 
-      - name: Point config.json at the CI fixture template
+      - name: Point config.json at the bundled starter template
         run: |
           cat > config.json <<'JSON'
           {
-            "template_path": "tests/fixtures/ci_template.RPP",
+            "template_path": "assets/starter_template.RPP",
             "output_root": "/tmp/ci_out"
           }
           JSON
@@ -57,6 +57,24 @@ jobs:
           test -f /tmp/out/verse.mid
           test -f /tmp/out/spec.json
           grep -q "claude_composer_spec_b64" /tmp/out/ci.RPP
+
+      - name: Compose --midi-only smoke test (no config.json, no .RPP)
+        run: |
+          rm -f config.json
+          mkdir -p /tmp/out_midi
+          python3 composer.py compose --midi-only /tmp/spec.json /tmp/out_midi
+          test -f /tmp/out_midi/full.mid
+          test -f /tmp/out_midi/verse.mid
+          test -f /tmp/out_midi/spec.json
+          # .RPP must NOT exist in midi-only mode
+          test ! -f /tmp/out_midi/ci.RPP
+          # restore config for subsequent steps
+          cat > config.json <<'JSON'
+          {
+            "template_path": "assets/starter_template.RPP",
+            "output_root": "/tmp/ci_out"
+          }
+          JSON
 
       - name: Analyze without COMPOSER region — expect graceful exit 2
         run: |

@@ -149,6 +149,14 @@ Parser supports: `C`, `Cm`, `C7`, `Cmaj7`, `Cm7`, `Cmmaj7`, `Cm7b5`, `Cdim`, `Cd
 python3 ~/.claude/skills/composer/composer.py compose /tmp/composer_spec.json <output_dir>
 ```
 
+**MIDI-only fallback** — if the user doesn't have REAPER (says "I use Logic / Ableton / Cubase / FL Studio / GarageBand / Bitwig" or "no REAPER" or similar), use `--midi-only`:
+
+```bash
+python3 ~/.claude/skills/composer/composer.py compose --midi-only /tmp/composer_spec.json <output_dir>
+```
+
+This skips the `.RPP` and only writes per-section `.mid` + `full.mid` + `spec.json`. Works without `config.json` or a REAPER template. The user drags `full.mid` (or per-section files) into their DAW. **Note:** Fill mode is REAPER-only — it operates on `.RPP` structure directly — so once you commit to `--midi-only` workflows, the user can't use fill on those compositions.
+
 ### 6. Open it (only if the user wants)
 
 ```bash

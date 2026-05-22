@@ -1,7 +1,9 @@
 {
-  "_help": "Copy this file to config.json (next to composer.py) and edit the paths to match your machine. config.json is gitignored so your local paths never get committed.",
+  "_help": "Copy this file to config.json (next to composer.py). The defaults below let you run `composer.py compose` immediately — they point at the bundled starter template (bare tracks, no VST instruments). Replace 'template_path' with your own .RPP once you've built a REAPER template you like. config.json is gitignored so your local paths never get committed.",
 
-  "template_path": "~/Library/Application Support/REAPER/ProjectTemplates/claude-composer.RPP",
+  "_alt_route": "Don't have REAPER? Use `composer.py compose --midi-only <spec.json> <out_dir>` — it writes per-section .mid + full.mid only, skips the .RPP entirely, and works without config.json. Drop the MIDI into Logic, Ableton, Cubase, FL Studio, GarageBand, etc.",
+
+  "template_path": "assets/starter_template.RPP",
 
   "output_root": "~/Documents/MIDI-SONGS"
 }
