@@ -256,7 +256,25 @@ These progressions are vintage-pop, NOT instrumental melodic rock. They will tri
 - `I – vi – ii – V` (jazz/standards cliché)
 - `I – IV – I – V` (Heart and Soul)
 
-**Pre-flight check:** Before writing a verse, look at its roman-numeral skeleton. If it matches any forbidden shape, **rewrite**. Move to a pedal-tone, modal-mixture, or Lydian frame instead.
+**Pre-flight check:** Before writing a verse, look at its roman-numeral skeleton. If it matches any forbidden shape, **rewrite** — UNLESS the Timmons clause below applies.
+
+#### The Timmons clause — exception to FORBIDDEN
+
+A forbidden progression IS permitted if and only if the section also includes a composed `melody` array (`lead` role required) carrying a vocal-style instrumental line. The chord cliché becomes the *vessel*, not the substance. The melody earns the chords.
+
+The melody must have:
+- A **clear contour** — rises and falls, not random walk
+- **Rhythmic interest** beyond on-beat 8ths — syncopation, 16th-note pickups, held notes following busy passages
+- At least one **hooky landing** — a long note or motif repetition that resolves on a chord tone (target-note thinking)
+- **8+ bars** of melodic content (not a 4-note motif looped to fill the section)
+
+**Prototype:** Andy Timmons "Electric Gypsy" — `D – A – Bm – G` (I-V-vi-IV in D), looped indefinitely. Without the melody, it's "Let It Be." With Timmons's vocal-style melody floating above, it's a melodic-rock instrumental classic. The progression isn't the song; the line above it is.
+
+**Pre-flight, restated:**
+- Forbidden shape + no `melody` → **rewrite the chords**.
+- Forbidden shape + composed `melody` matching the criteria above → **keep the chords; document `move: "I-V-vi-IV vessel for Timmons-style composed melody"` so the reasoning is visible in the project notes**.
+
+This connects directly to the Hooktheory **Chord-Melody Tension** and **Melodic Complexity** axes: high melodic complexity buys you permission to run low chord-progression novelty. The melody IS the differentiation.
 
 #### MAJOR-KEY SATRIANI is real but uses these specific shapes ONLY
 
@@ -266,7 +284,7 @@ These progressions are vintage-pop, NOT instrumental melodic rock. They will tri
 - **bIII / bVI modal mixture** — borrow chords from parallel minor (e.g. `D major` in B major = bIII, gives a Vai modal-shift moment).
 - **Relative-minor detours** — verses can briefly visit `vi` as a center (G#m in B major) but DON'T just hop through it as `I-vi-IV-V`; pedal on it or use it as a real key center for 4+ bars.
 
-- **Touchstones:** Joe Satriani, Steve Vai, Neil Zaza, Plini, Polyphia, Animals as Leaders (melodic moments), Dream Theater (especially Awake / Images and Words era — verified from "Voices" MIDI: static-triad chorus with chromatic bass walk, 9/8 modal-mixture intros, 3/4↔2/4 hemiola transitions, Phrygian-dominant unresolved endings), Alan Parsons Project (verified from "Sirius" / "Some Other Time" / "Walrus" MIDIs: plagal-only intro fanfares, modal modulation by mode-shift on same tonic, bII-maj7 chromatic chorus pivots, additive 8-bar layer-stack arrangement)
+- **Touchstones:** Joe Satriani, Steve Vai, Neil Zaza, Plini, Polyphia, Animals as Leaders (melodic moments), Dream Theater (especially Awake / Images and Words era — verified from "Voices" MIDI: static-triad chorus with chromatic bass walk, 9/8 modal-mixture intros, 3/4↔2/4 hemiola transitions, Phrygian-dominant unresolved endings), Alan Parsons Project (verified from "Sirius" / "Some Other Time" / "Walrus" MIDIs: plagal-only intro fanfares, modal modulation by mode-shift on same tonic, bII-maj7 chromatic chorus pivots, additive 8-bar layer-stack arrangement), **Andy Timmons** (verified from Riff Journal / Guitar9 / MESA-Boogie / Glide / MisplacedStraws interviews: melody-first writing as the architectural anchor, single-guitar-track integration constraint, "technique as a color to paint with," I-V-vi-IV permitted under the Timmons clause when a composed vocal-style melody carries the section, target-note resolution thinking on every phrase)
 
 ### Cinematic / emotional / sad
 
@@ -663,6 +681,22 @@ Design discipline: when composing a ballad chorus, **write the 8 bass notes you 
 - **bIII-bVII-IV-i** — `G – D – A – Em`. Stairs of fifths, anthem-y.
 - **Picardy 3rd ending** — End a minor section on the major i (E major chord at the close of an Em verse). Massive resolution.
 - **Dream Theater ballad with inversions** — `I – I/3 – vi – IV`. In G: `G – G/B – Em – C`. Stepwise bass under a static melody — the band's quieter melodic side. From "Through Her Eyes."
+
+### Andy Timmons — melody-as-architecture *(verified from Riff Journal / Guitar9 / MESA-Boogie / Glide / MisplacedStraws interviews)*
+
+Andy Timmons's compositional school sits inside the Rock pack but inverts the usual chord-first reasoning. The melody is the *spine*; the chords are the *support that emerges from the melody*. Reach for these idioms when the user names Timmons, requests "Electric Gypsy-style," asks for "instrumental rock that's songful," or activates the Timmons clause to license a forbidden progression.
+
+- **The "Electric Gypsy" vessel** — `I – V – vi – IV` looped indefinitely (in D: `D – A – Bm – G`). Under the Timmons clause this is permitted *iff* paired with a composed vocal-style `melody`. The chords are wallpaper; the melody is the painting. Tempo around 120–130; keep the chord rhythm dead simple (1 bar per chord, no rhythmic variation) so the melody can breathe.
+- **Open + tapped harmonic intros** — first 8–16 bars of a Timmons piece often outline the melody via natural harmonics (12th, 7th, 5th fret nodes) and tapped harmonics targeting chord-tone 3rds (e.g. over an A major chord, tap C# on the A string at the 4th fret = 3rd of A). The script can't notate harmonics directly, but the *melodic intent* — sparse high-register melody notes one per chord — is captured by a slow `melody` array on the `clean` or `lead` role with `feel: "sparse"` and drums absent. Document `move: "harmonic-melody intro (user plays naturals/tapped, MIDI shows the pitches)"`.
+- **Target-note resolution per phrase** — every melodic phrase should *land on a chord tone of the chord underneath at the moment of arrival*. Andy's working definition of resolution (from Guitar9): "the passing of a dissonant note to a consonant note" — tension and release. When composing the `melody` array: design phrase endings to coincide with chord changes, and pick a chord-tone pitch (root, 3rd, 5th, 7th of the current chord) as the landing note. Non-chord tones are passing color *between* the landings.
+- **Vocal-style contour** — Andy's melodies are "vocal lines that happen to be played on guitar." Concrete: 1) range stays inside a singable octave-and-a-fifth (B3–F#5 in a vocal-mid register), 2) phrases have *breath stops* — rest beats every 4–8 notes, never a continuous shred line, 3) repeat-then-vary — say the melodic idea once, then say it again with a small variation (interval change, rhythmic displacement) instead of always inventing new material. From Guitar9: "I'm really trying to emphasize the song and using technique as a color to paint with."
+- **Single-guitar-track integration** — Andy's *Resolution* album principle: "chords and melody had to be on one guitar track." Score equivalent: when composing in Timmons mode, drop `rhy_l` and `rhy_r` and let `clean` (arpeggiated chord tones) + `lead` (the melody) carry the harmony together. The chord identity lives in the *combination*, not in any single layer. Cousin of the Jack Thammarat aesthetic principle ("chord identity lives in the BAND, not in any one instrument") but with a smaller ensemble.
+- **6th interval melodic moves** — Timmons frequently writes melodies in *parallel 6ths* (two voices a 6th apart moving together). On guitar this is two strings played simultaneously; in the spec, write the upper voice as `melody` and let the `clean` arpeggio echo it a 6th below. Or document `move: "melody in parallel 6ths — user doubles in performance"`. The interval color is the signature.
+- **No-solo instrumental** — Andy explicitly designs pieces that *don't have a guitar solo* — the composed melody IS the song. Spec equivalent: include `lead` with a `melody` array but DON'T plan a 16-bar improvised solo section. Every section is melodic-thematic; no "shred bridge." The Timmons school's most radical move against the instrumental-guitar genre's self-indulgence.
+- **Volume-knob dynamics architecture** — from MESA-Boogie: "I'm on the volume control a lot for different phrases." When the same guitar track plays chords AND melody, dynamics are how you separate them. Spec equivalent: the `melody` should use higher velocities (90–110) than the `clean` accompaniment (60–75). The dynamic gap = the texture.
+- **Improvise → extract → compose** — workflow note, not a spec field. When generating Timmons-style sections, design the melody as if you'd jammed it first and then refined the best bits. Avoid melodies that feel "composed-on-paper" (too symmetric, too sequential). Imperfections, slight asymmetries, and "one note longer than expected" are the marks of an improvised-then-frozen line.
+
+**When to invoke this section:** user says "Andy Timmons" / "Electric Gypsy" / "Resolution" / "Theme From A Perfect World"; OR you're activating the Timmons clause to permit a forbidden progression; OR the brief asks for "instrumental rock where the melody is the song" / "no shred, just melody" / "vocal-style guitar lines." For "epic" or "anthemic" briefs, the Andalusian / Pink Floyd / bVI-bVII-i moves are usually a better fit than Timmons school — Andy's vibe is *intimate* virtuosity, not arena.
 
 ### Lydian / major-key tricks *(use sparingly — for ballads only)*
 - **Lydian #4 lift** — IVmaj7 with #11 on top. In E major: Amaj7 with D# melody note. Satriani's soaring sound.
