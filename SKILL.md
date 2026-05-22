@@ -118,7 +118,7 @@ Write a spec file to `/tmp/composer_spec.json`. Full example:
   - `"locked-16"` — J-fusion (Casiopea / T-Square) tight 8th-note pocket. Choked-short chord stabs with **upbeats accented louder than downbeats** — the Japanese-fusion lift. Pairs with the `j-fusion-kit` drum pattern (16th hi-hat underneath). This is the feel that makes the J-fusion pack actually *sound* like Casiopea instead of generic rock.
 - **`sections[].drums`** — Optional override. Defaults from `feel` (sparse→halftime, driving→basic-rock, halftime→halftime, pushed→basic-rock, skank→one-drop, montuno→latin-fusion, locked-16→j-fusion-kit). Values: `"basic-rock"`, `"halftime"`, `"four-on-floor"`, `"one-drop"` (reggae — kick+snare together on beat 3), `"latin-fusion"` (kit + cowbell + open conga on the "ands"), `"j-fusion-kit"` (16th hi-hat + syncopated kick — Akira Jimbo / Hiroyuki Noritake style), `"none"`.
 - **`sections[].voicing`** — Rhythm guitar chord voicing. `"power"` *(default)* plays root+fifth power chords (rock/metal). `"full"` plays the full chord tones (root + 3rd + 5th + 7th) — required for jazz-funk/fusion comping; otherwise power chords kill the genre.
-- **`sections[].move`** *(optional but strongly recommended)* — Short human-readable description of the harmonic strategy. Goes into the Reaper project notes so the user can read what each section is doing when they open the .RPP. Examples: `"pedal-tone vamp (F# in bass)"`, `"diatonic descending bass E→D→C→B→A→G→F#→B"`, `"bVI-bVII-i lift"`, `"chromatic descending bass"`, `"Phrygian-dom (Em-F-Em-B7)"`. **Fill this in for every section** — it's the "bandmate handing you a sketch" part of the experience.
+- **`sections[].move`** *(optional but strongly recommended)* — Short human-readable description of the harmonic strategy AND/OR the intra-section arrangement variation. Goes into the Reaper project notes so the user can read what each section is doing when they open the .RPP. Examples: `"pedal-tone vamp (F# in bass)"`, `"diatonic descending bass E→D→C→B→A→G→F#→B"`, `"bVI-bVII-i lift"`, `"chromatic descending bass"`, `"Phrygian-dom (Em-F-Em-B7)"`. **For sections longer than 8 bars, also include an intra-section arrangement move** from the catalog below (e.g. `"… + mid-section drop: kick out for bars 5-8"`, `"… + delayed lead entry bar 9"`, `"… + single-bar silence reset before next section"`). The script can't auto-execute these arrangement moves — they're documentation for the user to wire manually in REAPER (mute slices, automation, FX bypass). **Fill this in for every section** — it's the "bandmate handing you a sketch" part of the experience.
 - **`sections[].scales`** *(strongly recommended — improvisation guidance)* — Which scale(s) to play over this section when soloing. Goes into the Reaper project notes as an `improv:` line below the chords. Format: name the scale with its note spelling, and optionally a second scale option for color. Examples:
   - `"G Aeolian (G-A-Bb-C-D-Eb-F)"`
   - `"E Dorian (E-F#-G-A-B-C#-D) — the raised 6th (C#) is the magic note"`
@@ -167,11 +167,11 @@ open "<output_dir>/<song_name>.RPP"
 
 If the user reacted to the output ("yes, that's the vibe" / "less dense" / "I like 88 BPM"), save it to `style.md` or the user memory.
 
-## Composition quality metrics *(Hooktheory framework)*
+## Composition quality metrics *(Hooktheory framework + arrangement extension)*
 
-Before designing a song's chords/sections, run through this 5-axis mental checklist. Each axis is a *deliberate target*, not an emergent property. The framework is adapted from [Hooktheory's chord-and-melody metrics](https://www.hooktheory.com/song-metrics/about) — a data-driven model of what makes popular-music compositions feel a certain way. Use the checklist to AVOID drift toward defaults.
+Before designing a song's chords/sections, run through this 6-axis mental checklist. Each axis is a *deliberate target*, not an emergent property. The first 5 axes are adapted from [Hooktheory's chord-and-melody metrics](https://www.hooktheory.com/song-metrics/about); the 6th (Arrangement Pacing) extends the framework to address texture evolution, which Hooktheory leaves underspecified. Use the checklist to AVOID drift toward defaults.
 
-### The 5 axes
+### The 6 axes
 
 1. **Chord Complexity** *(per chord)* — how many notes per chord beyond the basic triad? Are chords drawn from the song's scale or are there borrowed chords / secondary dominants / non-diatonic alterations? A plain C triad is low complexity; Cmaj7 adds 7th-intervals (more dissonance, more processing for the ear); a borrowed Fm in C major is even higher (non-scale tone). **Use to gate "is this a sketch or a sophisticated piece?"**
 2. **Melodic Complexity** *(per melody line)* — for the `melody` field. Two sub-axes:
@@ -181,6 +181,7 @@ Before designing a song's chords/sections, run through this 5-axis mental checkl
 3. **Chord-Melody Tension** *(per section)* — does the melody land on chord tones (stable) or non-chord tones (tense)? "Twinkle Twinkle" = 100% stable = safe but unambitious. Pure dissonance = unlistenable. **The middle ground — intentionally building and releasing tension at the right moments — is where good melodies live.** Affects how the `scales:` line should be written: don't just name the scale, identify which scale degrees over each chord are STABLE chord tones (land on strong beats) vs. TENSE non-chord tones (pass through on weak beats). Don't bake STABLE/TENSE markup into every spec — too verbose — but TARGET it when designing lead-melody-heavy sections.
 4. **Chord Progression Novelty** *(per progression)* — how rare is this progression vs. the canonical pop corpus? `I-V-vi-IV` is the most common (boring); a deceptive cadence into bIII is rarer (interesting). **Use as the rotation check: scan recent outputs and pick something with higher novelty.** The skill already tracks this implicitly via "rotate keys/archetypes" rules but Hooktheory formalizes it.
 5. **Chord Bass Melody** *(per progression)* — does the bass line ascend/descend stepwise? Hooktheory elevates this as a TOP-TIER metric, not a sub-move. Songs scoring high on this metric: Iris, Stairway to Heaven, Your Song, Someone Like You, Living on a Prayer, Levon, Lean on Me, This Love, You're Beautiful, Mardy Bum. **Pattern: piano-led ballads dominate this list — stepwise bass IS the ballad-arrangement signature.** See the "Bass-line-first design" principle in the Moves library.
+6. **Arrangement Pacing** *(per section, and across the song)* — does *something* change every 4–8 bars? The "Rule of 8" from pop/EDM production: a section longer than 8 bars must have an intra-section arrangement variation — a layer enters, a layer drops, the feel shifts, a single-bar silence interrupts, or the instruments swap roles. Without pacing discipline, even sophisticated chord/melody work flattens because the LISTENER stops perceiving change. **Use to gate "does this song breathe?"** See the "Intra-section arrangement variation" catalog below for the named moves. Sources: [EDMprod "8-Bar Loop Trap"](https://www.edmprod.com/how-to-avoid-the-8-bar-loop-trap/), [Sample Focus "Using Space and Silence"](https://blog.samplefocus.com/blog/using-space-and-silence-in-music-production/), [Neat Little Studios "Arranging for Impact"](https://neatlittlestudios.com/the-ultimate-guide-to-arranging-songs-for-better-impact), Adam Neely's "elemental arranging" concept.
 
 ### How to use the checklist
 
@@ -198,7 +199,7 @@ Different genres want different positions on the axes — there's no universal "
 
 Without the checklist, the skill drifts toward "medium everything" — chord complexity is whatever the pack defaults to, melody complexity is whatever feels natural, tension is whatever happens. With the checklist, every section has a CONSCIOUS sonic identity that distinguishes it from the others.
 
-Cross-cutting insight: the 5 axes are mostly INDEPENDENT — a song can be high Chord Complexity AND low Melodic Complexity (sophisticated harmony + simple melody = Steely Dan), or low Chord Complexity AND high Melodic Complexity (3-chord folk with a winding vocal line = Bob Dylan). Mixing the axes gives variety; clamping them all to the same level gives monochrome.
+Cross-cutting insight: the 6 axes are mostly INDEPENDENT — a song can be high Chord Complexity AND low Melodic Complexity (sophisticated harmony + simple melody = Steely Dan), or low Chord Complexity AND high Melodic Complexity (3-chord folk with a winding vocal line = Bob Dylan), or low on chord/melody axes AND HIGH on Arrangement Pacing (minimalist techno that breathes through texture changes alone). Mixing the axes gives variety; clamping them all to the same level gives monochrome.
 
 ## Style packs
 
@@ -1208,6 +1209,56 @@ bars 69-104: full ensemble + new colors                     (rest of song fully 
    - Synthwave → 3
    - Jazz-funk → 7 (ballad), 8 (groovier), 9
    - Math rock → 6 (drone), 4 (post-rock inversion)
+
+## Intra-section arrangement variation
+
+The arrangement archetypes above govern *which layers play in which sections*. This catalog governs the next level down: **what changes WITHIN a section** — entry/exit timing, micro-drops, silences, role swaps. This is the texture-evolution side of arrangement; pairs with the Hooktheory 6th axis (Arrangement Pacing) to ensure every 4–8 bars *something* shifts.
+
+**Script limitation:** the composer.py engine writes one MIDI item per role per section — it cannot natively automate mid-section drops, fade-ins, or silences. Document the intra-section move in the section's `move` field. The user applies the actual variation manually in REAPER (mute item slices, automation lanes, FX bypass at the bar boundary). Same documentation pattern as cinematic tempo arcs and prog multi-meter transitions: the SKILL describes the move, the user wires it.
+
+When using a move from this catalog, name it explicitly in the `move` string so the project NOTES carry the cue (e.g. `move: "verse: mid-section drop — kick out for bars 5-8, returns hot on bar 9"`).
+
+### Entry / exit patterns
+
+- **Wedge entry** *(Adler-derived, classical orchestration term)* — over the first 4 bars of a section, instruments enter one per bar, building from bass-up or down from the top. Example: bar 1 bass alone, bar 2 +pad, bar 3 +drums, bar 4 +rhy guitars (full). Use at the top of a new section to make the entry the event rather than presenting full ensemble on beat 1. Document: `move: "wedge entry: bass→pad→drums→rhy-guitars, one bar each"`.
+- **Mid-section drop** — full ensemble plays bars 1–4, then ONE instrument (typically kick, bass, or rhy guitars) drops out for bars 5–8, then returns hot on bar 9. The 4-bar absence makes the return land harder than continuous play. Source: EDMprod subtractive arrangement (micro phase). Document: `move: "mid-section drop — kick out for bars 5-8, returns hot bar 9"`.
+- **Delayed lead entry** — section begins as a chord bed only, melody/lead enters at the midpoint (bar 5 of an 8-bar section, or bar 9 of a 16-bar section). Builds anticipation; common in Andy Timmons's writing and modern cinematic. Document: `move: "instrumental bed bars 1-4; lead enters bar 5 carrying the section's melodic hook"`.
+- **Crossfade exit** — instrument fades over 2–4 bars rather than cutting hard, so the next entering instrument has space to claim its register. Manual REAPER move: track envelope on the outgoing item. Document: `move: "synth-pad crossfades out over bars 13-16 as the lead enters"`.
+
+### Negative space patterns
+
+- **Single-bar silence reset** *(verified pop-production move)* — the full ensemble stops for exactly 1 bar before a new section (typically the bar before chorus 2 or before the final chorus). The silence IS the transition — replaces FX sweep, snare roll, etc. Source: Sample Focus, Sound on Sound. Document: `move: "single-bar silence before final chorus — everyone out for bar 16, chorus re-enters bar 17"`.
+- **Stop time** *(classic R&B / gospel / hip-hop)* — the band stops for 2 beats while one instrument plays a fill or a vocal phrase, then resumes. Inside a bar, not at the bar boundary. Document: `move: "stop time: ensemble out beats 1-2 of bar 8 while lead plays pickup, full band returns beat 3"`.
+- **Drop-into-silence** *(EDM "drop" mechanic, generalized)* — the entire ensemble cuts on beat 1 of the LAST bar before a return. One bar of pure silence (or just reverb decay), then the new section slams in. Different from "single-bar silence reset" in that the silence is exactly 1 bar AT THE BOUNDARY between sections. Document: `move: "drop-into-silence: ensemble cuts beat 1 bar 8 of bridge, chorus 3 enters bar 9 with full impact"`.
+- **Held tail decay** — instead of cutting an instrument on a hard barline, let its reverb/delay tail decay across 1–2 bars into the new section. Manual REAPER move: automate reverb send to taper, or print the wet tail as a separate item that continues past the cut. Document: `move: "synth-pad cuts on bar 16 but reverb tail bleeds into bars 17-18 of next section"`.
+- **Frequency-space drop** *(perceptual silence — sonic illusion)* — instead of dropping volume, remove the competing mid-range instruments so the bass dominates and the section FEELS empty even though notes are still playing. Common in dubstep, modern hip-hop. Document: `move: "frequency-space drop: cut rhy guitars + pad mids for bars 5-8, leaving sub-bass + kick + clean arp — feels empty without being silent"`.
+
+### Density curve archetypes *(extending the existing 13 Arrangement archetypes)*
+
+- **Plateau-burst** *(verified — modern pop trend)* — hold at low/medium density for 12–16 bars (longer than expected), then sudden full-density explosion. The unusual *length* of the plateau is what makes the burst land. Different from the Slow Build archetype (which is linear-additive across the song). Document: `move: "plateau-burst: bars 1-16 stay at bass+pad+clean texture, full band slams in bar 17 — the plateau LENGTH is the device"`.
+- **Linear subtractive** — start full, remove one layer every 4–8 bars across the song, ending at minimal. The reverse of Slow Build. Suits introspective endings, post-rock "un-builds," cinematic codas. Document: `move: "linear subtractive coda: chorus full band → bar 8 drop synth_pad → bar 16 drop rhy guitars → bar 24 only bass+pad remain"`.
+
+### Texture interaction patterns
+
+- **Call and response** *(antiphony, verified across genres)* — two instruments trade 2-bar (or 4-bar) phrases instead of playing simultaneously. While one plays its phrase, the other rests. Most natural between bass + lead, or between pad + clean arp. Document: `move: "call-and-response: lead plays bars 1-2, bass answers bars 3-4 (lead silent); alternate through the section"`.
+- **Re-orchestration loop** *(verified — EDMprod "same idea different instruments")* — same chord progression and section length, but each 8-bar iteration redistributes which instrument carries chords vs. melody vs. rhythm. Iteration 1: pad chords + clean arp + bass roots. Iteration 2: clean chords + lead melody + bass walks. Iteration 3: synth_pad chords + rhy-guitar stabs + lead trills. The harmony stays IDENTICAL; the instrumentation rotates. Document: `move: "re-orchestration loop: same 4-chord progression, iteration 2 swaps pad↔clean roles, iteration 3 promotes lead to chord-tone melodic role"`.
+- **Beat switch** *(hip-hop / modern R&B)* — mid-section radical change in groove or feel while chords stay the same. E.g. verse halfway through flips from `feel: driving` to `feel: halftime` for a 4-bar breath, then back. Different from a true section change because the chords and the listener's "section position" stay constant. Document: `move: "beat switch at bar 9: feel flips halftime for 4 bars then back to driving bar 13"`.
+- **Stratification** *(orchestration term, Adler / Klangfarbenmelodie)* — instruments occupy distinct register bands with no overlap, so each is individually trackable. Bass below E2, pad in E2–G3, clean in G3–C5, lead above C5. Use when the harmony is dense (m9/13 voicings) but you want CLARITY. Document: `move: "stratification: bass < E2, pad E2-G3, clean G3-C5, lead > C5 — each instrument owns its band"`.
+
+### How to apply this catalog
+
+1. **For every section longer than 8 bars**, pick at least one move from this catalog and name it in the `move` string. Sections of 4–8 bars can be uniform (no intra-section variation needed); longer sections need at least one mid-section event.
+2. **Don't stack more than 2 moves per section** — wedge entry + mid-section drop in one verse is overload. Layer moves *across* sections, not within.
+3. **Pair the move with the arrangement archetype**: Slow Build pairs well with delayed lead entry and wedge entry (additive vocabulary). Mogwai inversion pairs with drop-into-silence and held tail decay (climax-late vocabulary). Drone build pairs with stratification and re-orchestration loop (single-loop iterated build needs texture variety to stay interesting).
+4. **Negative-space moves are most effective at section boundaries** — `single-bar silence reset` and `drop-into-silence` are TRANSITION devices, not intra-section devices. Place them as the LAST event of the outgoing section.
+5. **`Beat switch` and `re-orchestration loop` are pure intra-section** — they work best in long sections (16+ bars) where the listener would otherwise tune out the repetition.
+
+### What to AVOID
+
+- Don't add intra-section moves to a section shorter than 8 bars — they'll feel cramped rather than dynamic.
+- Don't combine `single-bar silence reset` with `drop-into-silence` adjacent to each other — two consecutive silences read as a mistake, not an arrangement choice.
+- Don't use `wedge entry` more than once per song; it's a special opening device, not a general entry pattern.
+- Don't apply `stratification` to genre packs where layering is the point (Layer Stack archetype, Synthwave). It's a clarity move for dense-harmony contexts.
 
 ## What the script writes to the template
 
