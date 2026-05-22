@@ -10,7 +10,17 @@
 
 
 <p align="center">
-<a href="https://youtu.be/sGqa-7_V1t8"><img src="https://i.ytimg.com/vi/sGqa-7_V1t8/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGEMgWShlMA8=&rs=AOn4CLD4BYRZbTszsmDFboVhZatho_9N6w" width="750"></a>
+  <a href="https://youtu.be/sGqa-7_V1t8">
+    <img alt="▶ Watch the demo on YouTube" src="https://img.shields.io/badge/%E2%96%B6%20Watch%20the%20demo%20on%20YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://youtu.be/sGqa-7_V1t8" title="Watch the demo on YouTube">
+    <img src="https://i.ytimg.com/vi/sGqa-7_V1t8/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGEMgWShlMA8=&rs=AOn4CLD4BYRZbTszsmDFboVhZatho_9N6w" width="750" alt="claude-composer demo video thumbnail — click to watch">
+  </a>
+  <br>
+  <sub><em>↑ click to play (opens YouTube)</em></sub>
 </p>
 
 <p align="center">
