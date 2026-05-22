@@ -51,6 +51,19 @@ This file is a curated bibliography for the moves in SKILL.md. When you want to 
 ## General chord progressions
 - GMC Forum article — "Chord Progressions Explained (modern Rock, metal, etc)" (shared by user 2026-05-14)
 
+## Local MIDI corpora *(on disk, not baked into the skill — available for future mining)*
+
+User has a curated `_MIDI PACKS` directory at `~/Documents/_MIDI PACKS/` with ~144k MIDI files. Only the SHLD Minor + Modal labeled progressions are baked into the skill (see `data/shld_mood_bank.json`). The rest are reference material that future iterations could mine if a gap appears:
+
+- **`SHLD/progressions-20251006/Major/`** — 4,380 major-key progressions, same naming scheme. Skipped for now (genre mismatch with melodic-rock/cinematic/fusion preference) but mineable if a Major-key project pack ever opens up.
+- **`Chords/Queen_The_Beatles/`** — Real-song transcriptions of Queen & Beatles in 12 transposed keys + Original_Key. Filenames carry song/section/chord-sequence/BPM/key. **Not baked in** because the harmonic vocabulary (I-vi-IV-V, I-V-vi-IV) directly conflicts with the Rock pack's FORBIDDEN list. Useful as a reference for verified pop-rock SECTION-FORM data (intro/verse/chorus structure of well-known songs) if that ever becomes a need.
+- **`Niko 2024/Niko_Essentials_2024_/`** — 12 keys × `Chord Expansion` / `Chord Rhythms` / `Genre_Based_Chords` / `Melodies_Piano_Intros`. Pop/EDM-oriented voicings. Skip for melodic-rock/fusion work; consider if a pop-leaning project appears.
+- **`Niko 2024/Bonuses/Top 100 Progressions/`** — Curated 100 progressions across keys, pop/EDM-oriented. Same caveat as above.
+- **`Chords/SOUND7-Free-Midi-Chords/`** + **`Chords/Unison Free Mini MIDI Pack/`** — Smaller free packs, 12 keys each, pop-leaning. Reference quality.
+- **`Niko 2024/Bonuses/Piano Intros/`** + **`Gorgeous/`** — Ambient/cinematic piano material. Mineable for the Cinematic pack if subschool B (Yiruma-style) needs more reference patterns.
+
+If you mine any of these into the skill, follow the same pattern as `data/shld_mood_bank.json`: parse filenames, dedupe, write a JSON sidecar, add a SKILL.md section pointing at it, screen against the FORBIDDEN list.
+
 ## Composition quality framework
 - Hooktheory "Chord and Melody Metrics" — https://www.hooktheory.com/song-metrics/about — the 5-axis quality framework documented in SKILL.md's "Composition quality metrics" section: Chord Complexity, Melodic Complexity, Chord-Melody Tension, Chord Progression Novelty, Chord Bass Melody. Each metric links to a curated list of exemplar songs from their TheoryTab database.
 - Hooktheory stable/unstable scale degrees — https://www.hooktheory.com/support/musicreference?concept=music-concepts-stable-unstable-scale-degree — the canonical "is this melody note IN the current chord?" reference. Backs the chord-melody tension axis.

@@ -1,0 +1,3207 @@
+{
+  "source": "Songwriter's Helpful Library Database (SHLD) \u2014 local MIDI pack",
+  "source_path": "/Users/music/Documents/_MIDI PACKS/SHLD/progressions-20251006",
+  "scope": "Minor + Modal scales only (Major skipped \u2014 user genre preference)",
+  "total_source_files": 7620,
+  "unique_progressions": 127,
+  "by_mood": {
+    "Nostalgic": [
+      {
+        "rn": "i III iv VI",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Nostalgic",
+          "Romantic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "VI III i v",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Nostalgic",
+          "Dark"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i VII VI III",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Nostalgic",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "iv i v VI",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Nostalgic",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "iv III vsus4 VI iv i III VI",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Nostalgic",
+          "Mysterious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i VI III VII",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Nostalgic",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i7 VII VI7 iv7",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Nostalgic",
+          "Romantic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i III VII VI",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Nostalgic",
+          "Romantic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i iv III VI",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Nostalgic",
+          "Romantic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "iv III VII i",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Nostalgic",
+          "Mysterious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im VIM IIIM bIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Nostalgic",
+          "Surprised"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "vi viim V vi #IVdim V",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Nostalgic",
+          "Dark"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im ii vm IV",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Nostalgic",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I IV bIIIM bVIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Nostalgic",
+          "Mysterious"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Empowered": [
+      {
+        "rn": "VI VI i VII",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Empowered"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Sad": [
+      {
+        "rn": "i VI iv v",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Sad",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i v iv VII",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Sad",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "v VI v i",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Sad"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i iv VI v",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Sad",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i VI iv ii",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Sad",
+          "Tender"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "VI i v v",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Sad"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i iv VII i",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Sad",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i VII VI iv",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Sad",
+          "Romantic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i VI iv III",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Sad",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i iv v v",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Sad",
+          "Lonely"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "ii VI i iv",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Sad",
+          "Hopeful"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Mysterious": [
+      {
+        "rn": "iv v VI VII",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i VI VII iv",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i ii v i",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Triumphant"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "iv VI v VII",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i iv v iv",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Sad"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i VII VI III iv VI VII i",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Surprised"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i VII i v",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i VI VII v",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i VI III VII i VI69 III7 VII",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Spiritual"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "VII iv v i",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Dark"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i ii v III i ii v VII",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Dramatic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im7 ivsus4 v7 isus4",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Tender"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i VII i v III VII i v i",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Surprised"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i iv VII v i i ii V",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Surprised"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i VII v VI",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im VIM bi V",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Triumphant"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I bVIM IV bIIIM bVIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "ii IVM vm bVIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im bIIM im7 bviim",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Spiritual"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im V bVIIM IV bVIM bIIIM ivm V",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "bVIM bVIIm im bIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Dark"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im bIIIM IV bVIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im ivm9 bIIM im vm ivm7 bIIM im7",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Tender"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "ii bIIM I bVIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im bIIM biim6 ivm",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Tender"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im bviim bVIM bIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "bIIM bVIM biii bviim",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Surprised"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "ivm bIIIM iim7 V",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Tender"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im vm ivm bIIM7",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Dark"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im vm bVIM bIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im bVIIM bIIM vm",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "bIIIM ii bIIM I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Surprised"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im ivm9 bIIM im",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I ivm bIIIM bVIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im bIIIsus2 IV IV",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Peaceful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im bIIIM bVIM V",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Triumphant"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im bIIM ivm IIIM bIIM ivm IIIM IIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im bIIM bIIIM bIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Dark"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "bVIIM bIIM bIIIM im",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "bIIM ivm biii im",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Dark"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im bIIM vm im7",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Mysterious",
+          "Dark"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Rebellious": [
+      {
+        "rn": "i VII VI VII",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Rebellious",
+          "Triumphant"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "VI VII v III",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Rebellious",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i VII III VI",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Rebellious",
+          "Triumphant"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Dark": [
+      {
+        "rn": "i7 VI III7 VII6 i i7 III7 iv7",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Dark",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i i iv iv v7 ii5 v v7",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Dark",
+          "Mysterious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "v i iv VII",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Dark",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "i vdim iv VI",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Dark",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "ivm im bviim bVIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Dark"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Hopeful": [
+      {
+        "rn": "VI i v III",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Hopeful",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "VI iv i v",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Hopeful",
+          "Tender"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "v VI III i",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Hopeful",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "bVIM vi im bVIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Hopeful",
+          "Mysterious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "vi IV I IIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Hopeful",
+          "Peaceful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "vi bVIM bVIIM I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Hopeful",
+          "Triumphant"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "IV V ii im bIIIM IV",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Hopeful",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im vm isus4 I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Hopeful",
+          "Spiritual"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I bVIIM bVIM IV IVsus4 IV",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Hopeful",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "ii bVIIM7 I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Hopeful",
+          "Triumphant"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Peaceful": [
+      {
+        "rn": "ii v i i",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Peaceful",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "ii v i iv",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Peaceful",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Lonely": [
+      {
+        "rn": "v iv i i",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Lonely"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Triumphant": [
+      {
+        "rn": "i VI VII VII",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Triumphant",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "iv VI VII i",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Triumphant"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "VI VII i III",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Triumphant",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I bVIIM I I bVIM V",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Triumphant",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I bIIIM bVIIM I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Triumphant",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I bIIIM bVIIM IV",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Triumphant",
+          "Mysterious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im bVIM ivm V",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Triumphant"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I IV V bVIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Triumphant",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I bIIIM bVIM bVIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Triumphant",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I bVIIM bVIM bIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Triumphant",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I V bVIIM IV",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Triumphant",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "bVIM bIIIM bVIIM IV I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Triumphant",
+          "Mysterious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "IIIM V VIsus4 VIM I IIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Triumphant",
+          "Surprised"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Spiritual": [
+      {
+        "rn": "VII iv VII i",
+        "scales": [
+          "Minor"
+        ],
+        "keys_seen": [
+          "A",
+          "B",
+          "Bb",
+          "C",
+          "C#",
+          "D",
+          "E",
+          "Eb",
+          "F",
+          "F#",
+          "G",
+          "G#"
+        ],
+        "mood_tags": [
+          "Spiritual"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "bVIM7 ivmadd9 I I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Spiritual",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Cadence": [
+      {
+        "rn": "ivm bIIIM bVIM I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Cadence"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "bIIIM V7 I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Cadence"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "ivm bIIIM bIIM I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Cadence"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "bVIIM V7 I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Cadence"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "im bVIIM IV im",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Cadence"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "ivm IIIM bIIM I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Cadence"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Surprised": [
+      {
+        "rn": "I IIM iii V6",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Surprised",
+          "Triumphant"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I V ivm bVIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Surprised",
+          "Mysterious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "VIM bVIM im bVIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Surprised",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I bVIM I bIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Surprised",
+          "Mysterious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I bIIM7 bIIIM6 bIIM7 I im bVIIM bIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Surprised",
+          "Mysterious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I bIIM I iii",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Surprised",
+          "Mysterious"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Joyful": [
+      {
+        "rn": "I IV bVIIM IV",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Joyful",
+          "Rebellious"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I IIIM vi V",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Joyful",
+          "Hopeful"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I IIM IV I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Joyful",
+          "Triumphant"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I bVIIM IV V",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Joyful",
+          "Triumphant"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Romantic": [
+      {
+        "rn": "im bIIIM bVIIM IV",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Romantic",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I bIIIM IV I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Romantic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I I7 I9 IV ivm",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Romantic",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Playful": [
+      {
+        "rn": "I7 bIdom7 III7 ii7 V7",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Playful",
+          "Surprised"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Fearful": [
+      {
+        "rn": "vdim vdim ivm bIIIM",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Fearful",
+          "Mysterious"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Relaxed": [
+      {
+        "rn": "I I7 Idom7 IV ivm I",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Relaxed",
+          "Nostalgic"
+        ],
+        "total_files": 60
+      },
+      {
+        "rn": "I I7 Idom7 IV ivm I ivm6 Vdom7",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Relaxed",
+          "Romantic"
+        ],
+        "total_files": 60
+      }
+    ],
+    "Excited": [
+      {
+        "rn": "I5 iii II5 #IVm IV5 vi V5 viim",
+        "scales": [
+          "Modal"
+        ],
+        "keys_seen": [
+          "A",
+          "Ab",
+          "B",
+          "Bb",
+          "C",
+          "D",
+          "Db",
+          "E",
+          "Eb",
+          "F",
+          "G",
+          "Gb"
+        ],
+        "mood_tags": [
+          "Excited",
+          "Triumphant"
+        ],
+        "total_files": 60
+      }
+    ]
+  }
+}

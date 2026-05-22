@@ -543,6 +543,76 @@ Real songs blend. Examples:
 
 When mixing, keep one section's `feel` and `move` consistent within itself — don't put Spanish moves in the same section as synthwave voicings. The packs blend at section boundaries, not within sections.
 
+## Mood → progression seed bank *(verified corpus, 127 progressions)*
+
+When the user names a **mood word** ("mysterious," "nostalgic," "sad," "triumphant," "hopeful") and the existing Moves library doesn't have a direct hit — or you want a *less-obvious* option to avoid drifting toward defaults — consult this bank.
+
+**Source:** [`data/shld_mood_bank.json`](data/shld_mood_bank.json) — 127 unique chord progressions distilled from 7,620 labeled reference MIDI files (Songwriter's Helpful Library Database, Minor + Modal scales only). Each entry is a Roman-numeral sequence appearing under one or more emotional labels, deduplicated across keys/styles. The JSON is indexed `by_mood` — open it and scan when you need more options than the inline tasting menu below.
+
+**Why use it:** the Moves library is hand-curated from named reference songs (Plini, Zimmer, Hisaishi, Dream Theater, etc.) and is biased toward those artists' vocabulary. This bank is a *statistical distillation* of a broader labeled corpus, so it surfaces progressions you wouldn't otherwise reach for. Use it as a **seeding source** — pick a progression, then voice it in the chosen pack's idiom (Rock → m7/m9 voicings; Cinematic → wide open 5ths; Spanish → plain triads; etc.). The bank gives you the *skeleton*, the style pack gives you the *flesh*.
+
+**How to apply:**
+1. User names a mood. Find the closest match in the 19 mood buckets below.
+2. Pick a progression from that bucket (top entry = most-common; later entries = rarer / more distinctive).
+3. Read the RN sequence (e.g. `i VI VII iv` = tonic-minor → ♭6 → ♭7 → iv).
+4. Transpose to the target key (e.g. in `Em`: `Em – C – D – Am`).
+5. Voice it in the chosen style pack's idiom and apply the appropriate Moves-library voicings.
+
+**Scope:** Minor + Modal only — Major was filtered out (genre mismatch with melodic-rock/cinematic/fusion preferences). Some mood buckets contain mostly Modal (uppercase-I) entries with modal mixture (`bIII`, `bVI`, `bVII`); others are pure Minor (lowercase-i tonic). Both are valid — modal-mixture progressions land bright-and-borrowed, pure minor lands dark.
+
+**Inline tasting menu — top 3 per mood, scan first before opening the JSON:**
+
+**Mysterious** (41 unique):
+- `iv v VI VII` — minor — Mysterious + Rebellious
+- `i VI VII iv` — minor — Mysterious + Nostalgic
+- `i ii v i` — minor — Mysterious + Triumphant
+
+**Nostalgic** (14 unique):
+- `i III iv VI` — minor — Nostalgic + Romantic
+- `VI III i v` — minor — Nostalgic + Dark
+- `i VII VI III` — minor — Nostalgic + Hopeful
+
+**Sad** (11 unique):
+- `i VI iv v` — minor — Sad + Hopeful
+- `i v iv VII` — minor — Sad + Rebellious
+- `v VI v i` — minor — Sad
+
+**Triumphant** (13 unique):
+- `i VI VII VII` — minor — Triumphant + Rebellious
+- `iv VI VII i` — minor — Triumphant
+- `VI VII i III` — minor — Triumphant + Nostalgic
+
+**Hopeful** (10 unique):
+- `VI i v III` — minor — Hopeful + Nostalgic
+- `VI iv i v` — minor — Hopeful + Tender
+- `v VI III i` — minor — Hopeful + Nostalgic
+
+**Dark** (5 unique):
+- `v i iv VII` — minor — Dark + Rebellious
+- `i7 VI III7 VII6 i i7 III7 iv7` — minor — Dark + Nostalgic *(8-chord epic)*
+- `i i iv iv v7 ii5 v v7` — minor — Dark + Mysterious *(8-chord with v7 leading tone)*
+
+**Romantic** (3 unique):
+- `im bIIIM bVIIM IV` — modal — Romantic + Nostalgic
+- `I bIIIM IV I` — modal — Romantic
+- `I I7 I9 IV ivm` — modal — Romantic + Nostalgic *(extension-shimmer)*
+
+**Surprised** (6 unique):
+- `I IIM iii V6` — modal — Surprised + Triumphant
+- `I V ivm bVIM` — modal — Surprised + Mysterious
+- `VIM bVIM im bVIIM` — modal — Surprised + Rebellious
+
+**Cadence** (6 unique — useful as section-closing 3-chord moves):
+- `bIIIM V7 I` — modal — major-Picardy cadence into a modal piece
+- `ivm bIIIM bIIM I` — modal — modal-mixture half-step descent into I
+- `bVIIM V7 I` — modal — Mixolydian cadence with V7 leading tone
+
+**Other 10 mood buckets** (1–4 unique each — open the JSON for full list): Empowered, Excited, Fearful, Joyful, Lonely, Peaceful, Playful, Rebellious, Relaxed, Spiritual.
+
+**When NOT to use:** the bank is a *seeding* shortcut, not a substitute for the Moves library. If the user names a *named-artist style* ("Plini-like," "Zimmer-like," "Jack Thammarat verse"), go to the Moves library and pack-specific moves first — those are curated to match the named artist's voice. The bank is for mood-first briefs where no named-artist target exists, or for finding a less-obvious alternative to the default move.
+
+**Pre-flight check:** before committing to a progression from this bank, scan it against the **FORBIDDEN list** in the Rock pack (`I-vi-IV-V`, `I-V-vi-IV`, `vi-IV-I-V`, `I-vi-ii-V`, `I-IV-I-V`). The bank was pre-screened against these and contains zero hits, but if you later combine bank progressions with mode-shifted reharms, double-check the result doesn't drift into pop-rock territory.
+
 ## Moves library — chord-movement archetypes
 
 Reach for these before inventing from scratch. Pick a few per section. All examples in `Em` unless noted.

@@ -42,6 +42,8 @@
 
 ## What's New <sub>(May 2026)</sub>
 
+- **Mood → progression seed bank** — distilled 7,620 labeled reference MIDI files (Songwriter's Helpful Library Database, Minor + Modal only) into [`data/shld_mood_bank.json`](data/shld_mood_bank.json) — **127 unique progressions indexed by 19 emotional moods** (Mysterious, Nostalgic, Sad, Triumphant, Hopeful, Dark, Romantic, Surprised, Cadence, etc.). When a brief names a mood word, the skill consults this bank for verified non-default chord skeletons, then voices them in the chosen pack's idiom. Pre-screened against the FORBIDDEN pop-rock progressions list — zero conflicts.
+
 We reverse-engineered MIDI transcriptions of **13 canonical reference tracks** — Jack Thammarat, Hans Zimmer, Ludovico Einaudi, Yiruma, Adele's "Skyfall," Dream Theater, Alan Parsons Project, Symphony X — and baked the verified idioms straight into the skill. Highlights:
 
 - **Cinematic pack now splits into 3 subschools** — *A. modal* (Zimmer / Einaudi: no V chord, single-loop build, hollow-middle voicings), *B. diatonic* (Yiruma: vi-I/3-I-V loop with V resolving, 3-note ascending arpeggio cells), *C. cinematic-pop* (Skyfall: harmonic-minor V "Bond chord," stepwise i-♭VII-♭VI-V-iv-♭III-ii chorus descent). Pick the subschool *before* composing — they want different specs.
