@@ -82,10 +82,27 @@ Especially useful for guitarists, instrumental rock writers, prog/fusion musicia
 - Not a finished-song generator
 - Not a DAW
 - Not an audio model
-- Not a Suno/Udio-style prompt-to-song system
+- Not a [Suno](https://suno.com/)/[Udio](https://www.udio.com/)-style prompt-to-song system
 - Not a magic button for good taste
 
 The output is **intentionally rough**. The goal is not polish — the goal is momentum.
+
+## How this differs from Suno, Udio, and other AI song generators
+
+If you came here looking for an alternative to **[Suno](https://suno.com/)** or **[Udio](https://www.udio.com/)**, this is a different category of tool. Quick comparison:
+
+| | Suno / Udio | claude-composer |
+|---|---|---|
+| **Output** | Finished audio (`.mp3` / `.wav`) | MIDI sketches (`.mid` + optional REAPER `.RPP`) |
+| **Prompt** | *"Sad lo-fi song about rain"* → song | *"Cinematic piece in Cm with no V chord, Drone Build archetype"* → structured spec → MIDI |
+| **Editable** | No — the audio is locked | Yes — every chord, beat, section, and arrangement decision is a structured `spec.json` you (or Claude) can hand-edit and regenerate |
+| **DAW workflow** | Drop the `.mp3` onto an audio track | Drop the `.mid` files onto YOUR instrument tracks — the notes are yours to play, voice, and re-orchestrate |
+| **Best for** | Listeners; people who want a quick finished song | Composers; musicians who want to write the song themselves but need a fresh starting point |
+| **Replaces the musician?** | Effectively yes | No — you still have to play, voice, and choose |
+
+If you want an audio file you can listen to immediately, **use Suno or Udio**. If you want a MIDI sketch you can drag into [Logic](https://www.apple.com/logic-pro/) / [Ableton](https://www.ableton.com/) / [Cubase](https://www.steinberg.net/cubase/) / [FL Studio](https://www.image-line.com/fl-studio/) / [GarageBand](https://www.apple.com/mac/garageband/) / [Bitwig](https://www.bitwig.com/) / [REAPER](https://www.reaper.fm/), play over, edit chord-by-chord, regenerate variations of, and turn into *your own* song — you're in the right place.
+
+There's a real role for both kinds of tool. Suno and Udio are remarkable at what they do. This is just a different game: MIDI as the artifact, the musician as the author, the AI as the bandmate that hands you sketches.
 
 ---
 
