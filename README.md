@@ -115,6 +115,23 @@ Claude reads what comes before and after the gap, picks a chromatic-mediant lift
 
 That's the whole skill: a bandmate that hands you sketches.
 
+## Use cases — briefs that reach into the depth
+
+The skill has grown a lot of named idioms, archetypes, and moves. Most "give me a rock song in Em" briefs only graze the surface. These briefs reach into the corners of the catalog you'd otherwise have to know existed to ask for:
+
+- *"Andy Timmons style in A — vocal-style instrumental melody on a I-V-vi-IV loop"* → activates the **Timmons clause** (the FORBIDDEN-progression exception), single-guitar integration (drops rhy guitars; clean + lead carry harmony together), target-note resolution per phrase.
+- *"Modal-cinematic Zimmer build in C minor — single-loop iterated, no V chord, glacial harmonic rhythm"* → **Cinematic subschool A**, Drone Build archetype, modal Aeolian discipline, hollow-middle voicings — same 4-bar loop iterated 7+ times, climax via texture density only.
+- *"Casiopea-meets-Plini in F#m — locked-16 J-fusion engine under melodic-rock harmony"* → cross-pack fusion (**J-fusion engine + Rock harmony**), composed lead melody mandatory, full voicings, j-fusion-kit drums with upbeat accents.
+- *"Modal Shapeshift on D — Dorian verse, Aeolian chorus, Phrygian-dom bridge, same tonic throughout"* → **APP "Walrus"-derived archetype**, single tonic / multiple modes, distinct melody per mode that leans on each mode's signature note (B-natural for Dorian, B-flat for Aeolian, E-flat for Phrygian-dom).
+- *"Yiruma-style piano in A — vi-I/3-I-V loop, tonic permanently in 1st inversion"* → **Cinematic subschool B**, verbatim Yiruma LH 3-note arpeggio (root → 5th → 10th with breath rests), single descending-inversion bridge as the only chromatic motion.
+- *"Spanish bridge in a Plini-rock song in Bm"* → **pack mixing** — verses/choruses in Rock pack, bridge invokes Spanish pack (Andalusian cadence, Phrygian-dom V) for the section only.
+- *"Pull a Mysterious-Hopeful progression from the mood bank in Em — something I haven't heard"* → **mood bank lookup** (127 distilled progressions across 19 emotional moods, indexed in `data/shld_mood_bank.json`), pre-screened against the FORBIDDEN list.
+- *"16-bar Bm verse with mid-section kick drop and delayed lead entry on bar 9"* → **intra-section arrangement vocabulary**, the new 6th Hooktheory axis (Arrangement Pacing), `move` field carries the mute/automation cues the user wires in REAPER.
+- *"Cinematic-pop chorus with the Skyfall stepwise descent in Cm"* → **Cinematic subschool C**, Bond chord (harmonic-minor V7 = G7 with B-natural in Cm), 8-chord stepwise chorus descent (i-bVII-bVI-V-iv-bIII-ii-V7).
+- *"Math rock in 7/8 with maj9 voicings, drone build, no V chord"* → Math rock pack + Drone Build archetype + modal-Aeolian discipline — three packs cross-cutting.
+
+If your brief feels generic, scan this list for a starting angle that exercises something interesting. The depth is in the combinations.
+
 ## Two modes
 
 | Mode | When | What you say | What you get | DAW |
