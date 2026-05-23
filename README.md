@@ -106,18 +106,6 @@ There's a real role for both kinds of tool. Suno and Udio are remarkable at what
 
 ---
 
-## Recently added
-
-- **Programmatic drum fills auto-spliced at section transitions** — 7-pattern catalog (`FILL_PATTERNS`) informed by standard rock-fill pedagogy. Default ON; the compose pipeline detects every form transition and replaces the last 2 beats of the outgoing section with a fill, rotating through the catalog for variety. No external file dependencies, no manual drag, reproducible from spec. Opt out per song with `auto_fills: false`.
-- **Intra-section arrangement variation catalog** — 15 named moves (wedge entry, mid-section drop, delayed lead entry, drop-into-silence, plateau-burst, call-and-response, stratification, more) plus a 6th Hooktheory axis: **Arrangement Pacing**.
-- **Andy Timmons baked in + Timmons clause** — Rock pack touchstones extended; FORBIDDEN-list exception that permits `I-V-vi-IV` when paired with a composed vocal-style melody. The chord cliché becomes the vessel; the melody is the song.
-- **Mood → progression seed bank** — `data/shld_mood_bank.json`: 127 progressions across 19 emotional moods (Mysterious, Nostalgic, Sad, Triumphant, Hopeful, Dark, Romantic, Surprised, Cadence, …), distilled from 7,620 labeled reference MIDIs.
-- **MIDI-only mode + bundled starter template** — REAPER now optional; `composer.py compose --midi-only` works without `config.json`. The repo ships `assets/starter_template.RPP` so REAPER users can run `compose` immediately.
-
-See [CHANGELOG.md](CHANGELOG.md) for the full evolution — Cinematic-pack subschools, Andy/Jack/Zimmer/Yiruma/Skyfall/Dream Theater/APP/Symphony X verified idioms, Neoclassical-metal moves, the Hooktheory composition framework, bass-line-first design, and earlier batches.
-
----
-
 ## How it works
 
 ```mermaid
@@ -136,15 +124,9 @@ You're in Claude Code. You type:
 
 > *Give me a Plini-style instrumental in Bm — through-composed, no lead, leave room for me to play over it.*
 
-A few seconds later you have `~/Documents/MIDI-SONGS/_2026/.../blue-meridian/` on disk — 48 bars across six unique sections, drums entering at the halftime setup, full band at the climb, a sparse bridge break in the middle. The folder holds per-section `.mid` files, a `full.mid` you can drag straight into [Logic](https://www.apple.com/logic-pro/) / [Ableton](https://www.ableton.com/) / [Cubase](https://www.steinberg.net/cubase/) / [GarageBand](https://www.apple.com/mac/garageband/) / [Bitwig](https://www.bitwig.com/), and `spec.json` with every chord and the scale to solo over it. (If you set up REAPER, you also get a `.RPP` with everything wired to tracks and a NOTES pane that displays the chord/scale guidance inline.)
+A few seconds later you have `~/Documents/MIDI-SONGS/_2026/.../blue-meridian/` on disk — 48 bars across six unique sections, drums entering at the halftime setup, full band at the climb, a sparse bridge break in the middle, programmatic fills auto-spliced at every section change. The folder holds per-section `.mid` files, a `full.mid` you can drag straight into [Logic](https://www.apple.com/logic-pro/) / [Ableton](https://www.ableton.com/) / [Cubase](https://www.steinberg.net/cubase/) / [GarageBand](https://www.apple.com/mac/garageband/) / [Bitwig](https://www.bitwig.com/), and `spec.json` with every chord and the scale to solo over it. (If you set up REAPER, you also get a `.RPP` with everything wired to tracks and a NOTES pane that displays the chord/scale guidance inline.)
 
-Then you decide the bridge needs more. In REAPER you drag a region named `COMPOSER` over 16 empty bars and ask:
-
-> *Fill the COMPOSER region with a cinematic key mod.*
-
-Claude reads what comes before and after the gap, picks a chromatic-mediant lift to D major then drops to Bb-major territory before walking back through B Aeolian, and writes the MIDI items into your project on bass, pad, clean, and synth pad — no drums, no rhythm guitars, because the brief said *cinematic*. The fill lands cleanly into the next chord on the other side. *(Fill mode is REAPER-specific — it rewrites the `.RPP` in place. The Compose flow works in any DAW.)*
-
-That's the whole skill: a bandmate that hands you sketches.
+That's the whole skill: a bandmate that hands you sketches. *(There's also a REAPER-only **Fill mode** for filling a `COMPOSER` region inside an existing project — see the section below.)*
 
 ## Use cases — briefs that reach into the depth
 
@@ -191,6 +173,68 @@ The richer the brief, the deeper into the catalog the skill reaches.
 |---|---|---|---|---|
 | **Compose** | Starting fresh | *"a sad piano piece in 6/8"* · *"Polyphia-style loop"* · *"synthwave in Am"* · *"Zaza meets Casiopea in Em"* | Per-section `.mid` files + `full.mid` + `spec.json` + (optionally) a REAPER `.RPP` | **Any** ([Logic](https://www.apple.com/logic-pro/), [Ableton](https://www.ableton.com/), [Cubase](https://www.steinberg.net/cubase/), [FL](https://www.image-line.com/fl-studio/), [GarageBand](https://www.apple.com/mac/garageband/), [Bitwig](https://www.bitwig.com/), [REAPER](https://www.reaper.fm/)…) |
 | **Fill** | Filling a gap in an existing project | *"fill the COMPOSER region"* · *"do a key mod here"* · *"arpeggiated guitars, 65bpm feel"* | MIDI items injected into the existing `.RPP` in place — only the tracks the fill needs | **REAPER only** (writes into `.RPP` structure directly) |
+
+## Requirements
+
+<table>
+  <tr>
+    <td><strong>Python 3.8+</strong></td>
+    <td>Stdlib only — zero external dependencies, single file (<code>composer.py</code>).</td>
+  </tr>
+  <tr>
+    <td><strong>Claude Code</strong></td>
+    <td>The driver. <code>composer.py</code> can also be run standalone with a hand-written JSON spec — see <a href="#standalone-usage">Standalone usage</a>.</td>
+  </tr>
+  <tr>
+    <td><strong>REAPER</strong> <em>(optional)</em></td>
+    <td>Only needed if you want a playable <code>.RPP</code> project. <strong>If you prefer <a href="https://www.apple.com/logic-pro/">Logic</a> / <a href="https://www.ableton.com/">Ableton</a> / <a href="https://www.steinberg.net/cubase/">Cubase</a> / <a href="https://www.image-line.com/fl-studio/">FL Studio</a> / <a href="https://www.apple.com/mac/garageband/">GarageBand</a> / <a href="https://www.bitwig.com/">Bitwig</a></strong>, use <code>--midi-only</code> mode and skip REAPER entirely. <a href="https://www.reaper.fm/">reaper.fm</a></td>
+  </tr>
+  <tr>
+    <td><strong>REAPER template</strong> <em>(optional)</em></td>
+    <td>A starter template ships with the repo (<code>assets/starter_template.RPP</code>) — empty named tracks. Replace with your own once you've built one you like. See <a href="#template-setup">Template setup</a>.</td>
+  </tr>
+</table>
+
+## Install
+
+### Quickstart — non-REAPER users *([Logic](https://www.apple.com/logic-pro/), [Ableton](https://www.ableton.com/), [Cubase](https://www.steinberg.net/cubase/), [FL](https://www.image-line.com/fl-studio/), [GarageBand](https://www.apple.com/mac/garageband/), [Bitwig](https://www.bitwig.com/)…)*
+
+```bash
+git clone https://github.com/ricardoalcocer/claude-code-composer.git ~/.claude/skills/composer
+cd ~/.claude/skills/composer
+
+# That's it. No config.json, no template — just run:
+python3 composer.py compose --midi-only /path/to/spec.json /path/to/output_dir
+```
+
+You get `full.mid`, per-section `.mid` files, and `spec.json` in the output directory. Drag the MIDI into your DAW.
+
+### Quickstart — REAPER users
+
+```bash
+git clone https://github.com/ricardoalcocer/claude-code-composer.git ~/.claude/skills/composer
+cd ~/.claude/skills/composer
+cp config.example.json config.json
+cp style.example.md style.md
+# config.json already points at the bundled starter template — you can run immediately:
+python3 composer.py compose /path/to/spec.json /path/to/output_dir
+```
+
+The starter template has empty named tracks. Open the resulting `.RPP` in REAPER and drop your own VST instruments onto the named tracks. When you've built a template you like, edit `template_path` in `config.json` to point at it.
+
+Restart Claude Code and the `composer` skill is discoverable. Try:
+
+> *Compose a melodic instrumental rock piece in Bm — make the bridge a halftime breakdown.*
+
+## Recently added
+
+- **Programmatic drum fills auto-spliced at section transitions** — 7-pattern catalog (`FILL_PATTERNS`) informed by standard rock-fill pedagogy. Default ON; the compose pipeline detects every form transition and replaces the last 2 beats of the outgoing section with a fill, rotating through the catalog for variety. No external file dependencies, no manual drag, reproducible from spec. Opt out per song with `auto_fills: false`.
+- **Intra-section arrangement variation catalog** — 15 named moves (wedge entry, mid-section drop, delayed lead entry, drop-into-silence, plateau-burst, call-and-response, stratification, more) plus a 6th Hooktheory axis: **Arrangement Pacing**.
+- **Andy Timmons baked in + Timmons clause** — Rock pack touchstones extended; FORBIDDEN-list exception that permits `I-V-vi-IV` when paired with a composed vocal-style melody. The chord cliché becomes the vessel; the melody is the song.
+- **Mood → progression seed bank** — `data/shld_mood_bank.json`: 127 progressions across 19 emotional moods (Mysterious, Nostalgic, Sad, Triumphant, Hopeful, Dark, Romantic, Surprised, Cadence, …), distilled from 7,620 labeled reference MIDIs.
+- **MIDI-only mode + bundled starter template** — REAPER now optional; `composer.py compose --midi-only` works without `config.json`. The repo ships `assets/starter_template.RPP` so REAPER users can run `compose` immediately.
+
+See [CHANGELOG.md](CHANGELOG.md) for the full evolution — Cinematic-pack subschools, Andy/Jack/Zimmer/Yiruma/Skyfall/Dream Theater/APP/Symphony X verified idioms, Neoclassical-metal moves, the Hooktheory composition framework, bass-line-first design, and earlier batches.
 
 ## Style packs
 
@@ -283,58 +327,6 @@ Each pack is a self-contained recipe — tempo range, default key, roles, feel a
 
 > [!TIP]
 > The three "fusion" packs (Reggae, Salsa, J-fusion) are explicitly **non-authentic** — you lift the rhythmic engine and drop your own harmonic language on top. Lydian-dom over a skank. Dorian over a montuno. Modal-rock harmony under a locked-16. *The combinations are the whole point.*
-
-## Requirements
-
-<table>
-  <tr>
-    <td><strong>Python 3.8+</strong></td>
-    <td>Stdlib only — zero external dependencies, single file (<code>composer.py</code>).</td>
-  </tr>
-  <tr>
-    <td><strong>Claude Code</strong></td>
-    <td>The driver. <code>composer.py</code> can also be run standalone with a hand-written JSON spec — see <a href="#standalone-usage">Standalone usage</a>.</td>
-  </tr>
-  <tr>
-    <td><strong>REAPER</strong> <em>(optional)</em></td>
-    <td>Only needed if you want a playable <code>.RPP</code> project. <strong>If you prefer <a href="https://www.apple.com/logic-pro/">Logic</a> / <a href="https://www.ableton.com/">Ableton</a> / <a href="https://www.steinberg.net/cubase/">Cubase</a> / <a href="https://www.image-line.com/fl-studio/">FL Studio</a> / <a href="https://www.apple.com/mac/garageband/">GarageBand</a> / <a href="https://www.bitwig.com/">Bitwig</a></strong>, use <code>--midi-only</code> mode and skip REAPER entirely. <a href="https://www.reaper.fm/">reaper.fm</a></td>
-  </tr>
-  <tr>
-    <td><strong>REAPER template</strong> <em>(optional)</em></td>
-    <td>A starter template ships with the repo (<code>assets/starter_template.RPP</code>) — empty named tracks. Replace with your own once you've built one you like. See <a href="#template-setup">Template setup</a>.</td>
-  </tr>
-</table>
-
-## Install
-
-### Quickstart — non-REAPER users *([Logic](https://www.apple.com/logic-pro/), [Ableton](https://www.ableton.com/), [Cubase](https://www.steinberg.net/cubase/), [FL](https://www.image-line.com/fl-studio/), [GarageBand](https://www.apple.com/mac/garageband/), [Bitwig](https://www.bitwig.com/)…)*
-
-```bash
-git clone https://github.com/ricardoalcocer/claude-code-composer.git ~/.claude/skills/composer
-cd ~/.claude/skills/composer
-
-# That's it. No config.json, no template — just run:
-python3 composer.py compose --midi-only /path/to/spec.json /path/to/output_dir
-```
-
-You get `full.mid`, per-section `.mid` files, and `spec.json` in the output directory. Drag the MIDI into your DAW.
-
-### Quickstart — REAPER users
-
-```bash
-git clone https://github.com/ricardoalcocer/claude-code-composer.git ~/.claude/skills/composer
-cd ~/.claude/skills/composer
-cp config.example.json config.json
-cp style.example.md style.md
-# config.json already points at the bundled starter template — you can run immediately:
-python3 composer.py compose /path/to/spec.json /path/to/output_dir
-```
-
-The starter template has empty named tracks. Open the resulting `.RPP` in REAPER and drop your own VST instruments onto the named tracks. When you've built a template you like, edit `template_path` in `config.json` to point at it.
-
-Restart Claude Code and the `composer` skill is discoverable. Try:
-
-> *Compose a melodic instrumental rock piece in Bm — make the bridge a halftime breakdown.*
 
 ## Template setup
 
