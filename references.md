@@ -96,6 +96,15 @@ User has a curated `_MIDI PACKS` directory at `~/Documents/_MIDI PACKS/` with ~1
 
 If you mine any of these into the skill, follow the same pattern as `data/shld_mood_bank.json`: parse filenames, dedupe, write a JSON sidecar, add a SKILL.md section pointing at it, screen against the FORBIDDEN list.
 
+### Drum + bass MIDI libraries (also on disk — referenced, not bundled)
+
+Pointed at by SKILL.md's "External drum (and bass) MIDI libraries" section. Used sparingly — fills and transitions only, not sustained grooves.
+
+- **Drumforge — NuMetal Grooves Vol 1** at `~/Documents/_MIDI PACKS/Drumforge/Midi/NuMetal Grooves Vol 1/NuMetal Grooves Vol 1/` — 383 `.mid` files across 7 song-section folders (Intro / Verse / Chorus / Bridge / Breakdown / Fills / Outro), BPM ranges encoded in filenames. Pre-indexed at [`data/drumforge_numetal_manifest.json`](data/drumforge_numetal_manifest.json) — regenerate via `tools/build_drum_manifest.py` if the source pack ever updates. Genre is nu-metal but the fills/intros/outros are useful across heavier rock contexts.
+- **Common Library — Blues_Rock-n-Roll Vol 1** at `~/Documents/_MIDI PACKS/Blues_Rock-n-Roll--Common--Volume-1--v3.1/Blues_Rock-n-Roll/` — 57,309 `.mid` files organized by time-sig × feel (19 top-level folders) × Theme. Filename convention `000 035 KICK HAT 156.mid` encodes complexity (000–003), pattern ID, instruments, BPM. Not pre-indexed (too many); browse via shell `find` filtered by complexity prefix.
+- **Toontrack EZdrummer 2/3 + EZbass** at `~/Library/Application Support/Toontrack/` — proprietary `MidiDB` format, NOT exposed as `.mid` files. The user has EZX expansions: TightRoom + MainRoom (EZD3), ModernMetal, HardRock, ProgressiveRock, RockSolid, dfh, Vintage, Modern. Workflow is drag-and-drop from the EZdrummer/EZbass plugin GUI directly into REAPER tracks — the skill cannot reference specific files programmatically, but can suggest "drag in a Modern Rock halftime verse build" type descriptions.
+- **Also on disk but skipped**: Niko Drum Sample Pack (WAV samples, no MIDI), Focusrite Drum Pack (WAV), Cymatics Percussion Toolkit (WAV), SumnSumnSumn drum kit (samples not MIDI), Addictive Drums 2 (proprietary preset format), Modalics Beat Scholar (plugin presets, no exposed MIDI), Niko Grooves MIDI Demo (these are CHORD/MELODY grooves, not drum patterns — misleading name).
+
 ## Composition quality framework
 - Hooktheory "Chord and Melody Metrics" — https://www.hooktheory.com/song-metrics/about — the first 5 axes of the now-6-axis quality framework documented in SKILL.md's "Composition quality metrics" section: Chord Complexity, Melodic Complexity, Chord-Melody Tension, Chord Progression Novelty, Chord Bass Melody. Each metric links to a curated list of exemplar songs from their TheoryTab database. The 6th axis (Arrangement Pacing) extends the framework — see arrangement-theory sources below.
 - Hooktheory stable/unstable scale degrees — https://www.hooktheory.com/support/musicreference?concept=music-concepts-stable-unstable-scale-degree — the canonical "is this melody note IN the current chord?" reference. Backs the chord-melody tension axis.

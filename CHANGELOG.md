@@ -8,6 +8,10 @@ This is a *catalog* changelog (what new compositional vocabulary, idioms, and ca
 
 ## May 2026
 
+### Late May — drum/bass library integration
+
+- **External drum (and bass) MIDI libraries — referenced, not bundled** — new SKILL.md section pointing at three on-disk sources for fills + transitions: Drumforge NuMetal Grooves Vol 1 (383 files, pre-indexed at [`data/drumforge_numetal_manifest.json`](data/drumforge_numetal_manifest.json) by section + BPM), Common Library Blues_Rock-n-Roll Vol 1 (57k files, complexity-encoded filenames `000`–`003`, browse-via-find), and Toontrack EZdrummer 2/3 + EZbass (proprietary MidiDB format → drag-from-GUI suggestions). Constrained explicitly to FILLS and TRANSITIONS only — the programmatic patterns (`basic-rock`, `halftime`, `four-on-floor`, etc.) remain the default for sustained grooves to honor the "idea incubator, not produced songs" framing. Hard rule: no more than 2 library drops per song.
+
 ### Late May — arrangement + Timmons batch
 
 - **Intra-section arrangement variation catalog** — the skill could already say "use the Slow Build archetype for the chorus" but had no vocabulary for *what changes WITHIN a 16-bar verse*. New SKILL.md section adds 15 named moves drawn from production/orchestration sources (EDMprod, Sample Focus, Adler, Adam Neely): **wedge entry**, **mid-section drop**, **delayed lead entry**, **crossfade exit**, **single-bar silence reset**, **stop time**, **drop-into-silence**, **held tail decay**, **frequency-space drop**, **plateau-burst**, **linear subtractive**, **call-and-response**, **re-orchestration loop**, **beat switch**, **stratification**. Each move is documented in the section's `move` field; the user wires the actual mute/automation in REAPER (same pattern as cinematic tempo arcs). Also extends the Hooktheory composition-quality framework from 5 axes to **6 axes** — adding **Arrangement Pacing** ("does something change every 4–8 bars?") as the gate against texture stagnation.

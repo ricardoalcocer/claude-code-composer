@@ -1260,6 +1260,56 @@ When using a move from this catalog, name it explicitly in the `move` string so 
 - Don't use `wedge entry` more than once per song; it's a special opening device, not a general entry pattern.
 - Don't apply `stratification` to genre packs where layering is the point (Layer Stack archetype, Synthwave). It's a clarity move for dense-harmony contexts.
 
+## External drum (and bass) MIDI libraries *(for fills + transitions, not sustained grooves)*
+
+The skill's built-in drum patterns (`basic-rock`, `halftime`, `four-on-floor`, `one-drop`, `latin-fusion`, `j-fusion-kit`, `none`) are programmatic and uniform — perfect for *sustained grooves*. They're deliberately simple to keep the focus on harmony/arrangement and to honor the user's "idea incubator, not produced songs" framing.
+
+Where they fall short: **fills, intros with character, breakdowns, outros, single-bar variations**. For those moments the user has libraries on disk that we can *point at*, never embed. The skill suggests a specific file path; the user drags the MIDI from disk into the REAPER drum track at the right bar. Same pattern as the arrangement-moves catalog and cinematic tempo arcs — the SKILL describes the move, the user wires it.
+
+**The user explicitly asked this NOT become drum-heavy.** Reach for these libraries ONLY for fills, intro/outro flourishes, and section transitions — never to replace a verse-long programmatic groove. If you find yourself suggesting library drum drops in 3+ sections of a single song, that's too many: prefer the programmatic pattern as the default texture and reserve library drops for moments of impact.
+
+### Libraries on disk
+
+**Drumforge — NuMetal Grooves Vol 1** *(383 files, indexed)*
+- Source: `~/Documents/_MIDI PACKS/Drumforge/Midi/NuMetal Grooves Vol 1/NuMetal Grooves Vol 1/`
+- Manifest: [`data/drumforge_numetal_manifest.json`](data/drumforge_numetal_manifest.json) — pre-parsed list of all 383 files organized by section (50 intros, 67 verses, 67 choruses, 38 bridges, 25 breakdowns, **98 fills**, 38 outros) with BPM ranges parsed from filenames.
+- Genre: nu-metal / heavy modern rock — heavier than the user's preferred melodic-rock genres. **Use the FILLS and TRANSITION pieces (intro/outro/breakdown) even outside metal contexts** — a fill is a fill; the genre mismatch matters less for one-bar transition material than for sustained verse/chorus grooves. Skip the verse/chorus grooves for non-metal pieces.
+- How to query: load the manifest, filter `by_section["fills"]` to entries where `bpm_min ≤ song_tempo ≤ bpm_max`, pick one whose `name` matches the energy (e.g. "Fast Roll Fill" vs "Big Crash Fill" vs "Tom Walk Fill").
+- How to suggest: in the section's `move` field, name the file you're recommending: `move: "verse-to-chorus transition: drop in Drumforge fill 'Fast Roll Fill 1 (90-110BPM).mid' on bar 16 — last 2 beats of the verse"`. The user drags from Finder into the REAPER drums track at the right bar.
+
+**Common Library — Blues_Rock-n-Roll Vol 1** *(57,309 files, not indexed)*
+- Source: `~/Documents/_MIDI PACKS/Blues_Rock-n-Roll--Common--Volume-1--v3.1/Blues_Rock-n-Roll/`
+- Organization: 19 top-level folders by time-sig × feel (`4-4 Normal Straight`, `3-4 DoubleTime HardSwing`, `6-8 Normal Straight`, `12-8 Normal Straight`, etc). Inside each: `Theme NNN/` folders containing related pattern variants.
+- Filename convention encodes COMPLEXITY: `000 035 KICK HAT 156.mid` → level `000` (simplest) through `003` (most complex), pattern ID, instruments used, BPM. **For "simple" fills/grooves, filter to filename prefix `000` or `001` only.**
+- Use for: blues/rock-n-roll/swing feels, 6-8 and 12-8 time signatures, vintage-style rhythms. Not for J-fusion, modal-cinematic, or melodic-rock contexts.
+- Not pre-indexed (57k files is too many to bundle). When you need a specific feel, suggest the user `cd` into the appropriate `<time-sig> <feel>` folder and browse. Or filter via shell: `find "<path>/4-4 Normal Straight" -name "000*120*.mid"` returns simple 4/4 patterns near 120 BPM.
+
+**Toontrack EZdrummer 2/3 + EZbass** *(proprietary format — not programmatically accessible)*
+- Source: `~/Library/Application Support/Toontrack/`
+- The MIDI groove libraries are stored in Toontrack's proprietary `MidiDB` containers, NOT as `.mid` files. The skill cannot reference specific files programmatically.
+- Workflow: the user opens EZdrummer/EZbass as a VST in REAPER, browses the GUI grooves panel, and drags directly into the drums/bass track. Suggest this in `move`: `move: "verse intro: drag an EZdrummer 'Modern Rock - Halftime - Verse Build' groove into bar 1-8"`.
+- Touchstones for EZdrummer suggestions: the user has EZX expansions for **EZdrummer3 (TightRoom, MainRoom), Modern Metal, Hard Rock, Progressive Rock, Rock Solid, dfh, Vintage, Modern**. Pick the EZX whose style matches the song's pack.
+- EZbass: same story for bass MIDI grooves. Drag from the EZbass GUI when a section needs a more melodic bassline than the programmatic root-note default.
+
+### When to reach for these vs. the programmatic patterns
+
+| Situation | Recommendation |
+|---|---|
+| 8+ bars of straight 4/4 verse groove | Programmatic `basic-rock` or `halftime` — built-in, consistent, no extra step |
+| 2 beats of fill at the end of a verse | **Drumforge fill** (manifest lookup) — far more interesting than no fill |
+| Intro that needs a tom-roll build-up | **Drumforge intro** ("Big 2 Bar Intro Fill", "Tribal Tom Intro") |
+| Outro that needs a final crash sequence | **Drumforge outro** or "Crash Hits" intro file (works at song end too) |
+| Swing/blues feel in 12/8 or 6/8 | **Common Library** time-sig folder, filter to `000` complexity |
+| Modern rock verse with realistic feel | **EZdrummer GUI drag-and-drop** (the genre mismatch with Drumforge nu-metal makes Drumforge less fitting for verses) |
+| Cinematic / modal-cinematic / post-rock | Stay programmatic or `drums: "none"` — these libraries are wrong-genre |
+| Bass with melodic motion under a chord change | **EZbass GUI drag-and-drop**, or compose a `melody`-like line manually |
+
+### Hard rules
+
+- **Don't suggest a library drop in more than 2 sections of any single song.** Drum fills become noise when overused. Pick the most impactful 1-2 moments (most common: end of last verse before chorus, end of bridge before final chorus) and let the rest stay programmatic.
+- **Document the suggested file by NAME in the `move` field**, not just "drop in a fill." Be specific so the user knows what to drag.
+- **Don't suggest these libraries for the Cinematic, Math rock, Spanish, or J-fusion packs as primary grooves.** The genre mismatch is too large. They can still work as one-shot intro/outro/fill flourishes; just stay narrow.
+
 ## What the script writes to the template
 
 It copies the Reaper template specified by `template_path` in `config.json` (see the project README), overrides the tempo, adds region markers, and inserts MIDI items on these tracks:

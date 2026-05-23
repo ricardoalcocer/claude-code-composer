@@ -65,6 +65,7 @@
 
 ## Recently added
 
+- **External drum (and bass) MIDI libraries** — referenced, not bundled. Drumforge NuMetal (383 files, pre-indexed at `data/drumforge_numetal_manifest.json`), Common Library Blues_Rock-n-Roll (57k files, complexity-encoded filenames), Toontrack EZdrummer/EZbass (drag-from-GUI suggestions in the `move` field). Constrained to FILLS and TRANSITIONS only — programmatic patterns remain the sustained-groove default.
 - **Intra-section arrangement variation catalog** — 15 named moves (wedge entry, mid-section drop, delayed lead entry, drop-into-silence, plateau-burst, call-and-response, stratification, more) plus a 6th Hooktheory axis: **Arrangement Pacing**.
 - **Andy Timmons baked in + Timmons clause** — Rock pack touchstones extended; FORBIDDEN-list exception that permits `I-V-vi-IV` when paired with a composed vocal-style melody. The chord cliché becomes the vessel; the melody is the song.
 - **Mood → progression seed bank** — `data/shld_mood_bank.json`: 127 progressions across 19 emotional moods (Mysterious, Nostalgic, Sad, Triumphant, Hopeful, Dark, Romantic, Surprised, Cadence, …), distilled from 7,620 labeled reference MIDIs.

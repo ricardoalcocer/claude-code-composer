@@ -1,0 +1,2320 @@
+{
+  "source": "Drumforge \u2014 NuMetal Grooves Vol 1",
+  "source_path": "/Users/music/Documents/_MIDI PACKS/Drumforge/Midi/NuMetal Grooves Vol 1/NuMetal Grooves Vol 1",
+  "format_note": "file paths are relative to source_path; combine to get absolute path. Filenames already encode BPM ranges (parsed into bpm_min/bpm_max).",
+  "genre": "nu-metal / heavy modern rock \u2014 heavier than the user's preferred melodic-rock genres. Use for FILLS and SECTION TRANSITIONS even outside nu-metal contexts (a fill is a fill); skip the verses/choruses for non-metal pieces.",
+  "by_section": {
+    "intro": [
+      {
+        "name": "Big 2 Bar Intro Fill",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Big 2 Bar Intro Fill (100-120BPM).mid"
+      },
+      {
+        "name": "Big Intro Fill 1",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Big Intro Fill 1 (100-130BPM).mid"
+      },
+      {
+        "name": "Big Intro Fill 2",
+        "bpm_min": 115,
+        "bpm_max": 140,
+        "file": "Big Intro Fill 2 (115-140BPM).mid"
+      },
+      {
+        "name": "Big Intro Fill 3",
+        "bpm_min": 120,
+        "bpm_max": 150,
+        "file": "Big Intro Fill 3 (120-150BPM).mid"
+      },
+      {
+        "name": "Big Intro Fill 4",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Big Intro Fill 4 (110-140BPM).mid"
+      },
+      {
+        "name": "Big Intro Fill 5",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Big Intro Fill 5 (110-135BPM).mid"
+      },
+      {
+        "name": "Big Intro Fill 6",
+        "bpm_min": 100,
+        "bpm_max": 135,
+        "file": "Big Intro Fill 6 (100-135BPM).mid"
+      },
+      {
+        "name": "Crash Hits 1",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Crash Hits 1 (100-140BPM).mid"
+      },
+      {
+        "name": "Crash Hits 2",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Crash Hits 2 (100-130BPM).mid"
+      },
+      {
+        "name": "Crash Hits 3",
+        "bpm_min": 90,
+        "bpm_max": 150,
+        "file": "Crash Hits 3 (90-150BPM).mid"
+      },
+      {
+        "name": "Crash Hits 4",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Crash Hits 4 (100-125BPM).mid"
+      },
+      {
+        "name": "Crash Hits 5",
+        "bpm_min": 90,
+        "bpm_max": 110,
+        "file": "Crash Hits 5 (90-110BPM).mid"
+      },
+      {
+        "name": "Crash Swells",
+        "bpm_min": 90,
+        "bpm_max": 150,
+        "file": "Crash Swells (90-150BPM).mid"
+      },
+      {
+        "name": "Fancy Hi Hat work 1",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Fancy Hi Hat work 1 (100-130BPM).mid"
+      },
+      {
+        "name": "Fancy Hi Hat work 2",
+        "bpm_min": 100,
+        "bpm_max": 135,
+        "file": "Fancy Hi Hat work 2 (100-135BPM).mid"
+      },
+      {
+        "name": "Funky Intro Groove",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Funky Intro Groove (110-130BPM).mid"
+      },
+      {
+        "name": "Intro Groove 1",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Intro Groove 1 (110-130BPM).mid"
+      },
+      {
+        "name": "Intro Groove 10",
+        "bpm_min": 95,
+        "bpm_max": 120,
+        "file": "Intro Groove 10 (95-120BPM).mid"
+      },
+      {
+        "name": "Intro Groove 11",
+        "bpm_min": 100,
+        "bpm_max": 115,
+        "file": "Intro Groove 11 (100-115BPM).mid"
+      },
+      {
+        "name": "Intro Groove 12",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Intro Groove 12 (100-125BPM).mid"
+      },
+      {
+        "name": "Intro Groove 13",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Intro Groove 13 (100-125BPM).mid"
+      },
+      {
+        "name": "Intro Groove 14",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Intro Groove 14 (100-125BPM).mid"
+      },
+      {
+        "name": "Intro Groove 15",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Intro Groove 15 (100-125BPM).mid"
+      },
+      {
+        "name": "Intro Groove 16",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Intro Groove 16 (100-120BPM).mid"
+      },
+      {
+        "name": "Intro Groove 17",
+        "bpm_min": 105,
+        "bpm_max": 125,
+        "file": "Intro Groove 17 (105-125BPM).mid"
+      },
+      {
+        "name": "Intro Groove 18",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Intro Groove 18 (100-120BPM).mid"
+      },
+      {
+        "name": "Intro Groove 19",
+        "bpm_min": 90,
+        "bpm_max": 115,
+        "file": "Intro Groove 19 (90-115BPM).mid"
+      },
+      {
+        "name": "Intro Groove 2",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Intro Groove 2 (110-135BPM).mid"
+      },
+      {
+        "name": "Intro Groove 20",
+        "bpm_min": 90,
+        "bpm_max": 110,
+        "file": "Intro Groove 20 (90-110BPM).mid"
+      },
+      {
+        "name": "Intro Groove 21 (90-115 BPM)",
+        "bpm_min": null,
+        "bpm_max": null,
+        "file": "Intro Groove 21 (90-115 BPM).mid"
+      },
+      {
+        "name": "Intro Groove 22",
+        "bpm_min": 90,
+        "bpm_max": 105,
+        "file": "Intro Groove 22 (90-105BPM).mid"
+      },
+      {
+        "name": "Intro Groove 23",
+        "bpm_min": 90,
+        "bpm_max": 115,
+        "file": "Intro Groove 23 (90-115BPM).mid"
+      },
+      {
+        "name": "Intro Groove 24",
+        "bpm_min": 90,
+        "bpm_max": 105,
+        "file": "Intro Groove 24 (90-105BPM).mid"
+      },
+      {
+        "name": "Intro Groove 25",
+        "bpm_min": 180,
+        "bpm_max": 215,
+        "file": "Intro Groove 25 (180-215BPM).mid"
+      },
+      {
+        "name": "Intro Groove 3",
+        "bpm_min": 120,
+        "bpm_max": 140,
+        "file": "Intro Groove 3 (120-140BPM).mid"
+      },
+      {
+        "name": "Intro Groove 4",
+        "bpm_min": 115,
+        "bpm_max": 140,
+        "file": "Intro Groove 4 (115-140BPM).mid"
+      },
+      {
+        "name": "Intro Groove 5",
+        "bpm_min": 105,
+        "bpm_max": 120,
+        "file": "Intro Groove 5 (105-120BPM).mid"
+      },
+      {
+        "name": "Intro Groove 6",
+        "bpm_min": 105,
+        "bpm_max": 125,
+        "file": "Intro Groove 6 (105-125BPM).mid"
+      },
+      {
+        "name": "Intro Groove 7",
+        "bpm_min": 95,
+        "bpm_max": 115,
+        "file": "Intro Groove 7 (95-115BPM).mid"
+      },
+      {
+        "name": "Intro Groove 8",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Intro Groove 8 (100-125BPM).mid"
+      },
+      {
+        "name": "Intro Groove 9",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Intro Groove 9 (100-120BPM).mid"
+      },
+      {
+        "name": "Snare Marching Intro",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Snare Marching Intro (100-130BPM).mid"
+      },
+      {
+        "name": "Tom Hi Hat Intro",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Tom Hi Hat Intro (100-120BPM).mid"
+      },
+      {
+        "name": "Tribal Tom Intro 1",
+        "bpm_min": 95,
+        "bpm_max": 130,
+        "file": "Tribal Tom Intro 1 (95-130BPM).mid"
+      },
+      {
+        "name": "Tribal Tom Intro 2",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Tribal Tom Intro 2 (100-130BPM).mid"
+      },
+      {
+        "name": "Tribal Tom Intro 3",
+        "bpm_min": 95,
+        "bpm_max": 125,
+        "file": "Tribal Tom Intro 3 (95-125BPM).mid"
+      },
+      {
+        "name": "Tribal Tom Intro 4",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Tribal Tom Intro 4 (100-130BPM).mid"
+      },
+      {
+        "name": "Tribal Tom Intro 5",
+        "bpm_min": 95,
+        "bpm_max": 120,
+        "file": "Tribal Tom Intro 5 (95-120BPM).mid"
+      },
+      {
+        "name": "Tribal Tom Intro 6",
+        "bpm_min": 90,
+        "bpm_max": 130,
+        "file": "Tribal Tom Intro 6 (90-130BPM).mid"
+      },
+      {
+        "name": "Tribal Tom Intro 7",
+        "bpm_min": 90,
+        "bpm_max": 130,
+        "file": "Tribal Tom Intro 7 (90-130BPM).mid"
+      }
+    ],
+    "verse": [
+      {
+        "name": "Driving Groove 1",
+        "bpm_min": 115,
+        "bpm_max": 140,
+        "file": "Driving Groove 1 (115-140BPM).mid"
+      },
+      {
+        "name": "Driving Groove 10",
+        "bpm_min": 120,
+        "bpm_max": 140,
+        "file": "Driving Groove 10 (120-140BPM).mid"
+      },
+      {
+        "name": "Driving Groove 11",
+        "bpm_min": 120,
+        "bpm_max": 140,
+        "file": "Driving Groove 11 (120-140BPM).mid"
+      },
+      {
+        "name": "Driving Groove 12",
+        "bpm_min": 105,
+        "bpm_max": 130,
+        "file": "Driving Groove 12 (105-130BPM).mid"
+      },
+      {
+        "name": "Driving Groove 13",
+        "bpm_min": 110,
+        "bpm_max": 125,
+        "file": "Driving Groove 13 (110-125BPM).mid"
+      },
+      {
+        "name": "Driving Groove 14",
+        "bpm_min": 110,
+        "bpm_max": 125,
+        "file": "Driving Groove 14 (110-125BPM).mid"
+      },
+      {
+        "name": "Driving Groove 15",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Driving Groove 15 (110-135BPM).mid"
+      },
+      {
+        "name": "Driving Groove 16",
+        "bpm_min": 105,
+        "bpm_max": 120,
+        "file": "Driving Groove 16 (105-120BPM).mid"
+      },
+      {
+        "name": "Driving Groove 17",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Driving Groove 17 (110-130BPM).mid"
+      },
+      {
+        "name": "Driving Groove 18",
+        "bpm_min": 105,
+        "bpm_max": 130,
+        "file": "Driving Groove 18 (105-130BPM).mid"
+      },
+      {
+        "name": "Driving Groove 19",
+        "bpm_min": 105,
+        "bpm_max": 125,
+        "file": "Driving Groove 19 (105-125BPM).mid"
+      },
+      {
+        "name": "Driving Groove 2",
+        "bpm_min": 120,
+        "bpm_max": 145,
+        "file": "Driving Groove 2 (120-145BPM).mid"
+      },
+      {
+        "name": "Driving Groove 20",
+        "bpm_min": 105,
+        "bpm_max": 125,
+        "file": "Driving Groove 20 (105-125BPM).mid"
+      },
+      {
+        "name": "Driving Groove 21",
+        "bpm_min": 95,
+        "bpm_max": 120,
+        "file": "Driving Groove 21 (95-120BPM).mid"
+      },
+      {
+        "name": "Driving Groove 22",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Driving Groove 22 (100-120BPM).mid"
+      },
+      {
+        "name": "Driving Groove 24",
+        "bpm_min": 95,
+        "bpm_max": 125,
+        "file": "Driving Groove 24 (95-125BPM).mid"
+      },
+      {
+        "name": "Driving Groove 25",
+        "bpm_min": 115,
+        "bpm_max": 140,
+        "file": "Driving Groove 25 (115-140BPM).mid"
+      },
+      {
+        "name": "Driving Groove 3",
+        "bpm_min": 115,
+        "bpm_max": 135,
+        "file": "Driving Groove 3 (115-135BPM).mid"
+      },
+      {
+        "name": "Driving Groove 4",
+        "bpm_min": 115,
+        "bpm_max": 155,
+        "file": "Driving Groove 4 (115-155BPM).mid"
+      },
+      {
+        "name": "Driving Groove 5",
+        "bpm_min": 120,
+        "bpm_max": 155,
+        "file": "Driving Groove 5 (120-155BPM).mid"
+      },
+      {
+        "name": "Driving Groove 6",
+        "bpm_min": 115,
+        "bpm_max": 135,
+        "file": "Driving Groove 6 (115-135BPM).mid"
+      },
+      {
+        "name": "Driving Groove 8",
+        "bpm_min": 115,
+        "bpm_max": 135,
+        "file": "Driving Groove 8 (115-135BPM).mid"
+      },
+      {
+        "name": "Driving Groove 9",
+        "bpm_min": 120,
+        "bpm_max": 150,
+        "file": "Driving Groove 9 (120-150BPM).mid"
+      },
+      {
+        "name": "Drivng Groove 23",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Drivng Groove 23 (100-125BPM).mid"
+      },
+      {
+        "name": "Drivng Groove 7",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Drivng Groove 7 (110-135BPM).mid"
+      },
+      {
+        "name": "Fast Hi Hat Groove",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Fast Hi Hat Groove (100-120BPM).mid"
+      },
+      {
+        "name": "Funky Groove 1",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Funky Groove 1 (110-135BPM).mid"
+      },
+      {
+        "name": "Funky Groove 10",
+        "bpm_min": 105,
+        "bpm_max": 130,
+        "file": "Funky Groove 10 (105-130BPM).mid"
+      },
+      {
+        "name": "Funky Groove 11",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Funky Groove 11 (100-125BPM).mid"
+      },
+      {
+        "name": "Funky Groove 12",
+        "bpm_min": 120,
+        "bpm_max": 155,
+        "file": "Funky Groove 12 (120-155BPM).mid"
+      },
+      {
+        "name": "Funky Groove 14",
+        "bpm_min": 100,
+        "bpm_max": 115,
+        "file": "Funky Groove 14 (100-115BPM).mid"
+      },
+      {
+        "name": "Funky Groove 15",
+        "bpm_min": 100,
+        "bpm_max": 115,
+        "file": "Funky Groove 15 (100-115BPM).mid"
+      },
+      {
+        "name": "Funky Groove 16",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Funky Groove 16 (100-120BPM).mid"
+      },
+      {
+        "name": "Funky Groove 17",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Funky Groove 17 (100-130BPM).mid"
+      },
+      {
+        "name": "Funky Groove 18",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Funky Groove 18 (110-130BPM).mid"
+      },
+      {
+        "name": "Funky Groove 19",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Funky Groove 19 (100-120BPM).mid"
+      },
+      {
+        "name": "Funky Groove 2",
+        "bpm_min": 110,
+        "bpm_max": 125,
+        "file": "Funky Groove 2 (110-125BPM).mid"
+      },
+      {
+        "name": "Funky Groove 20",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Funky Groove 20 (100-120BPM).mid"
+      },
+      {
+        "name": "Funky Groove 21",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Funky Groove 21 (100-120BPM).mid"
+      },
+      {
+        "name": "Funky Groove 22",
+        "bpm_min": 95,
+        "bpm_max": 120,
+        "file": "Funky Groove 22 (95-120BPM).mid"
+      },
+      {
+        "name": "Funky Groove 23",
+        "bpm_min": 90,
+        "bpm_max": 115,
+        "file": "Funky Groove 23 (90-115BPM).mid"
+      },
+      {
+        "name": "Funky Groove 24",
+        "bpm_min": 115,
+        "bpm_max": 130,
+        "file": "Funky Groove 24 (115-130BPM).mid"
+      },
+      {
+        "name": "Funky Groove 26",
+        "bpm_min": 90,
+        "bpm_max": 120,
+        "file": "Funky Groove 26 (90-120BPM).mid"
+      },
+      {
+        "name": "Funky Groove 27",
+        "bpm_min": 90,
+        "bpm_max": 115,
+        "file": "Funky Groove 27 (90-115BPM).mid"
+      },
+      {
+        "name": "Funky Groove 28",
+        "bpm_min": 90,
+        "bpm_max": 115,
+        "file": "Funky Groove 28 (90-115BPM).mid"
+      },
+      {
+        "name": "Funky Groove 29",
+        "bpm_min": 90,
+        "bpm_max": 110,
+        "file": "Funky Groove 29 (90-110BPM).mid"
+      },
+      {
+        "name": "Funky Groove 3",
+        "bpm_min": 105,
+        "bpm_max": 120,
+        "file": "Funky Groove 3 (105-120BPM).mid"
+      },
+      {
+        "name": "Funky Groove 30",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Funky Groove 30 (110-130BPM).mid"
+      },
+      {
+        "name": "Funky Groove 32",
+        "bpm_min": 110,
+        "bpm_max": 125,
+        "file": "Funky Groove 32 (110-125BPM).mid"
+      },
+      {
+        "name": "Funky Groove 34",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Funky Groove 34 (110-135BPM).mid"
+      },
+      {
+        "name": "Funky Groove 37",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Funky Groove 37 (100-130BPM).mid"
+      },
+      {
+        "name": "Funky Groove 38",
+        "bpm_min": 110,
+        "bpm_max": 125,
+        "file": "Funky Groove 38 (110-125BPM).mid"
+      },
+      {
+        "name": "Funky Groove 4",
+        "bpm_min": 105,
+        "bpm_max": 125,
+        "file": "Funky Groove 4 (105-125BPM).mid"
+      },
+      {
+        "name": "Funky Groove 40",
+        "bpm_min": 110,
+        "bpm_max": 120,
+        "file": "Funky Groove 40 (110-120BPM).mid"
+      },
+      {
+        "name": "Funky Groove 5",
+        "bpm_min": 110,
+        "bpm_max": 120,
+        "file": "Funky Groove 5 (110-120BPM).mid"
+      },
+      {
+        "name": "Funky Groove 6",
+        "bpm_min": 110,
+        "bpm_max": 125,
+        "file": "Funky Groove 6 (110-125BPM).mid"
+      },
+      {
+        "name": "Funky Groove 7",
+        "bpm_min": 105,
+        "bpm_max": 130,
+        "file": "Funky Groove 7 (105-130BPM).mid"
+      },
+      {
+        "name": "Funky Groove 8",
+        "bpm_min": 110,
+        "bpm_max": 125,
+        "file": "Funky Groove 8 (110-125BPM).mid"
+      },
+      {
+        "name": "Funky Groove 9",
+        "bpm_min": 105,
+        "bpm_max": 120,
+        "file": "Funky Groove 9 (105-120BPM).mid"
+      },
+      {
+        "name": "Straight Groove 14",
+        "bpm_min": 95,
+        "bpm_max": 120,
+        "file": "Straight Groove 14 (95-120BPM).mid"
+      },
+      {
+        "name": "Straight Groove 2",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Straight Groove 2 (110-140BPM).mid"
+      },
+      {
+        "name": "Straight Groove 20",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Straight Groove 20 (100-130BPM).mid"
+      },
+      {
+        "name": "Straight Groove 23",
+        "bpm_min": 95,
+        "bpm_max": 115,
+        "file": "Straight Groove 23 (95-115BPM).mid"
+      },
+      {
+        "name": "Straight Groove 25",
+        "bpm_min": 90,
+        "bpm_max": 120,
+        "file": "Straight Groove 25 (90-120BPM).mid"
+      },
+      {
+        "name": "Straight Groove 27",
+        "bpm_min": 90,
+        "bpm_max": 120,
+        "file": "Straight Groove 27 (90-120BPM).mid"
+      },
+      {
+        "name": "Straight Groove 29",
+        "bpm_min": 90,
+        "bpm_max": 115,
+        "file": "Straight Groove 29 (90-115BPM).mid"
+      },
+      {
+        "name": "Tribal Tom Groove",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Tribal Tom Groove (100-120BPM).mid"
+      }
+    ],
+    "chorus": [
+      {
+        "name": "4 on the Floor 1",
+        "bpm_min": 120,
+        "bpm_max": 160,
+        "file": "4 on the Floor 1 (120-160BPM).mid"
+      },
+      {
+        "name": "4 on the Floor 2",
+        "bpm_min": 120,
+        "bpm_max": 160,
+        "file": "4 on the Floor 2 (120-160BPM).mid"
+      },
+      {
+        "name": "Busy Groove 1",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Busy Groove 1 (110-130BPM).mid"
+      },
+      {
+        "name": "Busy Groove 10",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Busy Groove 10 (100-130BPM).mid"
+      },
+      {
+        "name": "Busy Groove 11",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Busy Groove 11 (110-130BPM).mid"
+      },
+      {
+        "name": "Busy Groove 12",
+        "bpm_min": 105,
+        "bpm_max": 125,
+        "file": "Busy Groove 12 (105-125BPM).mid"
+      },
+      {
+        "name": "Busy Groove 13",
+        "bpm_min": 105,
+        "bpm_max": 120,
+        "file": "Busy Groove 13 (105-120BPM).mid"
+      },
+      {
+        "name": "Busy Groove 14",
+        "bpm_min": 105,
+        "bpm_max": 130,
+        "file": "Busy Groove 14 (105-130BPM).mid"
+      },
+      {
+        "name": "Busy Groove 15",
+        "bpm_min": 110,
+        "bpm_max": 125,
+        "file": "Busy Groove 15 (110-125BPM).mid"
+      },
+      {
+        "name": "Busy Groove 16",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Busy Groove 16 (110-130BPM).mid"
+      },
+      {
+        "name": "Busy Groove 17",
+        "bpm_min": 105,
+        "bpm_max": 135,
+        "file": "Busy Groove 17 (105-135BPM).mid"
+      },
+      {
+        "name": "Busy Groove 18",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Busy Groove 18 (110-130BPM).mid"
+      },
+      {
+        "name": "Busy Groove 19",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Busy Groove 19 (110-130BPM).mid"
+      },
+      {
+        "name": "Busy Groove 2",
+        "bpm_min": 120,
+        "bpm_max": 140,
+        "file": "Busy Groove 2 (120-140BPM).mid"
+      },
+      {
+        "name": "Busy Groove 20",
+        "bpm_min": 95,
+        "bpm_max": 120,
+        "file": "Busy Groove 20 (95-120BPM).mid"
+      },
+      {
+        "name": "Busy Groove 21",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Busy Groove 21 (100-125BPM).mid"
+      },
+      {
+        "name": "Busy Groove 22",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Busy Groove 22 (100-120BPM).mid"
+      },
+      {
+        "name": "Busy Groove 23",
+        "bpm_min": 95,
+        "bpm_max": 120,
+        "file": "Busy Groove 23 (95-120BPM).mid"
+      },
+      {
+        "name": "Busy Groove 24",
+        "bpm_min": 95,
+        "bpm_max": 120,
+        "file": "Busy Groove 24 (95-120BPM).mid"
+      },
+      {
+        "name": "Busy Groove 25",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Busy Groove 25 (100-125BPM).mid"
+      },
+      {
+        "name": "Busy Groove 26",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Busy Groove 26 (100-125BPM).mid"
+      },
+      {
+        "name": "Busy Groove 27",
+        "bpm_min": 95,
+        "bpm_max": 120,
+        "file": "Busy Groove 27 (95-120BPM).mid"
+      },
+      {
+        "name": "Busy Groove 28",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Busy Groove 28 (110-135BPM).mid"
+      },
+      {
+        "name": "Busy Groove 29",
+        "bpm_min": 115,
+        "bpm_max": 140,
+        "file": "Busy Groove 29 (115-140BPM).mid"
+      },
+      {
+        "name": "Busy Groove 3",
+        "bpm_min": 120,
+        "bpm_max": 140,
+        "file": "Busy Groove 3  (120-140BPM).mid"
+      },
+      {
+        "name": "Busy Groove 30",
+        "bpm_min": 85,
+        "bpm_max": 115,
+        "file": "Busy Groove 30 (85-115BPM).mid"
+      },
+      {
+        "name": "Busy Groove 31",
+        "bpm_min": 90,
+        "bpm_max": 120,
+        "file": "Busy Groove 31 (90-120BPM).mid"
+      },
+      {
+        "name": "Busy Groove 32",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Busy Groove 32 (110-135BPM).mid"
+      },
+      {
+        "name": "Busy Groove 33",
+        "bpm_min": 90,
+        "bpm_max": 120,
+        "file": "Busy Groove 33 (90-120BPM).mid"
+      },
+      {
+        "name": "Busy Groove 34",
+        "bpm_min": 85,
+        "bpm_max": 105,
+        "file": "Busy Groove 34 (85-105BPM).mid"
+      },
+      {
+        "name": "Busy Groove 35",
+        "bpm_min": 85,
+        "bpm_max": 115,
+        "file": "Busy Groove 35 (85-115BPM).mid"
+      },
+      {
+        "name": "Busy Groove 36",
+        "bpm_min": 90,
+        "bpm_max": 120,
+        "file": "Busy Groove 36 (90-120BPM).mid"
+      },
+      {
+        "name": "Busy Groove 38",
+        "bpm_min": 120,
+        "bpm_max": 140,
+        "file": "Busy Groove 38 (120-140BPM).mid"
+      },
+      {
+        "name": "Busy Groove 4",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Busy Groove 4 (110-140BPM).mid"
+      },
+      {
+        "name": "Busy Groove 5",
+        "bpm_min": 115,
+        "bpm_max": 145,
+        "file": "Busy Groove 5 (115-145BPM).mid"
+      },
+      {
+        "name": "Busy Groove 6",
+        "bpm_min": 120,
+        "bpm_max": 140,
+        "file": "Busy Groove 6 (120-140BPM).mid"
+      },
+      {
+        "name": "Busy Groove 7",
+        "bpm_min": 110,
+        "bpm_max": 125,
+        "file": "Busy Groove 7 (110-125BPM).mid"
+      },
+      {
+        "name": "Busy Groove 8",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Busy Groove 8 (100-130BPM).mid"
+      },
+      {
+        "name": "Busy Groove 9",
+        "bpm_min": 105,
+        "bpm_max": 130,
+        "file": "Busy Groove 9 (105-130BPM).mid"
+      },
+      {
+        "name": "Straight Groove 1",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Straight Groove 1 (110-135BPM).mid"
+      },
+      {
+        "name": "Straight Groove 10",
+        "bpm_min": 90,
+        "bpm_max": 120,
+        "file": "Straight Groove 10 (90-120BPM).mid"
+      },
+      {
+        "name": "Straight Groove 11",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Straight Groove 11 (100-130BPM).mid"
+      },
+      {
+        "name": "Straight Groove 12",
+        "bpm_min": 95,
+        "bpm_max": 125,
+        "file": "Straight Groove 12 (95-125BPM).mid"
+      },
+      {
+        "name": "Straight Groove 13",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Straight Groove 13 (110-140BPM).mid"
+      },
+      {
+        "name": "Straight Groove 15",
+        "bpm_min": 90,
+        "bpm_max": 130,
+        "file": "Straight Groove 15 (90-130BPM).mid"
+      },
+      {
+        "name": "Straight Groove 16",
+        "bpm_min": 95,
+        "bpm_max": 125,
+        "file": "Straight Groove 16 (95-125BPM).mid"
+      },
+      {
+        "name": "Straight Groove 17",
+        "bpm_min": 105,
+        "bpm_max": 130,
+        "file": "Straight Groove 17 (105-130BPM).mid"
+      },
+      {
+        "name": "Straight Groove 18",
+        "bpm_min": 90,
+        "bpm_max": 120,
+        "file": "Straight Groove 18 (90-120BPM).mid"
+      },
+      {
+        "name": "Straight Groove 19",
+        "bpm_min": 85,
+        "bpm_max": 110,
+        "file": "Straight Groove 19 (85-110BPM).mid"
+      },
+      {
+        "name": "Straight Groove 21",
+        "bpm_min": 120,
+        "bpm_max": 145,
+        "file": "Straight Groove 21 (120-145BPM).mid"
+      },
+      {
+        "name": "Straight Groove 22",
+        "bpm_min": 110,
+        "bpm_max": 160,
+        "file": "Straight Groove 22 (110-160BPM).mid"
+      },
+      {
+        "name": "Straight Groove 24",
+        "bpm_min": 120,
+        "bpm_max": 160,
+        "file": "Straight Groove 24 (120-160BPM).mid"
+      },
+      {
+        "name": "Straight Groove 26",
+        "bpm_min": 120,
+        "bpm_max": 140,
+        "file": "Straight Groove 26 (120-140BPM).mid"
+      },
+      {
+        "name": "Straight Groove 28",
+        "bpm_min": 120,
+        "bpm_max": 140,
+        "file": "Straight Groove 28 (120-140BPM).mid"
+      },
+      {
+        "name": "Straight Groove 3",
+        "bpm_min": 105,
+        "bpm_max": 125,
+        "file": "Straight Groove 3 (105-125BPM).mid"
+      },
+      {
+        "name": "Straight Groove 30",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Straight Groove 30 (110-140BPM).mid"
+      },
+      {
+        "name": "Straight Groove 31",
+        "bpm_min": 105,
+        "bpm_max": 140,
+        "file": "Straight Groove 31 (105-140BPM).mid"
+      },
+      {
+        "name": "Straight Groove 4",
+        "bpm_min": 110,
+        "bpm_max": 150,
+        "file": "Straight Groove 4 (110-150BPM).mid"
+      },
+      {
+        "name": "Straight Groove 5",
+        "bpm_min": 120,
+        "bpm_max": 140,
+        "file": "Straight Groove 5 (120-140BPM).mid"
+      },
+      {
+        "name": "Straight Groove 6",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Straight Groove 6 (110-130BPM).mid"
+      },
+      {
+        "name": "Straight Groove 7",
+        "bpm_min": 95,
+        "bpm_max": 130,
+        "file": "Straight Groove 7 (95-130BPM).mid"
+      },
+      {
+        "name": "Straight Groove 8",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Straight Groove 8 (100-125BPM).mid"
+      },
+      {
+        "name": "Straight Groove 9",
+        "bpm_min": 95,
+        "bpm_max": 125,
+        "file": "Straight Groove 9 (95-125BPM).mid"
+      },
+      {
+        "name": "Switch Groove 2",
+        "bpm_min": 120,
+        "bpm_max": 145,
+        "file": "Switch Groove 2 (120-145BPM).mid"
+      },
+      {
+        "name": "Switch Groove 3",
+        "bpm_min": 120,
+        "bpm_max": 145,
+        "file": "Switch Groove 3 (120-145BPM).mid"
+      },
+      {
+        "name": "Switch Groove 4",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Switch Groove 4 (110-135BPM).mid"
+      },
+      {
+        "name": "Switch Groove 5",
+        "bpm_min": 105,
+        "bpm_max": 130,
+        "file": "Switch Groove 5 (105-130BPM).mid"
+      }
+    ],
+    "bridge": [
+      {
+        "name": "Bounce Groove 1",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Bounce Groove 1 (100-130BPM).mid"
+      },
+      {
+        "name": "Bounce Groove 10",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Bounce Groove 10 (110-135BPM).mid"
+      },
+      {
+        "name": "Bounce Groove 11",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Bounce Groove 11 (110-140BPM).mid"
+      },
+      {
+        "name": "Bounce Groove 2",
+        "bpm_min": 95,
+        "bpm_max": 135,
+        "file": "Bounce Groove 2 (95-135BPM).mid"
+      },
+      {
+        "name": "Bounce Groove 3",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Bounce Groove 3 (110-140BPM).mid"
+      },
+      {
+        "name": "Bounce Groove 4",
+        "bpm_min": 115,
+        "bpm_max": 140,
+        "file": "Bounce Groove 4 (115-140BPM).mid"
+      },
+      {
+        "name": "Bounce Groove 5",
+        "bpm_min": 110,
+        "bpm_max": 150,
+        "file": "Bounce Groove 5 (110-150BPM).mid"
+      },
+      {
+        "name": "Bounce Groove 6",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Bounce Groove 6 (100-140BPM).mid"
+      },
+      {
+        "name": "Bounce Groove 7",
+        "bpm_min": 110,
+        "bpm_max": 150,
+        "file": "Bounce Groove 7 (110-150BPM).mid"
+      },
+      {
+        "name": "Bounce Groove 8",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Bounce Groove 8 (110-130BPM).mid"
+      },
+      {
+        "name": "Bounce Groove 9",
+        "bpm_min": 105,
+        "bpm_max": 120,
+        "file": "Bounce Groove 9 (105-120BPM).mid"
+      },
+      {
+        "name": "Funky Groove 13",
+        "bpm_min": 105,
+        "bpm_max": 125,
+        "file": "Funky Groove 13 (105-125BPM).mid"
+      },
+      {
+        "name": "Funky Groove 25",
+        "bpm_min": 115,
+        "bpm_max": 140,
+        "file": "Funky Groove 25 (115-140BPM).mid"
+      },
+      {
+        "name": "Funky Groove 31",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Funky Groove 31 (100-120BPM).mid"
+      },
+      {
+        "name": "Funky Groove 33",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Funky Groove 33 (100-120BPM).mid"
+      },
+      {
+        "name": "Funky Groove 35",
+        "bpm_min": 100,
+        "bpm_max": 115,
+        "file": "Funky Groove 35 (100-115BPM).mid"
+      },
+      {
+        "name": "Funky Groove 36",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Funky Groove 36 (100-140BPM).mid"
+      },
+      {
+        "name": "Funky Groove 39",
+        "bpm_min": 95,
+        "bpm_max": 120,
+        "file": "Funky Groove 39 (95-120BPM).mid"
+      },
+      {
+        "name": "Funky Groove 41",
+        "bpm_min": 105,
+        "bpm_max": 125,
+        "file": "Funky Groove 41 (105-125BPM).mid"
+      },
+      {
+        "name": "Half Time Groove 1",
+        "bpm_min": 120,
+        "bpm_max": 160,
+        "file": "Half Time Groove 1 (120-160BPM).mid"
+      },
+      {
+        "name": "Half Time Groove 2",
+        "bpm_min": 110,
+        "bpm_max": 160,
+        "file": "Half Time Groove 2 (110-160BPM).mid"
+      },
+      {
+        "name": "Half Time Groove 3",
+        "bpm_min": 120,
+        "bpm_max": 145,
+        "file": "Half Time Groove 3 (120-145BPM).mid"
+      },
+      {
+        "name": "Half Time Groove 4",
+        "bpm_min": 105,
+        "bpm_max": 120,
+        "file": "Half Time Groove 4 (105-120BPM).mid"
+      },
+      {
+        "name": "Half Time Groove 5",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Half Time Groove 5 (100-130BPM).mid"
+      },
+      {
+        "name": "Half Time Groove 6",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Half Time Groove 6 (100-130BPM).mid"
+      },
+      {
+        "name": "Switch Groove 1",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Switch Groove 1 (110-140BPM).mid"
+      },
+      {
+        "name": "Tribal Toms 1",
+        "bpm_min": 100,
+        "bpm_max": 135,
+        "file": "Tribal Toms 1 (100-135BPM).mid"
+      },
+      {
+        "name": "Tribal Toms 10",
+        "bpm_min": 95,
+        "bpm_max": 135,
+        "file": "Tribal Toms 10 (95-135BPM).mid"
+      },
+      {
+        "name": "Tribal Toms 11",
+        "bpm_min": 90,
+        "bpm_max": 120,
+        "file": "Tribal Toms 11 (90-120BPM).mid"
+      },
+      {
+        "name": "Tribal Toms 12",
+        "bpm_min": 115,
+        "bpm_max": 135,
+        "file": "Tribal Toms 12 (115-135BPM).mid"
+      },
+      {
+        "name": "Tribal Toms 2",
+        "bpm_min": 115,
+        "bpm_max": 140,
+        "file": "Tribal Toms 2 (115-140BPM).mid"
+      },
+      {
+        "name": "Tribal Toms 3",
+        "bpm_min": 105,
+        "bpm_max": 140,
+        "file": "Tribal Toms 3 (105-140BPM).mid"
+      },
+      {
+        "name": "Tribal Toms 4",
+        "bpm_min": 105,
+        "bpm_max": 130,
+        "file": "Tribal Toms 4  (105-130BPM).mid"
+      },
+      {
+        "name": "Tribal Toms 5",
+        "bpm_min": 110,
+        "bpm_max": 145,
+        "file": "Tribal Toms 5 (110-145BPM).mid"
+      },
+      {
+        "name": "Tribal Toms 6",
+        "bpm_min": 90,
+        "bpm_max": 130,
+        "file": "Tribal Toms 6 (90-130BPM).mid"
+      },
+      {
+        "name": "Tribal Toms 7",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Tribal Toms 7 (100-130BPM).mid"
+      },
+      {
+        "name": "Tribal Toms 8",
+        "bpm_min": 90,
+        "bpm_max": 120,
+        "file": "Tribal Toms 8 (90-120BPM).mid"
+      },
+      {
+        "name": "Tribal Toms 9",
+        "bpm_min": 90,
+        "bpm_max": 130,
+        "file": "Tribal Toms 9 (90-130BPM).mid"
+      }
+    ],
+    "breakdown": [
+      {
+        "name": "Driving Breakdown 1",
+        "bpm_min": 120,
+        "bpm_max": 140,
+        "file": "Driving Breakdown 1 (120-140BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 10",
+        "bpm_min": 105,
+        "bpm_max": 130,
+        "file": "Driving Breakdown 10 (105-130BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 11",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Driving Breakdown 11 (100-140BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 12",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Driving Breakdown 12 (100-140BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 13",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Driving Breakdown 13 (110-140BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 14",
+        "bpm_min": 105,
+        "bpm_max": 130,
+        "file": "Driving Breakdown 14 (105-130BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 15",
+        "bpm_min": 95,
+        "bpm_max": 130,
+        "file": "Driving Breakdown 15 (95-130BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 16",
+        "bpm_min": 90,
+        "bpm_max": 120,
+        "file": "Driving Breakdown 16 (90-120BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 17",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Driving Breakdown 17 (100-130BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 18",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Driving Breakdown 18 (100-130BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 2",
+        "bpm_min": 115,
+        "bpm_max": 135,
+        "file": "Driving Breakdown 2 (115-135BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 3",
+        "bpm_min": 120,
+        "bpm_max": 140,
+        "file": "Driving Breakdown 3 (120-140BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 4",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Driving Breakdown 4 (110-140BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 5",
+        "bpm_min": 105,
+        "bpm_max": 135,
+        "file": "Driving Breakdown 5 (105-135BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 6",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Driving Breakdown 6 (100-140BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 7",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Driving Breakdown 7 (110-140BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 8",
+        "bpm_min": 105,
+        "bpm_max": 135,
+        "file": "Driving Breakdown 8 (105-135BPM).mid"
+      },
+      {
+        "name": "Driving Breakdown 9",
+        "bpm_min": 105,
+        "bpm_max": 135,
+        "file": "Driving Breakdown 9 (105-135BPM).mid"
+      },
+      {
+        "name": "Half Time Breakdown 1",
+        "bpm_min": 115,
+        "bpm_max": 160,
+        "file": "Half Time Breakdown 1 (115-160BPM).mid"
+      },
+      {
+        "name": "Half Time Breakdown 2",
+        "bpm_min": 115,
+        "bpm_max": 160,
+        "file": "Half Time Breakdown 2 (115-160BPM).mid"
+      },
+      {
+        "name": "Half Time Breakdown 3",
+        "bpm_min": 120,
+        "bpm_max": 170,
+        "file": "Half Time Breakdown 3 (120-170BPM).mid"
+      },
+      {
+        "name": "Half Time Breakdown 4",
+        "bpm_min": 110,
+        "bpm_max": 170,
+        "file": "Half Time Breakdown 4 (110-170BPM).mid"
+      },
+      {
+        "name": "Half Time Breakdown 5",
+        "bpm_min": 110,
+        "bpm_max": 150,
+        "file": "Half Time Breakdown 5 (110-150BPM).mid"
+      },
+      {
+        "name": "Half Time Breakdown 6",
+        "bpm_min": 105,
+        "bpm_max": 140,
+        "file": "Half Time Breakdown 6 (105-140BPM).mid"
+      },
+      {
+        "name": "Half Time Breakdown 7",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Half Time Breakdown 7 (100-140BPM).mid"
+      }
+    ],
+    "fills": [
+      {
+        "name": "Fast Roll Fill 1",
+        "bpm_min": 90,
+        "bpm_max": 110,
+        "file": "Fast Roll Fill 1 (90-110BPM).mid"
+      },
+      {
+        "name": "Fast Roll Fill 2",
+        "bpm_min": 90,
+        "bpm_max": 105,
+        "file": "Fast Roll Fill 2 (90-105BPM).mid"
+      },
+      {
+        "name": "Fill 1",
+        "bpm_min": 100,
+        "bpm_max": 150,
+        "file": "Fill 1 (100-150BPM).mid"
+      },
+      {
+        "name": "Fill 10",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Fill 10  (110-135BPM).mid"
+      },
+      {
+        "name": "Fill 11",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Fill 11 (110-135BPM).mid"
+      },
+      {
+        "name": "Fill 12",
+        "bpm_min": 125,
+        "bpm_max": 150,
+        "file": "Fill 12 (125-150BPM).mid"
+      },
+      {
+        "name": "Fill 13",
+        "bpm_min": 115,
+        "bpm_max": 140,
+        "file": "Fill 13 (115-140BPM).mid"
+      },
+      {
+        "name": "Fill 14",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Fill 14 (110-140BPM).mid"
+      },
+      {
+        "name": "Fill 15",
+        "bpm_min": 120,
+        "bpm_max": 150,
+        "file": "Fill 15 (120-150BPM).mid"
+      },
+      {
+        "name": "Fill 16",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Fill 16 (110-140BPM).mid"
+      },
+      {
+        "name": "Fill 17",
+        "bpm_min": 115,
+        "bpm_max": 145,
+        "file": "Fill 17 (115-145BPM).mid"
+      },
+      {
+        "name": "Fill 18",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Fill 18 (110-130BPM).mid"
+      },
+      {
+        "name": "Fill 19",
+        "bpm_min": 110,
+        "bpm_max": 150,
+        "file": "Fill 19 (110-150BPM).mid"
+      },
+      {
+        "name": "Fill 2",
+        "bpm_min": 115,
+        "bpm_max": 160,
+        "file": "Fill 2 (115-160BPM).mid"
+      },
+      {
+        "name": "Fill 20",
+        "bpm_min": 110,
+        "bpm_max": 145,
+        "file": "Fill 20 (110-145BPM).mid"
+      },
+      {
+        "name": "Fill 21",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Fill 21  (110-140BPM).mid"
+      },
+      {
+        "name": "Fill 22",
+        "bpm_min": 105,
+        "bpm_max": 140,
+        "file": "Fill 22  (105-140BPM).mid"
+      },
+      {
+        "name": "Fill 23",
+        "bpm_min": 105,
+        "bpm_max": 150,
+        "file": "Fill 23  (105-150BPM).mid"
+      },
+      {
+        "name": "Fill 24",
+        "bpm_min": 110,
+        "bpm_max": 150,
+        "file": "Fill 24 (110-150BPM).mid"
+      },
+      {
+        "name": "Fill 25",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Fill 25 (110-135BPM).mid"
+      },
+      {
+        "name": "Fill 26",
+        "bpm_min": 110,
+        "bpm_max": 145,
+        "file": "Fill 26 (110-145BPM).mid"
+      },
+      {
+        "name": "Fill 27",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Fill 27 (110-140BPM).mid"
+      },
+      {
+        "name": "Fill 28",
+        "bpm_min": 105,
+        "bpm_max": 125,
+        "file": "Fill 28  (105-125BPM).mid"
+      },
+      {
+        "name": "Fill 29",
+        "bpm_min": 105,
+        "bpm_max": 120,
+        "file": "Fill 29  (105-120BPM).mid"
+      },
+      {
+        "name": "Fill 3",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Fill 3 (110-140BPM).mid"
+      },
+      {
+        "name": "Fill 30",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Fill 30 (100-140BPM).mid"
+      },
+      {
+        "name": "Fill 31",
+        "bpm_min": 100,
+        "bpm_max": 135,
+        "file": "Fill 31  (100-135BPM).mid"
+      },
+      {
+        "name": "Fill 32",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Fill 32 (100-140BPM).mid"
+      },
+      {
+        "name": "Fill 33",
+        "bpm_min": 100,
+        "bpm_max": 135,
+        "file": "Fill 33 (100-135BPM).mid"
+      },
+      {
+        "name": "Fill 34",
+        "bpm_min": 110,
+        "bpm_max": 145,
+        "file": "Fill 34  (110-145BPM).mid"
+      },
+      {
+        "name": "Fill 35",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Fill 35  (100-130BPM).mid"
+      },
+      {
+        "name": "Fill 36",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Fill 36 (100-130BPM).mid"
+      },
+      {
+        "name": "Fill 37",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Fill 37  (100-125BPM).mid"
+      },
+      {
+        "name": "Fill 38",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Fill 38  (100-140BPM).mid"
+      },
+      {
+        "name": "Fill 39",
+        "bpm_min": 100,
+        "bpm_max": 150,
+        "file": "Fill 39 (100-150BPM).mid"
+      },
+      {
+        "name": "Fill 4",
+        "bpm_min": 110,
+        "bpm_max": 150,
+        "file": "Fill 4 (110-150BPM).mid"
+      },
+      {
+        "name": "Fill 40",
+        "bpm_min": 100,
+        "bpm_max": 145,
+        "file": "Fill 40 (100-145BPM).mid"
+      },
+      {
+        "name": "Fill 41",
+        "bpm_min": 100,
+        "bpm_max": 150,
+        "file": "Fill 41 (100-150BPM).mid"
+      },
+      {
+        "name": "Fill 42",
+        "bpm_min": 100,
+        "bpm_max": 150,
+        "file": "Fill 42 (100-150BPM).mid"
+      },
+      {
+        "name": "Fill 43",
+        "bpm_min": 100,
+        "bpm_max": 150,
+        "file": "Fill 43 (100-150BPM).mid"
+      },
+      {
+        "name": "Fill 44",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Fill 44  (100-140BPM).mid"
+      },
+      {
+        "name": "Fill 45",
+        "bpm_min": 90,
+        "bpm_max": 120,
+        "file": "Fill 45 (90-120BPM).mid"
+      },
+      {
+        "name": "Fill 46",
+        "bpm_min": 90,
+        "bpm_max": 120,
+        "file": "Fill 46 (90-120BPM).mid"
+      },
+      {
+        "name": "Fill 47",
+        "bpm_min": 90,
+        "bpm_max": 125,
+        "file": "Fill 47 (90-125BPM).mid"
+      },
+      {
+        "name": "Fill 48",
+        "bpm_min": 90,
+        "bpm_max": 130,
+        "file": "Fill 48 (90-130BPM).mid"
+      },
+      {
+        "name": "Fill 49",
+        "bpm_min": 90,
+        "bpm_max": 140,
+        "file": "Fill 49  (90-140BPM).mid"
+      },
+      {
+        "name": "Fill 5",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Fill 5 (110-140BPM).mid"
+      },
+      {
+        "name": "Fill 50",
+        "bpm_min": 100,
+        "bpm_max": 150,
+        "file": "Fill 50 (100-150BPM).mid"
+      },
+      {
+        "name": "Fill 51",
+        "bpm_min": 90,
+        "bpm_max": 130,
+        "file": "Fill 51 (90-130BPM).mid"
+      },
+      {
+        "name": "Fill 52",
+        "bpm_min": 90,
+        "bpm_max": 130,
+        "file": "Fill 52 (90-130BPM).mid"
+      },
+      {
+        "name": "Fill 53",
+        "bpm_min": 90,
+        "bpm_max": 120,
+        "file": "Fill 53 (90-120BPM).mid"
+      },
+      {
+        "name": "Fill 54",
+        "bpm_min": 90,
+        "bpm_max": 145,
+        "file": "Fill 54  (90-145BPM).mid"
+      },
+      {
+        "name": "Fill 55",
+        "bpm_min": 90,
+        "bpm_max": 110,
+        "file": "Fill 55 (90-110BPM).mid"
+      },
+      {
+        "name": "Fill 56",
+        "bpm_min": 90,
+        "bpm_max": 115,
+        "file": "Fill 56 (90-115BPM).mid"
+      },
+      {
+        "name": "Fill 57",
+        "bpm_min": 90,
+        "bpm_max": 125,
+        "file": "Fill 57 (90-125BPM).mid"
+      },
+      {
+        "name": "Fill 58",
+        "bpm_min": 120,
+        "bpm_max": 165,
+        "file": "Fill 58 (120-165BPM).mid"
+      },
+      {
+        "name": "Fill 59",
+        "bpm_min": 110,
+        "bpm_max": 150,
+        "file": "Fill 59  (110-150BPM).mid"
+      },
+      {
+        "name": "Fill 6",
+        "bpm_min": 100,
+        "bpm_max": 150,
+        "file": "Fill 6 (100-150BPM).mid"
+      },
+      {
+        "name": "Fill 60",
+        "bpm_min": 130,
+        "bpm_max": 160,
+        "file": "Fill 60 (130-160BPM).mid"
+      },
+      {
+        "name": "Fill 61",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Fill 61 (110-140BPM).mid"
+      },
+      {
+        "name": "Fill 62",
+        "bpm_min": 110,
+        "bpm_max": 160,
+        "file": "Fill 62  (110-160BPM).mid"
+      },
+      {
+        "name": "Fill 7",
+        "bpm_min": 115,
+        "bpm_max": 160,
+        "file": "Fill 7 (115-160BPM).mid"
+      },
+      {
+        "name": "Fill 8",
+        "bpm_min": 110,
+        "bpm_max": 160,
+        "file": "Fill 8  (110-160BPM).mid"
+      },
+      {
+        "name": "Fill 9",
+        "bpm_min": 110,
+        "bpm_max": 145,
+        "file": "Fill 9  (110-145BPM).mid"
+      },
+      {
+        "name": "Groove Fill 1",
+        "bpm_min": 115,
+        "bpm_max": 150,
+        "file": "Groove Fill 1 (115-150BPM).mid"
+      },
+      {
+        "name": "Groove Fill 10",
+        "bpm_min": 100,
+        "bpm_max": 135,
+        "file": "Groove Fill 10 (100-135BPM).mid"
+      },
+      {
+        "name": "Groove Fill 11",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Groove Fill 11 (100-140BPM).mid"
+      },
+      {
+        "name": "Groove Fill 12",
+        "bpm_min": 100,
+        "bpm_max": 120,
+        "file": "Groove Fill 12  (100-120BPM).mid"
+      },
+      {
+        "name": "Groove Fill 13",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Groove Fill 13  (100-125BPM).mid"
+      },
+      {
+        "name": "Groove Fill 14",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Groove Fill 14  (100-130BPM).mid"
+      },
+      {
+        "name": "Groove Fill 15",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Groove Fill 15 (100-140BPM).mid"
+      },
+      {
+        "name": "Groove Fill 16",
+        "bpm_min": 95,
+        "bpm_max": 125,
+        "file": "Groove Fill 16 (95-125BPM).mid"
+      },
+      {
+        "name": "Groove Fill 17",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Groove Fill 17  (100-140BPM).mid"
+      },
+      {
+        "name": "Groove Fill 18",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Groove Fill 18 (100-125BPM).mid"
+      },
+      {
+        "name": "Groove Fill 19",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Groove Fill 19  (100-140BPM).mid"
+      },
+      {
+        "name": "Groove Fill 2",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Groove Fill 2 (110-135BPM).mid"
+      },
+      {
+        "name": "Groove Fill 20",
+        "bpm_min": 100,
+        "bpm_max": 115,
+        "file": "Groove Fill 20  (100-115BPM).mid"
+      },
+      {
+        "name": "Groove Fill 21",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Groove Fill 21 (100-140BPM).mid"
+      },
+      {
+        "name": "Groove Fill 22",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Groove Fill 22  (100-130BPM).mid"
+      },
+      {
+        "name": "Groove Fill 23",
+        "bpm_min": 100,
+        "bpm_max": 135,
+        "file": "Groove Fill 23  (100-135BPM).mid"
+      },
+      {
+        "name": "Groove Fill 24",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Groove Fill 24  (100-130BPM).mid"
+      },
+      {
+        "name": "Groove Fill 25",
+        "bpm_min": 100,
+        "bpm_max": 135,
+        "file": "Groove Fill 25 (100-135BPM).mid"
+      },
+      {
+        "name": "Groove Fill 26",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Groove Fill 26  (100-125BPM).mid"
+      },
+      {
+        "name": "Groove Fill 27",
+        "bpm_min": 95,
+        "bpm_max": 120,
+        "file": "Groove Fill 27  (95-120BPM).mid"
+      },
+      {
+        "name": "Groove Fill 28",
+        "bpm_min": 90,
+        "bpm_max": 125,
+        "file": "Groove Fill 28 (90-125BPM).mid"
+      },
+      {
+        "name": "Groove Fill 29",
+        "bpm_min": 90,
+        "bpm_max": 100,
+        "file": "Groove Fill 29 (90-100BPM).mid"
+      },
+      {
+        "name": "Groove Fill 3",
+        "bpm_min": 110,
+        "bpm_max": 145,
+        "file": "Groove Fill 3 (110-145BPM).mid"
+      },
+      {
+        "name": "Groove Fill 4",
+        "bpm_min": 115,
+        "bpm_max": 145,
+        "file": "Groove Fill 4  (115-145BPM).mid"
+      },
+      {
+        "name": "Groove Fill 5",
+        "bpm_min": 115,
+        "bpm_max": 135,
+        "file": "Groove Fill 5 (115-135BPM).mid"
+      },
+      {
+        "name": "Groove Fill 6",
+        "bpm_min": 105,
+        "bpm_max": 130,
+        "file": "Groove Fill 6 (105-130BPM).mid"
+      },
+      {
+        "name": "Groove Fill 7",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Groove Fill 7 (110-140BPM).mid"
+      },
+      {
+        "name": "Groove Fill 8",
+        "bpm_min": 105,
+        "bpm_max": 130,
+        "file": "Groove Fill 8 (105-130BPM).mid"
+      },
+      {
+        "name": "Groove Fill 9",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Groove Fill 9 (100-125BPM).mid"
+      },
+      {
+        "name": "Marching Snare Fill",
+        "bpm_min": 110,
+        "bpm_max": 150,
+        "file": "Marching Snare Fill (110-150BPM).mid"
+      },
+      {
+        "name": "Tribal Fill 1",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Tribal Fill 1 (100-130BPM).mid"
+      },
+      {
+        "name": "Tribal Fill 2",
+        "bpm_min": 100,
+        "bpm_max": 135,
+        "file": "Tribal Fill 2 (100-135BPM).mid"
+      },
+      {
+        "name": "Triplet Fill 1",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Triplet Fill 1 (100-125BPM).mid"
+      },
+      {
+        "name": "Triplet Fill 2",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Triplet Fill 2  (100-125BPM).mid"
+      }
+    ],
+    "outro": [
+      {
+        "name": "Aggressive Outro 1",
+        "bpm_min": 115,
+        "bpm_max": 135,
+        "file": "Aggressive Outro 1 (115-135BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 10",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Aggressive Outro 10 (110-130BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 11",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Aggressive Outro 11 (100-125BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 12",
+        "bpm_min": 115,
+        "bpm_max": 140,
+        "file": "Aggressive Outro 12 (115-140BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 13",
+        "bpm_min": 115,
+        "bpm_max": 135,
+        "file": "Aggressive Outro 13 (115-135BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 14",
+        "bpm_min": 95,
+        "bpm_max": 145,
+        "file": "Aggressive Outro 14 (95-145BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 15",
+        "bpm_min": 115,
+        "bpm_max": 140,
+        "file": "Aggressive Outro 15 (115-140BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 16",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Aggressive Outro 16 (100-130BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 17",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Aggressive Outro 17 (110-135BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 18",
+        "bpm_min": 90,
+        "bpm_max": 130,
+        "file": "Aggressive Outro 18 (90-130BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 19",
+        "bpm_min": 100,
+        "bpm_max": 125,
+        "file": "Aggressive Outro 19 (100-125BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 2",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Aggressive Outro 2 (110-140BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 20",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Aggressive Outro 20 (100-130BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 21",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Aggressive Outro 21 (100-130BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 3",
+        "bpm_min": 100,
+        "bpm_max": 135,
+        "file": "Aggressive Outro 3 (100-135BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 4",
+        "bpm_min": 95,
+        "bpm_max": 140,
+        "file": "Aggressive Outro 4 (95-140BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 5",
+        "bpm_min": 100,
+        "bpm_max": 140,
+        "file": "Aggressive Outro 5 (100-140BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 6",
+        "bpm_min": 100,
+        "bpm_max": 150,
+        "file": "Aggressive Outro 6 (100-150BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 7",
+        "bpm_min": 120,
+        "bpm_max": 140,
+        "file": "Aggressive Outro 7 (120-140BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 8",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Aggressive Outro 8 (110-130BPM).mid"
+      },
+      {
+        "name": "Aggressive Outro 9",
+        "bpm_min": 115,
+        "bpm_max": 140,
+        "file": "Aggressive Outro 9 (115-140BPM).mid"
+      },
+      {
+        "name": "Basic Groove Outro 1",
+        "bpm_min": 115,
+        "bpm_max": 140,
+        "file": "Basic Groove Outro 1 (115-140BPM).mid"
+      },
+      {
+        "name": "Basic Groove Outro 10",
+        "bpm_min": 100,
+        "bpm_max": 130,
+        "file": "Basic Groove Outro 10 (100-130BPM).mid"
+      },
+      {
+        "name": "Basic Groove Outro 2",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Basic Groove Outro 2 (110-130BPM).mid"
+      },
+      {
+        "name": "Basic Groove Outro 3",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Basic Groove Outro 3 (110-140BPM).mid"
+      },
+      {
+        "name": "Basic Groove Outro 4",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Basic Groove Outro 4 (110-135BPM).mid"
+      },
+      {
+        "name": "Basic Groove Outro 5",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Basic Groove Outro 5 (110-130BPM).mid"
+      },
+      {
+        "name": "Basic Groove Outro 6",
+        "bpm_min": 115,
+        "bpm_max": 140,
+        "file": "Basic Groove Outro 6 (115-140BPM).mid"
+      },
+      {
+        "name": "Basic Groove Outro 7",
+        "bpm_min": 110,
+        "bpm_max": 140,
+        "file": "Basic Groove Outro 7 (110-140BPM).mid"
+      },
+      {
+        "name": "Basic Groove Outro 8",
+        "bpm_min": 110,
+        "bpm_max": 135,
+        "file": "Basic Groove Outro 8 (110-135BPM).mid"
+      },
+      {
+        "name": "Basic Groove Outro 9",
+        "bpm_min": 110,
+        "bpm_max": 130,
+        "file": "Basic Groove Outro 9 (110-130BPM).mid"
+      },
+      {
+        "name": "Basic Outro",
+        "bpm_min": 95,
+        "bpm_max": 135,
+        "file": "Basic Outro (95-135BPM).mid"
+      },
+      {
+        "name": "Funky Outro 1",
+        "bpm_min": 95,
+        "bpm_max": 125,
+        "file": "Funky Outro 1 (95-125BPM).mid"
+      },
+      {
+        "name": "Funky Outro 2",
+        "bpm_min": 90,
+        "bpm_max": 110,
+        "file": "Funky Outro 2 (90-110BPM).mid"
+      },
+      {
+        "name": "Groove End 1",
+        "bpm_min": 100,
+        "bpm_max": 145,
+        "file": "Groove End 1 (100-145BPM).mid"
+      },
+      {
+        "name": "Groove End 2",
+        "bpm_min": 100,
+        "bpm_max": 145,
+        "file": "Groove End 2 (100-145BPM).mid"
+      },
+      {
+        "name": "Groove End 3",
+        "bpm_min": 115,
+        "bpm_max": 160,
+        "file": "Groove End 3 (115-160BPM).mid"
+      },
+      {
+        "name": "Tom Ending",
+        "bpm_min": 120,
+        "bpm_max": 160,
+        "file": "Tom Ending  (120-160BPM).mid"
+      }
+    ]
+  }
+}
