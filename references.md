@@ -96,14 +96,22 @@ User has a curated `_MIDI PACKS` directory at `~/Documents/_MIDI PACKS/` with ~1
 
 If you mine any of these into the skill, follow the same pattern as `data/shld_mood_bank.json`: parse filenames, dedupe, write a JSON sidecar, add a SKILL.md section pointing at it, screen against the FORBIDDEN list.
 
-### Drum + bass MIDI libraries (also on disk — referenced, not bundled)
+### Drum fills — programmatic, not from external libraries
 
-Pointed at by SKILL.md's "External drum (and bass) MIDI libraries" section. Used sparingly — fills and transitions only, not sustained grooves.
+Drum fills at section transitions are generated programmatically by `composer.py`'s `FILL_PATTERNS` catalog (auto-spliced into the last 2 beats of each transitioning section). The pattern vocabulary is informed by standard rock-fill pedagogy:
+- [drum-patterns.com — Rock style page](https://drum-patterns.com/style/rock/) — catalog of named rock grooves and fills used as a reference for the tom-roll-8ths, snare-rush, and kick-snare-8ths patterns.
+- Drumeo "Common Rock Drum Fills for Beginners" — pedagogical reference for eighth-note tom rolls and snare-led builds (sourced via web search; specific URL https://www.drumeo.com/beat/common-rock-drum-fills/).
+- Bonham triplet idiom — well-documented rock fill vocabulary used as the basis for the `bonham-triplets` pattern.
 
-- **Drumforge — NuMetal Grooves Vol 1** at `~/Documents/_MIDI PACKS/Drumforge/Midi/NuMetal Grooves Vol 1/NuMetal Grooves Vol 1/` — 383 `.mid` files across 7 song-section folders (Intro / Verse / Chorus / Bridge / Breakdown / Fills / Outro), BPM ranges encoded in filenames. Pre-indexed at [`data/drumforge_numetal_manifest.json`](data/drumforge_numetal_manifest.json) — regenerate via `tools/build_drum_manifest.py` if the source pack ever updates. Genre is nu-metal but the fills/intros/outros are useful across heavier rock contexts.
-- **Common Library — Blues_Rock-n-Roll Vol 1** at `~/Documents/_MIDI PACKS/Blues_Rock-n-Roll--Common--Volume-1--v3.1/Blues_Rock-n-Roll/` — 57,309 `.mid` files organized by time-sig × feel (19 top-level folders) × Theme. Filename convention `000 035 KICK HAT 156.mid` encodes complexity (000–003), pattern ID, instruments, BPM. Not pre-indexed (too many); browse via shell `find` filtered by complexity prefix.
-- **Toontrack EZdrummer 2/3 + EZbass** at `~/Library/Application Support/Toontrack/` — proprietary `MidiDB` format, NOT exposed as `.mid` files. The user has EZX expansions: TightRoom + MainRoom (EZD3), ModernMetal, HardRock, ProgressiveRock, RockSolid, dfh, Vintage, Modern. Workflow is drag-and-drop from the EZdrummer/EZbass plugin GUI directly into REAPER tracks — the skill cannot reference specific files programmatically, but can suggest "drag in a Modern Rock halftime verse build" type descriptions.
-- **Also on disk but skipped**: Niko Drum Sample Pack (WAV samples, no MIDI), Focusrite Drum Pack (WAV), Cymatics Percussion Toolkit (WAV), SumnSumnSumn drum kit (samples not MIDI), Addictive Drums 2 (proprietary preset format), Modalics Beat Scholar (plugin presets, no exposed MIDI), Niko Grooves MIDI Demo (these are CHORD/MELODY grooves, not drum patterns — misleading name).
+Pattern definitions live in `composer.py` as the `FILL_PATTERNS` dict. Extend by adding new entries to `FILL_PATTERNS` and `FILL_ROTATION` if the catalog needs broader vocabulary.
+
+### Drum / bass MIDI libraries on disk *(historical — not used by the skill)*
+
+Several drum MIDI libraries exist on the user's machine but the skill does **not** reference them; the programmatic `FILL_PATTERNS` covers the section-transition use case without external file dependencies:
+- `Drumforge — NuMetal Grooves Vol 1` at `~/Documents/_MIDI PACKS/Drumforge/Midi/NuMetal Grooves Vol 1/` — 383 `.mid` files. Pre-indexed at [`data/drumforge_numetal_manifest.json`](data/drumforge_numetal_manifest.json) (the manifest is kept for documentation; the splice mechanism was superseded by programmatic fills).
+- `Common Library Blues_Rock-n-Roll Vol 1` at `~/Documents/_MIDI PACKS/Blues_Rock-n-Roll--Common--Volume-1--v3.1/` — 57k `.mid` files.
+- `Donit — 500 MIDI Drumloops` at `~/Downloads/500 Midi Drumloops by Donit/` — 500 house-music drum loops (no fills folder; not used).
+- Plus various sample packs (WAV, not MIDI) and plugin-internal libraries that are not programmatically accessible.
 
 ## Composition quality framework
 - Hooktheory "Chord and Melody Metrics" — https://www.hooktheory.com/song-metrics/about — the first 5 axes of the now-6-axis quality framework documented in SKILL.md's "Composition quality metrics" section: Chord Complexity, Melodic Complexity, Chord-Melody Tension, Chord Progression Novelty, Chord Bass Melody. Each metric links to a curated list of exemplar songs from their TheoryTab database. The 6th axis (Arrangement Pacing) extends the framework — see arrangement-theory sources below.

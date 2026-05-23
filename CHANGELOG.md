@@ -8,9 +8,9 @@ This is a *catalog* changelog (what new compositional vocabulary, idioms, and ca
 
 ## May 2026
 
-### Late May — drum/bass library integration
+### Late May — drum-fills auto-splice at section transitions
 
-- **External drum (and bass) MIDI libraries — referenced, not bundled** — new SKILL.md section pointing at three on-disk sources for fills + transitions: Drumforge NuMetal Grooves Vol 1 (383 files, pre-indexed at [`data/drumforge_numetal_manifest.json`](data/drumforge_numetal_manifest.json) by section + BPM), Common Library Blues_Rock-n-Roll Vol 1 (57k files, complexity-encoded filenames `000`–`003`, browse-via-find), and Toontrack EZdrummer 2/3 + EZbass (proprietary MidiDB format → drag-from-GUI suggestions). Constrained explicitly to FILLS and TRANSITIONS only — the programmatic patterns (`basic-rock`, `halftime`, `four-on-floor`, etc.) remain the default for sustained grooves to honor the "idea incubator, not produced songs" framing. Hard rule: no more than 2 library drops per song.
+- **Programmatic drum fills, auto-spliced at every form transition** — new `FILL_PATTERNS` catalog in `composer.py` with 7 named programmatic fills (tom-roll-8ths, snare-rush, tom-roll-16ths, bonham-triplets, kick-snare-8ths, kick-storm, ohat-snare-alt) informed by standard rock-fill pedagogy. The compose pipeline now auto-detects section boundaries in `form` where the next section differs from the current one and splices a fill into the last 2 beats of the outgoing section's drum track, replacing the programmatic kick/snare for those 2 beats. Fills rotate through `FILL_ROTATION` for variety across the song. Default ON; opt-out via `auto_fills: false` at spec level. Sections with `drums: "none"`, literal repeats, or shorter than 4 beats skipped automatically. Per-section `.mid` files stay programmatic-only (no form context); fills appear only in `full.mid` and the `.RPP`. Programmatic chosen over external-file references (initial attempt referenced Drumforge `.mid` files manually via `move` strings — friction-heavy and superseded).
 
 ### Late May — arrangement + Timmons batch
 

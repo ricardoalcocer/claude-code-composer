@@ -58,6 +58,41 @@ jobs:
           test -f /tmp/out/spec.json
           grep -q "claude_composer_spec_b64" /tmp/out/ci.RPP
 
+      - name: Auto-fill smoke test (multi-section form, fills present in full.mid)
+        run: |
+          cat > /tmp/fills_spec.json <<'JSON'
+          {
+            "song_name": "fills-ci",
+            "key": "Em",
+            "tempo": 120,
+            "time_sig": [4, 4],
+            "roles": ["bass", "drums"],
+            "sections": [
+              {"name": "verse",  "feel": "halftime", "chords": [{"name": "Em", "beats": 4},{"name": "D", "beats": 4},{"name": "C", "beats": 4},{"name": "B7", "beats": 4}]},
+              {"name": "chorus", "feel": "driving",  "chords": [{"name": "C",  "beats": 4},{"name": "G", "beats": 4},{"name": "D", "beats": 4},{"name": "Em", "beats": 4}]}
+            ],
+            "form": ["verse", "chorus", "verse", "chorus"]
+          }
+          JSON
+          mkdir -p /tmp/fills_out
+          python3 composer.py compose --midi-only /tmp/fills_spec.json /tmp/fills_out
+          # 3 transitions in form [verse,chorus,verse,chorus] → 3 fills spliced.
+          # FILL_ROTATION position 0 = tom-roll-8ths (uses tom_hi=50, tom_mid=47).
+          # FILL_ROTATION position 2 = tom-roll-16ths (uses tom_lo=43 too).
+          # All 3 tom pitches (43, 47, 50) must appear in full.mid.
+          python3 -c "
+          data = open('/tmp/fills_out/full.mid', 'rb').read()
+          found = set()
+          for i in range(len(data)-2):
+              b = data[i]
+              if 0x90 <= b <= 0x9F and i+2 < len(data):
+                  n, v = data[i+1], data[i+2]
+                  if v > 0 and n in (43, 47, 50):
+                      found.add(n)
+          assert found == {43, 47, 50}, f'expected tom pitches 43/47/50 in full.mid, found {sorted(found)}'
+          print('auto-fill splice OK — tom pitches', sorted(found), 'present')
+          "
+
       - name: Compose --midi-only smoke test (no config.json, no .RPP)
         run: |
           rm -f config.json

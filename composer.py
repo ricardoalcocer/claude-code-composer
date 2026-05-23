@@ -228,6 +228,8 @@ FEEL_BAR_PATTERNS = {
 }
 
 GM_DRUMS = {"kick": 36, "snare": 38, "chat": 42, "ohat": 46, "crash": 49, "ride": 51,
+            # Toms (GM standard) — used by FILL_PATTERNS for tom rolls.
+            "tom_lo": 43, "tom_mid": 47, "tom_hi": 50,
             # Latin / world percussion (GM standard pitches) — used by one-drop, latin-fusion.
             # Swap the drum-track plugin to a GM-compliant kit (BFD, AD2, MT Power Drum) to hear them.
             "cowbell": 56, "bongo_hi": 60, "bongo_lo": 61, "conga_mute": 62,
@@ -443,19 +445,138 @@ def feel_hits(feel, chord_start_in_bar, chord_beats, side):
     return hits
 
 
-def emit_drum_pattern(cursor_beats, sec_length, pattern_name, mark_section_start):
-    """Drum notes for one section. mark_section_start=True drops a crash on beat 1."""
+# ---------- Fill patterns ----------
+# Programmatic 2-beat drum fills, spliced into the last 2 beats of a section
+# at form-level transitions (verse→chorus, chorus→bridge, etc). Each pattern
+# is a list of (offset_in_fill_beats, drum_name, velocity). Offsets span 0–2.
+# Vocabulary chosen to match common rock idioms (Bonham triplets, tom rolls,
+# snare crescendos) — see https://drum-patterns.com and standard drum-fill
+# pedagogy. Programmatic by design so we control the genre/character; works
+# without any external MIDI library dependency.
+FILL_PATTERNS = {
+    # Classic descending tom roll over 2 beats — 4 eighth-notes
+    "tom-roll-8ths": [
+        (0.00, "snare",   92),
+        (0.50, "snare",   88),
+        (1.00, "tom_hi",  92),
+        (1.50, "tom_mid", 90),
+    ],
+    # Denser 16th-note tom descent — snare into the kit
+    "tom-roll-16ths": [
+        (0.00, "snare",   88),
+        (0.25, "snare",   84),
+        (0.50, "tom_hi",  92),
+        (0.75, "tom_hi",  87),
+        (1.00, "tom_mid", 92),
+        (1.25, "tom_mid", 87),
+        (1.50, "tom_lo",  95),
+        (1.75, "tom_lo",  90),
+    ],
+    # Snare-only crescendo — building intensity, no toms
+    "snare-rush": [
+        (0.00, "snare", 76),
+        (0.25, "snare", 80),
+        (0.50, "snare", 84),
+        (0.75, "snare", 88),
+        (1.00, "snare", 90),
+        (1.25, "snare", 93),
+        (1.50, "snare", 96),
+        (1.75, "snare", 100),
+    ],
+    # Bonham-style triplets over 2 beats — 12 triplet subdivisions
+    "bonham-triplets": [
+        (0.000, "snare",   92),
+        (0.167, "snare",   84),
+        (0.333, "kick",    95),
+        (0.500, "tom_hi",  90),
+        (0.667, "tom_hi",  82),
+        (0.833, "kick",    95),
+        (1.000, "tom_mid", 92),
+        (1.167, "tom_mid", 84),
+        (1.333, "kick",    95),
+        (1.500, "tom_lo",  94),
+        (1.667, "tom_lo",  88),
+        (1.833, "tom_lo",  84),
+    ],
+    # Half-bar of 8ths on snare + kick — minimal, fits ballads / cinematic-rock
+    "kick-snare-8ths": [
+        (0.00, "kick",  92),
+        (0.50, "snare", 88),
+        (1.00, "kick",  92),
+        (1.50, "snare", 94),
+    ],
+    # Kick-driven build — kick on every 16th, snare on the upbeats
+    "kick-storm": [
+        (0.00, "kick",  90),
+        (0.25, "kick",  88),
+        (0.50, "snare", 90),
+        (0.75, "kick",  88),
+        (1.00, "kick",  92),
+        (1.25, "kick",  90),
+        (1.50, "snare", 95),
+        (1.75, "kick",  90),
+    ],
+    # Open-hat + snare alternating — funky transition feel
+    "ohat-snare-alt": [
+        (0.00, "ohat",  78),
+        (0.25, "snare", 84),
+        (0.50, "ohat",  78),
+        (0.75, "snare", 88),
+        (1.00, "ohat",  80),
+        (1.25, "snare", 92),
+        (1.50, "ohat",  82),
+        (1.75, "snare", 96),
+    ],
+}
+
+# Default rotation order — picked for variety across a song's transitions.
+# At transition index i, use FILL_ROTATION[i % len(FILL_ROTATION)].
+FILL_ROTATION = ["tom-roll-8ths", "snare-rush", "tom-roll-16ths",
+                 "bonham-triplets", "kick-snare-8ths", "kick-storm", "ohat-snare-alt"]
+
+FILL_WINDOW_BEATS = 2.0  # how much of the section's tail the fill replaces
+
+
+def emit_drum_pattern(cursor_beats, sec_length, pattern_name, mark_section_start, trailing_fill=None):
+    """Drum notes for one section.
+
+    mark_section_start=True drops a crash on beat 1.
+    trailing_fill=<fill_pattern_name> replaces the last FILL_WINDOW_BEATS of
+    programmatic drums with a fill from FILL_PATTERNS. The fill makes the
+    section-to-next-section transition feel like a real drummer played it.
+    Requires sec_length ≥ 2 * FILL_WINDOW_BEATS to avoid swallowing too much
+    of the section.
+    """
     pattern = DRUM_BAR_PATTERNS.get(pattern_name, [])
     out = []
     if mark_section_start and pattern:
         out.append((cursor_beats, 0.5, GM_DRUMS["crash"], 95))
+
+    # Determine where the programmatic pattern stops and the fill takes over.
+    # If trailing_fill requested but section too short to afford it, skip.
+    use_fill = (
+        trailing_fill is not None
+        and trailing_fill in FILL_PATTERNS
+        and sec_length >= 2 * FILL_WINDOW_BEATS
+        and pattern  # don't add a fill to "none" drum patterns
+    )
+    fill_starts_at = sec_length - FILL_WINDOW_BEATS if use_fill else sec_length
+
     bar_cursor = 0.0
     while bar_cursor < sec_length:
         for offset, drum, vel in pattern:
-            if bar_cursor + offset >= sec_length:
-                continue
-            out.append((cursor_beats + bar_cursor + offset, 0.1, GM_DRUMS[drum], vel))
+            t = bar_cursor + offset
+            if t >= sec_length or t >= fill_starts_at:
+                continue  # don't write programmatic drums inside the fill window
+            out.append((cursor_beats + t, 0.1, GM_DRUMS[drum], vel))
         bar_cursor += 4.0
+
+    if use_fill:
+        for offset, drum, vel in FILL_PATTERNS[trailing_fill]:
+            if offset >= FILL_WINDOW_BEATS:
+                continue
+            out.append((cursor_beats + fill_starts_at + offset, 0.1, GM_DRUMS[drum], vel))
+
     return out
 
 
@@ -1289,6 +1410,44 @@ def parse_items_in_range(rpp_lines, time_range, track_filter=None):
 
 # ---------- compose subcommand ----------
 
+def _build_drum_notes_with_fills(form, sections, drum_fills_per_position):
+    """Build the full-song drum track with trailing fills spliced at section transitions.
+
+    drum_fills_per_position[i] is either None (no fill at end of section i) or
+    the name of a FILL_PATTERNS entry. Used by both full.mid drums and the .RPP
+    drum items (the latter via _drum_notes_for_position).
+    """
+    out = []
+    cursor_beats = 0.0
+    for i, sec_name in enumerate(form):
+        sec = sections[sec_name]
+        sec_len = sum(c["beats"] for c in sec["chords"])
+        feel = sec.get("feel", "driving")
+        pattern_name = sec.get("drums") or FEEL_TO_DRUMS.get(feel, "basic-rock")
+        out.extend(emit_drum_pattern(
+            cursor_beats, sec_len, pattern_name,
+            mark_section_start=True,
+            trailing_fill=drum_fills_per_position[i],
+        ))
+        cursor_beats += sec_len
+    return out
+
+
+def _drum_notes_for_position(form, sections, drum_fills_per_position, position_idx):
+    """Build drum notes for ONE form position, returning notes in local time
+    (0 = section start). Used to populate the .RPP item for that position."""
+    sec_name = form[position_idx]
+    sec = sections[sec_name]
+    sec_len = sum(c["beats"] for c in sec["chords"])
+    feel = sec.get("feel", "driving")
+    pattern_name = sec.get("drums") or FEEL_TO_DRUMS.get(feel, "basic-rock")
+    return emit_drum_pattern(
+        0.0, sec_len, pattern_name,
+        mark_section_start=True,
+        trailing_fill=drum_fills_per_position[position_idx],
+    ), sec_len
+
+
 def compose_main(spec_path, out_dir, midi_only=False):
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -1302,8 +1461,35 @@ def compose_main(spec_path, out_dir, midi_only=False):
     form = spec["form"]
     song_name = spec.get("song_name", "untitled")
     roles = tuple(r for r in ALL_ROLES if r in set(spec.get("roles", DEFAULT_ROLES)))
+    auto_fills = spec.get("auto_fills", True)
 
-    # Per-section MIDI files for portability (each contains all roles as separate tracks).
+    # Compute per-form-position trailing fills for the drums role. A fill is
+    # added at the end of section i if i is not the last and form[i+1] differs
+    # from form[i] (a true section transition in the form sequence).
+    # Fills rotate through FILL_ROTATION for variety across the song.
+    drum_fills_per_position = [None] * len(form)
+    if "drums" in roles and auto_fills:
+        fill_idx = 0
+        for i in range(len(form) - 1):
+            sec_name = form[i]
+            next_sec_name = form[i + 1]
+            if next_sec_name == sec_name:
+                continue  # literal repeat — no transition
+            sec = sections[sec_name]
+            feel = sec.get("feel", "driving")
+            pattern_name = sec.get("drums") or FEEL_TO_DRUMS.get(feel, "basic-rock")
+            if pattern_name == "none":
+                continue  # don't fill a silent section
+            sec_len = sum(c["beats"] for c in sec["chords"])
+            if sec_len < 2 * FILL_WINDOW_BEATS:
+                continue  # section too short to afford a fill
+            drum_fills_per_position[i] = FILL_ROTATION[fill_idx % len(FILL_ROTATION)]
+            fill_idx += 1
+
+    # Per-section MIDI files for portability (each contains all roles as separate
+    # tracks). These files stay PROGRAMMATIC-ONLY for drums (no fills) because
+    # they have no form context — a section file is "this section in isolation."
+    # Fills only appear in full.mid and the .RPP, which carry the form sequence.
     for sec_name, sec in sections.items():
         single_form = [sec_name]
         tracks_notes = []
@@ -1312,10 +1498,14 @@ def compose_main(spec_path, out_dir, midi_only=False):
             tracks_notes.append((f"{sec_name}-{role}", notes))
         write_smf(out_dir / f"{sec_name}.mid", tempo, time_sig, tracks_notes)
 
-    # Full arrangement MIDI (for drag-into-any-DAW).
+    # Full arrangement MIDI (for drag-into-any-DAW). For drums, build form-aware
+    # with trailing fills spliced in at every transition.
     full_tracks = []
     for role in roles:
-        notes, _ = build_track_notes(form, sections, role)
+        if role == "drums":
+            notes = _build_drum_notes_with_fills(form, sections, drum_fills_per_position)
+        else:
+            notes, _ = build_track_notes(form, sections, role)
         full_tracks.append((f"full-{role}", notes))
     write_smf(out_dir / "full.mid", tempo, time_sig, full_tracks)
 
@@ -1354,9 +1544,14 @@ def compose_main(spec_path, out_dir, midi_only=False):
             continue
         item_blocks = []
         cursor_beats = 0.0
-        idx_in_form = 0
-        for sec_name in form:
-            sec_notes, sec_len_beats = sec_to_per_section_notes[(sec_name, role)]
+        for idx_in_form, sec_name in enumerate(form):
+            if role == "drums":
+                # Form-aware drum notes — get the trailing fill if any at this position.
+                sec_notes, sec_len_beats = _drum_notes_for_position(
+                    form, sections, drum_fills_per_position, idx_in_form
+                )
+            else:
+                sec_notes, sec_len_beats = sec_to_per_section_notes[(sec_name, role)]
             position_sec = cursor_beats / beats_per_sec
             length_sec = sec_len_beats / beats_per_sec
             item_blocks.append(
@@ -1368,7 +1563,6 @@ def compose_main(spec_path, out_dir, midi_only=False):
                 )
             )
             cursor_beats += sec_len_beats
-            idx_in_form += 1
         rpp_lines = inject_items_into_track(rpp_lines, track_name, item_blocks)
 
     rpp_path = out_dir / f"{song_name}.RPP"
