@@ -5,7 +5,7 @@
 <h1 align="center">claude-composer</h1>
 
 <p align="center">
-  <em>A bandmate that hands you sketches.</em>
+  <strong>Not a song generator. A compositional sketchpad for musicians who write with a DAW.</strong>
 </p>
 
 
@@ -60,6 +60,32 @@
 <p align="center">
   Tell <a href="https://claude.ai/code">Claude Code</a> what you want to play over — a style, a mood, a chord change — and get back MIDI: bass, drums, guitars, pad, lead, laid out across sections. Drop it into <strong>any DAW</strong> (<a href="https://www.apple.com/logic-pro/">Logic</a>, <a href="https://www.ableton.com/">Ableton</a>, <a href="https://www.steinberg.net/cubase/">Cubase</a>, <a href="https://www.image-line.com/fl-studio/">FL Studio</a>, <a href="https://www.apple.com/mac/garageband/">GarageBand</a>, <a href="https://www.bitwig.com/">Bitwig</a>…), or open the bundled <a href="https://www.reaper.fm/">REAPER</a> project for a one-click playable session. Improvise over it. Mine it for ideas. Throw it away. Ask for another.
 </p>
+
+---
+
+## Who this is for
+
+Musicians who:
+
+- write in a DAW
+- know what it feels like to be stuck in the same loops
+- want new harmonic, rhythmic, or structural starting points
+- like working with MIDI
+- already use, or are curious about, Claude Code
+- want **sketches, not finished songs**
+
+Especially useful for guitarists, instrumental rock writers, prog/fusion musicians, REAPER users, and technically minded musicians who enjoy experimenting with tools.
+
+## What this is not
+
+- Not a replacement for musicians
+- Not a finished-song generator
+- Not a DAW
+- Not an audio model
+- Not a Suno/Udio-style prompt-to-song system
+- Not a magic button for good taste
+
+The output is **intentionally rough**. The goal is not polish — the goal is momentum.
 
 ---
 
@@ -119,6 +145,28 @@ The skill has grown a lot of named idioms, archetypes, and moves. Most "give me 
 - *"Math rock in 7/8 with maj9 voicings, drone build, no V chord"* → Math rock pack + Drone Build archetype + modal-Aeolian discipline — three packs cross-cutting.
 
 If your brief feels generic, scan this list for a starting angle that exercises something interesting. The depth is in the combinations.
+
+### Good prompts vs. weak prompts
+
+The project rewards briefs that ask for **compositional behavior**, not just genre labels.
+
+**Good prompts** — specific enough that the catalog can grab something distinctive:
+
+- *"Compose a Plini-style instrumental in Bm with a sparse bridge and no lead guitar."*
+- *"Give me an Andy Timmons-style progression in A with a vocal-style melody over a simple loop."*
+- *"Create a cinematic rock piece in C minor where the climax comes from arrangement density, not new chords."*
+- *"Write a Casiopea-meets-Plini sketch in F#m with locked 16ths and melodic-rock harmony."*
+- *"Make a mysterious-to-hopeful progression in Em using the mood bank."*
+- *"Build a 16-bar verse with a mid-section kick drop and delayed lead entry on bar 9."*
+
+**Weak prompts** — too generic to grab anything specific; output drifts toward defaults:
+
+- *"Write me a song."*
+- *"Make something cool."*
+- *"Generate music."*
+- *"Give me a rock song in Em."* *(works but you're leaving the catalog on the table)*
+
+The richer the brief, the deeper into the catalog the skill reaches.
 
 ## Two modes
 
@@ -460,9 +508,11 @@ Full spec field reference is in [`SKILL.md`](SKILL.md) — `roles`, `feel`, `voi
 
 This is **an idea incubator, not a song finisher.** The output is rough on purpose. The point is to mine it for chord progressions you'd never have thought of on your own, drop yourself into an idiom you don't normally write in, and have something concrete enough to improvise over by the time you've poured a coffee.
 
+The goal is not *"AI made my music."* The goal is *"I got unstuck."*
+
 Design choices that fall out of that:
 
-- **Reach wider, not higher.** No drum fills. No walking basslines. No voice leading optimization. No per-note velocity ramping. The energy budget is spent on chord-choice and arrangement variety across genres, not on polishing one output.
+- **Reach wider, not higher.** Mostly no walking basslines. No voice-leading optimization. No per-note velocity ramping. The energy budget is spent on chord-choice and arrangement variety across genres, not on polishing one output. *(Auto-spliced drum fills at section transitions are the one exception — they're the smallest production-quality move that makes the difference between "sketch" and "playable for real.")*
 - **Variety is enforced.** The skill scans recent outputs and deliberately rotates keys, forms, and arrangement archetypes. The `style.md` scratchpad lets you teach it your taste over time.
 - **Musical decisions are Claude's job.** The Python script is dumb — it converts a JSON spec into MIDI and an `.RPP`. Every musical choice — what chords, what key, what feel-arc, what arrangement, what moves to reach for — happens inside Claude's reasoning, guided by the catalogs in [`SKILL.md`](SKILL.md).
 - **Your DAW is the destination.** The MIDI files are the universal artifact — drop them into [Logic](https://www.apple.com/logic-pro/), [Ableton](https://www.ableton.com/), [Cubase](https://www.steinberg.net/cubase/), [FL Studio](https://www.image-line.com/fl-studio/), [GarageBand](https://www.apple.com/mac/garageband/), [Bitwig](https://www.bitwig.com/), or anything else that opens `.mid`. The REAPER `.RPP` is a convenience for REAPER users who want a one-click playable session with tracks named and regions laid out. `spec.json` carries the structured recipe so you (or Claude) can hand-edit and re-run.
@@ -470,7 +520,7 @@ Design choices that fall out of that:
 ## Limitations
 
 - No tempo or time-signature changes mid-song.
-- Drum patterns are fixed bar-level — no fills, breakdowns, or builds.
+- Drum patterns are fixed bar-level. Fills auto-splice at section transitions (7-pattern catalog) but no breakdowns or extended builds within a section.
 - Chord parsing is strict — `C9sus4`, `Cmaj7#11`, and similar extended/altered chords will error. See the supported vocabulary in [`SKILL.md`](SKILL.md).
 - No automation, no per-note velocity shaping beyond the built-in pattern defaults.
 - The compose step is one-shot — re-running with the same spec overwrites the output `.RPP` / `.mid` / `spec.json`.
