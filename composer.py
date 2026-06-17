@@ -225,6 +225,34 @@ FEEL_BAR_PATTERNS = {
         (3.0, 0.20,  -2),   # beat 4: medium
         (3.5, 0.22,  +5),   # and-of-4: ACCENT
     ],
+    # --- ROCK FEELS (new) ---
+    "chug": [
+        # Constant palm-muted 8th-note power chords — the rock engine.
+        # All short duration (palm-mute ~0.12), velocity accent on 1 and 3.
+        # No ring/chug alternation like "driving" — every hit is a chug.
+        # Pairs with the "rock" drum pattern (ride cymbal 8ths).
+        (0.0,  0.12,  +8),   # beat 1: strongest accent
+        (0.5,  0.10,  +2),   # 1-and: lighter
+        (1.0,  0.12,  +4),   # beat 2: medium
+        (1.5,  0.10,   0),   # 2-and: lightest
+        (2.0,  0.12,  +6),   # beat 3: strong
+        (2.5,  0.10,  +2),   # 3-and: lighter
+        (3.0,  0.12,  +4),   # beat 4: medium
+        (3.5,  0.10,   0),   # 4-and: lightest
+    ],
+    "half-chug": [
+        # Half-time palm-muted power chords — only on the downbeats.
+        # Heavier, more open feel than full chug. Pairs with "rock-half" drums.
+        (0.0,  0.15,  +8),   # beat 1: strongest
+        (1.0,  0.12,  +4),   # beat 2: medium
+        (2.0,  0.15,  +6),   # beat 3: strong
+        (3.0,  0.12,  +4),   # beat 4: medium
+    ],
+    "open": [
+        # Full ringing chord strums — one per bar. For chorus lifts, anthemic
+        # moments, the "big breath." Pairs with "rock" drums.
+        (0.0,  3.80,  +8),   # one big strum per bar, rings almost the whole bar
+    ],
 }
 
 GM_DRUMS = {"kick": 36, "snare": 38, "chat": 42, "ohat": 46, "crash": 49, "ride": 51,
@@ -289,6 +317,24 @@ DRUM_BAR_PATTERNS = {
         (2.0, "chat", 72), (2.25, "chat", 60), (2.5, "chat", 68), (2.75, "chat", 60),
         (3.0, "chat", 72), (3.25, "chat", 60), (3.5, "chat", 68), (3.75, "chat", 60),
     ],
+    # --- ROCK DRUM PATTERNS (new) ---
+    "rock": [
+        # Heavy rock kit — ride cymbal instead of hi-hat (cuts through palm-muted
+        # power chords). Kick pull on 1, and-of-2, and 3 — the rock engine.
+        (0.0, "kick", 110), (1.5, "kick", 92), (2.0, "kick", 105),
+        (1.0, "snare", 100), (3.0, "snare", 100),
+        # Ride cymbal 8th notes — brighter, more present than hi-hat under chugs
+        (0.0, "ride", 80), (0.5, "ride", 70), (1.0, "ride", 80), (1.5, "ride", 70),
+        (2.0, "ride", 80), (2.5, "ride", 70), (3.0, "ride", 80), (3.5, "ride", 70),
+    ],
+    "rock-half": [
+        # Half-time heavy rock — kick on 1 and 3, snare on 3 (the drop).
+        # Ride 8ths underneath, crash at section start (via mark_section_start).
+        (0.0, "kick", 110), (2.0, "kick", 95),
+        (2.0, "snare", 105),
+        (0.0, "ride", 80), (0.5, "ride", 70), (1.0, "ride", 80), (1.5, "ride", 70),
+        (2.0, "ride", 80), (2.5, "ride", 70), (3.0, "ride", 80), (3.5, "ride", 70),
+    ],
 }
 
 FEEL_TO_DRUMS = {
@@ -299,7 +345,14 @@ FEEL_TO_DRUMS = {
     "skank":     "one-drop",
     "montuno":   "latin-fusion",
     "locked-16": "j-fusion-kit",
+    "chug":      "rock",
+    "half-chug": "rock-half",
+    "open":      "rock",
+    "rock":      "rock",
+    "rock-half": "rock-half",
 }
+
+ROCK_FEELS = {"chug", "half-chug", "open"}
 
 NOTE_NAMES = {"C": 0, "C#": 1, "Db": 1, "D": 2, "D#": 3, "Eb": 3, "E": 4,
               "F": 5, "F#": 6, "Gb": 6, "G": 7, "G#": 8, "Ab": 8, "A": 9,
@@ -325,6 +378,8 @@ CHORD_QUALITIES = {
     "9":     [0, 4, 7, 10, 14],
     "maj9":  [0, 4, 7, 11, 14],
     "m9":    [0, 3, 7, 10, 14],
+    "7sus4":  [0, 5, 7, 10],
+    "maj7sus4": [0, 5, 7, 11],
 }
 
 CHORD_RE = re.compile(r"^([A-G][b#]?)(.*?)(?:/([A-G][b#]?))?$")
@@ -401,10 +456,24 @@ def voice_clean(root_pc, intervals, bass_pc, octave=3):
 def voice_rhythm(root_pc, intervals, bass_pc, octave=3, voicing="power"):
     """Rhythm guitar chord voicing.
     'power' (default): root + fifth (rock/metal — uses slash bass).
-    'full': root + 3rd + 5th + 7th (jazz-fusion comping — ignores slash bass since bass track has it)."""
+    'full': root + 3rd + 5th + 7th (jazz-fusion comping — ignores slash bass since bass track has it).
+    'power-color': power chord (root+5th) at low rock octave PLUS the 3rd or 7th one octave
+                   above. This is the Plini trick: the low end is all palm-mute power chug,
+                   but a single colorful interval rings above so the chord's identity
+                   (major/minor, maj7/m7) is audible without sounding like jazz comping."""
     base = 12 * (octave + 1)
     if voicing == "full":
         return sorted({root_pc + base + iv for iv in intervals[:4]})
+    if voicing == "power-color":
+        # Power chord in low octave (octave 2 for rock register)
+        pc = bass_pc if bass_pc is not None else root_pc
+        notes = [pc + base, pc + 7 + base]
+        # Add one colorful interval (3rd > 7th > sus2/4) one octave above the root chord
+        for iv in (4, 3, 10, 11, 2, 5, 9):
+            if iv in intervals:
+                notes.append(root_pc + base + 12 + iv)
+                break
+        return sorted(set(notes))
     pc = bass_pc if bass_pc is not None else root_pc
     return [pc + base, pc + 7 + base]
 
@@ -655,16 +724,38 @@ def build_track_notes(form, sections_by_name, role):
         chord_cursor = cursor_beats
         for chord_spec in sec["chords"]:
             beats = chord_spec["beats"]
+            # Silence / no-chord support — "N.C." or "REST" skips note generation
+            # for this chord duration but keeps the cursor in sync so form timing
+            # stays correct. Useful for dramatic rests, drop-outs, and breath marks.
+            if chord_spec["name"] in ("N.C.", "REST"):
+                chord_cursor += beats
+                continue
             root_pc, intervals, bass_pc = parse_chord(chord_spec["name"])
             if role == "bass":
                 pitches = voice_bass(root_pc, intervals, bass_pc)
-                if beats >= 4:
+                if feel in ROCK_FEELS and beats >= 4:
+                    # Rock bass: 8th-note roots that double the kick pattern.
+                    # Accent on downbeats (1, 2, 3, 4), lighter on upbeats.
+                    for eighth_idx in range(int(beats * 2)):
+                        t = chord_cursor + eighth_idx * 0.5
+                        vel = 85 if eighth_idx % 2 == 0 else 78
+                        out.append((t, 0.40, pitches[0], vel))
+                elif beats >= 4:
                     out.append((chord_cursor, beats / 2, pitches[0], 85))
                     out.append((chord_cursor + beats / 2, beats / 2, pitches[0] + 7, 80))
                 else:
                     out.append((chord_cursor, beats, pitches[0], 85))
             elif role == "pad":
-                if feel == "montuno":
+                if feel in ROCK_FEELS:
+                    # Rock pad: no sustained piano block chords (the #1 pop giveaway).
+                    # Instead, a quiet root+5th drone at low register — sounds like a
+                    # barre-chord ghost from a second guitar, providing harmonic glue
+                    # without the "piano ballad" texture.
+                    low = root_pc + 36  # octave 2, matching power-chord register
+                    notes = [low, low + 7, low + 12]
+                    for p in notes:
+                        out.append((chord_cursor, beats + 0.5, p, 52))
+                elif feel == "montuno":
                     # Salsa montuno on piano — a syncopated 8th-note arpeggio of chord
                     # tones (root / 3rd / 5th) in the mid-register. Replaces the held-
                     # chord pad emission. Per-bar pattern, looped across the chord's span.
@@ -730,7 +821,9 @@ def build_track_notes(form, sections_by_name, role):
                 # Power chords live LOW on a real guitar (rock register, oct 2).
                 # Full jazz comping lives mid-range (oct 3). Different octaves per voicing
                 # match where real players actually voice these on the fretboard.
-                rhy_octave = 2 if voicing == "power" else 3
+                # power-color uses octave 2 for the power-chord body (the color note is
+                # voiced one octave up inside voice_rhythm itself).
+                rhy_octave = 2 if voicing in ("power", "power-color") else 3
                 pitches = voice_rhythm(root_pc, intervals, bass_pc, octave=rhy_octave, voicing=voicing)
                 # R slightly quieter (mimics real double-tracking — R player is the supporting take)
                 base_vel = 88 if role == "rhy_l" else 84
