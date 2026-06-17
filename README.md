@@ -228,6 +228,12 @@ Restart Claude Code and the `composer` skill is discoverable. Try:
 
 ## Recently added
 
+- **Rock chug engine** — three new `feel` patterns for actual rock rhythm guitar: `chug` (constant palm-muted 8th notes, no ring/chug alternation), `half-chug` (downbeats only, heavier halftime feel), and `open` (one full-ringing strum per bar for anthemic lifts). Pairs with new `rock` and `rock-half` drum patterns using ride cymbal 8ths and punchier kick/snare.
+- **`power-color` voicing** — power chord (root+5th) at low rock octave PLUS the 3rd or 7th one octave above. The Plini trick: heavy chug engine with a single colorful interval ringing above so the chord's identity (major/minor, maj7/m7, sus2/sus4) is audible without sounding like jazz comping. Set via `"voicing": "power-color"` per section.
+- **Rock bass** — 8th-note roots doubling the kick pattern for `chug`/`half-chug`/`open` feels (replaces the half-note root/5th alternation).
+- **Rock pad** — quiet root+5th drone at low register for rock feels instead of sustained piano block chords (the #1 pop giveaway).
+- **REST/N.C. silence support** — `{"name": "REST", "beats": 4}` or `"N.C."` in chord arrays silences all instruments (except drums) for that duration. The beat cursor advances normally — useful for dramatic drops, drop-into-silence moves, and breath marks.
+- **New chord qualities** — `7sus4` ([0,5,7,10]) and `maj7sus4` ([0,5,7,11]) now supported.
 - **Programmatic drum fills auto-spliced at section transitions** — 7-pattern catalog (`FILL_PATTERNS`) informed by standard rock-fill pedagogy. Default ON; the compose pipeline detects every form transition and replaces the last 2 beats of the outgoing section with a fill, rotating through the catalog for variety. No external file dependencies, no manual drag, reproducible from spec. Opt out per song with `auto_fills: false`.
 - **Intra-section arrangement variation catalog** — 15 named moves (wedge entry, mid-section drop, delayed lead entry, drop-into-silence, plateau-burst, call-and-response, stratification, more) plus a 6th Hooktheory axis: **Arrangement Pacing**.
 - **Andy Timmons baked in + Timmons clause** — Rock pack touchstones extended; FORBIDDEN-list exception that permits `I-V-vi-IV` when paired with a composed vocal-style melody. The chord cliché becomes the vessel; the melody is the song.
@@ -251,7 +257,7 @@ Each pack is a self-contained recipe — tempo range, default key, roles, feel a
   <tr>
     <td><strong>Rock</strong> <sub>(default)</sub></td>
     <td>Satriani · Vai · Plini · Polyphia · Zaza</td>
-    <td>Driving 8ths · modal minor · pedal tones · <code>bVI-bVII-i</code> lift</td>
+    <td><code>chug</code>/<code>half-chug</code>/<code>open</code> feels · <code>power-color</code> voicing · rock drums (ride cymbal) · pedal tones · <code>bVI-bVII-i</code> lift</td>
   </tr>
   <tr>
     <td><strong>Math rock</strong></td>
@@ -340,7 +346,7 @@ In REAPER, create the tracks below with these **exact names**, save as a project
 | Track name | Role | What gets written |
 |---|---|---|
 | `BASS` | bass | Root-note bassline. Splits long chords in two for movement. |
-| `DRUMS` | drums | GM kit (kick 36, snare 38, hat 42), crash at section starts. New: cowbell, congas, claves, timbales for Latin/reggae patterns. |
+| `DRUMS` | drums | GM kit (kick 36, snare 38, hat 42), crash at section starts. Patterns: `basic-rock`, `rock` (ride cymbal 8ths), `rock-half`, `halftime`, `four-on-floor`, `one-drop`, `latin-fusion`, `j-fusion-kit`. Plus cowbell, congas, claves, timbales for Latin/reggae patterns. |
 | `PIANO` | pad | Open chord voicings, sustained for the full chord duration. Triggers a **montuno arpeggio** when `feel: montuno` is set. |
 | `MIDI-RHY-GTR-L` | rhy_l | Root+5th power chords (or full voicings for jazz/fusion). Pattern from `feel`. |
 | `MIDI-RHY-GTR-R` | rhy_r | Same as L, offset 1/8 beat for stereo width. |
@@ -498,6 +504,40 @@ A minimal spec:
 }
 ```
 
+Using the rock engine with a REST drop:
+
+```json
+{
+  "song_name": "rock-test",
+  "key": "Bm",
+  "tempo": 120,
+  "roles": ["bass", "pad", "rhy_l", "rhy_r", "drums", "lead"],
+  "sections": [
+    {
+      "name": "verse",
+      "feel": "chug",
+      "voicing": "power-color",
+      "chords": [
+        {"name": "Bm", "beats": 4},
+        {"name": "Gmaj7", "beats": 4},
+        {"name": "E", "beats": 4},
+        {"name": "F#7", "beats": 4}
+      ]
+    },
+    {
+      "name": "bridge",
+      "feel": "half-chug",
+      "chords": [
+        {"name": "Bm", "beats": 4},
+        {"name": "Gmaj7", "beats": 4},
+        {"name": "REST", "beats": 4}
+      ]
+    }
+  ],
+  "form": ["verse", "verse", "bridge", "verse"]
+}
+```
+
 **Analyze + fill:**
 
 ```bash
@@ -530,7 +570,7 @@ Design choices that fall out of that:
 
 - No tempo or time-signature changes mid-song.
 - Drum patterns are fixed bar-level. Fills auto-splice at section transitions (7-pattern catalog) but no breakdowns or extended builds within a section.
-- Chord parsing is strict — `C9sus4`, `Cmaj7#11`, and similar extended/altered chords will error. See the supported vocabulary in [`SKILL.md`](SKILL.md).
+- Chord parsing is strict — `Cmaj7#11`, `C13`, `C7b9`, and similar extended/altered chords will error. Supported: `7sus4`, `maj7sus4`, and all basic triads/sevenths/extensions (`m7`, `maj7`, `maj9`, `m9`, `dim7`, `m7b5`, `sus2`, `sus4`, `add9`, `madd9`, `6`, `m6`, `aug`, `dim`, `7`, `9`). See the full vocabulary in [`SKILL.md`](SKILL.md).
 - No automation, no per-note velocity shaping beyond the built-in pattern defaults.
 - The compose step is one-shot — re-running with the same spec overwrites the output `.RPP` / `.mid` / `spec.json`.
 
