@@ -192,6 +192,26 @@ def parse_catalogs():
     return out
 
 
+# ---------- OS integration ----------
+
+def _open_with_os(path):
+    """Hand a file (or URL) to the OS default opener. Best-effort: a headless
+    box has no opener, and that must not fail the API call that asked."""
+    try:
+        if sys.platform == "darwin":
+            subprocess.Popen(["open", str(path)],
+                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        elif sys.platform.startswith("win"):
+            import os
+            os.startfile(str(path))  # noqa: S606
+        else:
+            subprocess.Popen(["xdg-open", str(path)],
+                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        return True
+    except OSError:
+        return False
+
+
 # ---------- library change signal ----------
 # Bumped whenever anything rewrites the archive (transform, generate, patch,
 # promote, browser regenerate) so /api/events subscribers refresh instantly.
@@ -315,6 +335,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self.api_patch()
             if parsed.path == "/api/promote":
                 return self.api_promote()
+            if parsed.path == "/api/discard":
+                return self.api_discard()
             return self._err(404, f"no such endpoint: {parsed.path}")
         except ValueError as e:
             return self._err(400, str(e))
@@ -541,7 +563,12 @@ class Handler(BaseHTTPRequestHandler):
         return self._json({"ok": True, "job": job.to_dict()})
 
     def api_promote(self):
-        """Render the full REAPER project for a kept sketch (the keeper path)."""
+        """Render the full REAPER project for a kept sketch (the keeper path).
+
+        With open_in_reaper (default true) the .RPP is handed to the OS —
+        which opens REAPER for a .RPP association — so "promote" IS "take it
+        to REAPER", one click, not a render followed by a Finder hunt.
+        """
         body = self._read_body()
         song_dir, spec = self._load_spec(body.get("rel"))
         staged = song_dir / ".promote-spec.json"
@@ -555,8 +582,36 @@ class Handler(BaseHTTPRequestHandler):
                                "error": proc.stderr.strip()[:400] or "compose failed"}, 500)
         bump_library()
         rpp = next(song_dir.glob("*.RPP"), None)
+        opened = False
+        if rpp and body.get("open_in_reaper", True):
+            opened = _open_with_os(rpp)
         return self._json({"ok": True, "rpp": rpp.name if rpp else None,
-                           "path": str(rpp) if rpp else None})
+                           "path": str(rpp) if rpp else None, "opened": opened})
+
+    def api_discard(self):
+        """Move a sketch to <root>/.bin — the "didn't inspire, next" action.
+
+        A move, not a delete: dot-dirs are invisible to the library walk, so
+        the sketch vanishes from the UI but survives on disk. Empty the .bin
+        folder yourself whenever you like.
+        """
+        body = self._read_body()
+        song_dir = self._safe_song_dir(body.get("rel"))
+        if song_dir == self.root:
+            raise ValueError("refusing to discard the archive root")
+        bin_dir = self.root / ".bin"
+        bin_dir.mkdir(exist_ok=True)
+        stamp = time.strftime("%Y%m%d-%H%M%S")
+        target = bin_dir / f"{stamp}-{song_dir.name}"
+        n = 2
+        while target.exists():
+            target = bin_dir / f"{stamp}-{song_dir.name}-{n}"
+            n += 1
+        import shutil
+        shutil.move(str(song_dir), str(target))
+        bump_library()
+        return self._json({"ok": True,
+                           "binned_to": target.relative_to(self.root).as_posix()})
 
     def api_events(self):
         """SSE: pushes {library, jobs} versions so the UI refreshes live."""
@@ -631,6 +686,8 @@ def main():
     ap.add_argument("--root", default=None,
                     help="archive root (default: output_root from config.json)")
     ap.add_argument("--verbose", action="store_true", help="log every request")
+    ap.add_argument("--open", action="store_true",
+                    help="open the UI in the default browser once serving")
     args = ap.parse_args()
 
     root = load_output_root(args.root)
@@ -646,6 +703,10 @@ def main():
     print(f"claude CLI       → {'found — generation enabled' if agent.claude_available() else 'NOT FOUND — generation disabled, audition still works'}")
     if not DIST_DIR.is_dir():
         print("ui not built     → run `cd ui && npm install && npm run dev` in another terminal")
+    if args.open:
+        # Delay a beat so the first request hits a listening socket.
+        threading.Timer(0.4, _open_with_os,
+                        args=(f"http://{args.host}:{args.port}",)).start()
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:

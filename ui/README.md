@@ -4,16 +4,29 @@ An experiment. A local React/Vite app that lets you **hear and browse** what
 `composer.py` wrote, without opening a DAW.
 
 ```bash
+./start-ui.sh                 # from the repo root — one command, one process
+```
+
+That builds the front end when needed (first run, or after pulling changes),
+starts the single stdlib Python server, and opens your browser on
+http://127.0.0.1:8722. Ctrl-C stops everything. `NO_OPEN=1 ./start-ui.sh`
+skips the browser pop; extra args pass through (`./start-ui.sh --port 9000`).
+
+For hacking on the UI itself, the two-terminal dev loop still works:
+
+```bash
 python3 ui/server.py          # terminal 1 — bridge + API on :8722
 cd ui && npm install && npm run dev   # terminal 2 — open http://localhost:5173
 ```
 
-Or build it once and run a single process:
+### The intended loop
 
-```bash
-cd ui && npm install && npm run build
-python3 ui/server.py          # now serves the built app on :8722
-```
+Generate a sketch (brief bar, or Claude Code in a terminal — both light up the
+UI live) → play it → **did it inspire something?**
+
+- yes → `→ take to REAPER` renders the `.RPP` and opens it in REAPER
+- no → `✕ bin` moves it to `<archive>/.bin/` (recoverable, invisible to the
+  library) and loads the next sketch
 
 ---
 

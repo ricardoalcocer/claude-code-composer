@@ -258,7 +258,8 @@ export default function App() {
     setTransformBusy(true)
     try {
       const r = await api.promote(selectedRel)
-      showFlash(r.rpp ? `rendered ${r.rpp}` : 'promoted')
+      showFlash(r.opened ? `${r.rpp} → opening in REAPER`
+        : r.rpp ? `rendered ${r.rpp}` : 'promoted')
       await loadSong(selectedRel)   // refresh file list to show the .RPP
     } catch (e) {
       setError(e instanceof Error ? e.message : 'promote failed')
@@ -266,6 +267,31 @@ export default function App() {
       setTransformBusy(false)
     }
   }, [selectedRel, loadSong, showFlash])
+
+  const doDiscard = useCallback(async () => {
+    if (!selectedRel) return
+    playback.stop()
+    setTransformBusy(true)
+    try {
+      await api.discard(selectedRel)
+      showFlash('binned — recoverable in .bin/')
+      // Advance to the next sketch: the loop is bin → listen to another.
+      const lib = await api.getLibrary()
+      setSongs(lib.songs)
+      const next = lib.songs.find((s) => s.rel !== selectedRel)
+      if (next) {
+        await loadSong(next.rel)
+      } else {
+        setSelectedRel(null)
+        setSong(null)
+        setMidi(null)
+      }
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'discard failed')
+    } finally {
+      setTransformBusy(false)
+    }
+  }, [selectedRel, loadSong, playback, showFlash])
 
   // A finished patch job auto-opens its result once (it's the thing you asked for).
   const openedJobs = useRef(new Set<string>())
@@ -370,6 +396,7 @@ export default function App() {
                 onTransform={(op, arg) => { playback.stop(); void doTransform(op, arg) }}
                 onPatch={doPatch}
                 onPromote={() => void doPromote()}
+                onDiscard={() => void doDiscard()}
                 hasRpp={song?.files.some((f) => f.name.toLowerCase().endsWith('.rpp')) ?? false}
                 patchBusy={patchBusy || agentJobs.some((j) => j.kind === 'patch' && j.status === 'running')}
               />

@@ -63,8 +63,11 @@ export const generate = (brief: string, count: number, parent_rel?: string) =>
 export const patch = (rel: string, ask: string) =>
   postJSON<{ ok: boolean; job: AgentJob }>('/api/patch', { rel, ask })
 
-export const promote = (rel: string) =>
-  postJSON<PromoteResult>('/api/promote', { rel })
+export const promote = (rel: string, openInReaper = true) =>
+  postJSON<PromoteResult>('/api/promote', { rel, open_in_reaper: openInReaper })
+
+export const discard = (rel: string) =>
+  postJSON<{ ok: boolean; binned_to: string }>('/api/discard', { rel })
 
 export const getJobs = () =>
   getJSON<{ jobs: AgentJob[]; claude_available: boolean }>('/api/jobs')

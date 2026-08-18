@@ -162,6 +162,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .patch-input:focus { outline: none; border-color: var(--key); }
 
+.bin-btn {
+  font-family: var(--mono); font-size: 11.5px;
+  padding: 6px 12px; border-radius: 7px;
+  background: var(--bg); border: 1px solid var(--line); color: var(--text-faint);
+}
+.bin-btn:hover:not(:disabled) { border-color: #ef535066; color: var(--bad); background: #ef535012; }
+.bin-btn:disabled { opacity: 0.45; cursor: default; }
+
 .promote-btn {
   font-family: var(--mono); font-size: 11.5px; font-weight: 600;
   padding: 6px 13px; border-radius: 7px;

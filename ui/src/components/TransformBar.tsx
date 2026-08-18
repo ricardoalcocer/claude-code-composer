@@ -9,8 +9,10 @@ interface Props {
   onTransform: (op: string, arg?: unknown) => void
   /** Tier 1 — scoped model patch; ~15–30s through the warm session. */
   onPatch: (ask: string) => void
-  /** Renders the .RPP for this sketch — the keeper path. */
+  /** Renders the .RPP and opens it in REAPER — the keeper path. */
   onPromote: () => void
+  /** Moves the sketch to .bin and advances to the next one — the "didn't inspire" path. */
+  onDiscard: () => void
   hasRpp: boolean
   patchBusy: boolean
 }
@@ -22,7 +24,7 @@ interface Props {
  * touched, so variants are free to bin.
  */
 export function TransformBar({
-  spec, busy, onTransform, onPatch, onPromote, hasRpp, patchBusy,
+  spec, busy, onTransform, onPatch, onPromote, onDiscard, hasRpp, patchBusy,
 }: Props) {
   const [ask, setAsk] = useState('')
   const roles = specRoles(spec)
@@ -78,13 +80,21 @@ export function TransformBar({
 
         <div className="vgroup vgroup-promote">
           <button
+            className="bin-btn"
+            onClick={onDiscard}
+            disabled={busy}
+            title="Move this sketch to .bin (recoverable) and load the next one"
+          >
+            ✕ bin
+          </button>
+          <button
             className={`promote-btn${hasRpp ? ' is-done' : ''}`}
             onClick={onPromote}
             disabled={busy || hasRpp}
             title={hasRpp ? 'REAPER project already rendered'
-              : 'Render the .RPP with template, regions, NOTES — the keeper path'}
+              : 'Render the .RPP and open it in REAPER'}
           >
-            {hasRpp ? '✓ in REAPER' : '→ promote to REAPER'}
+            {hasRpp ? '✓ in REAPER' : '→ take to REAPER'}
           </button>
         </div>
       </div>

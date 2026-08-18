@@ -124,6 +124,7 @@ export interface PromoteResult {
   ok: boolean
   rpp: string | null
   path: string | null
+  opened: boolean
   error?: string
 }
 
