@@ -43,9 +43,11 @@ import transforms  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
-BRIEF_TIMEOUT_S = 420          # measured cold brief ~170s; headroom for hard ones
-PATCH_TIMEOUT_S = 180
-PRIME_TIMEOUT_S = 150
+# Defaults sized from claude measurements (cold brief ~170s); a slower model
+# behind opencode may need more — override with the env vars.
+BRIEF_TIMEOUT_S = int(os.environ.get("COMPOSER_BRIEF_TIMEOUT_S", 420))
+PATCH_TIMEOUT_S = int(os.environ.get("COMPOSER_PATCH_TIMEOUT_S", 180))
+PRIME_TIMEOUT_S = int(os.environ.get("COMPOSER_PRIME_TIMEOUT_S", 150))
 
 # The generation contract. Kept terse: every extra instruction token is paid
 # on every brief, and SKILL.md already carries the musical doctrine.
@@ -70,6 +72,7 @@ edits to it. Reply with exactly: primed"""
 _PATCH_SHAPES = """Use exactly one of these JSON shapes:
 - a complete section object: {{"name": "<section>", "feel": ..., "chords": [...], ...}}
 - chords only: {{"section": "<section name>", "chords": [{{"name": "Em", "beats": 4}}, ...]}}
+- insert a NEW section into the form: {{"insert_after_index": <form position>, "section": {{complete section object with a name not already used}}}}
 Never a bare array."""
 
 PATCH_PROMPT_REPLY = """{ask}
@@ -574,6 +577,25 @@ def _splice(spec, fragment):
     out = json.loads(json.dumps(spec))
     if isinstance(fragment, dict) and "sections" in fragment and "form" in fragment:
         return fragment
+    if isinstance(fragment, dict) and "insert_after_index" in fragment \
+            and isinstance(fragment.get("section"), dict):
+        idx = int(fragment["insert_after_index"])
+        sec = fragment["section"]
+        if not sec.get("name"):
+            raise transforms.TransformError("inserted section needs a name")
+        if not 0 <= idx < len(out["form"]):
+            raise transforms.TransformError(
+                f"insert_after_index {idx} out of range for a form of "
+                f"{len(out['form'])} entries")
+        # Reusing an existing name would silently rewrite every occurrence of
+        # that section in the form — an insert must be a genuinely new part.
+        if any(s["name"] == sec["name"] for s in out["sections"]):
+            raise transforms.TransformError(
+                f"section name {sec['name']!r} already exists — "
+                "an inserted section needs a new name")
+        out["sections"].append(sec)
+        out["form"].insert(idx + 1, sec["name"])
+        return out
     if isinstance(fragment, dict) and "chords" in fragment and "section" in fragment:
         for sec in out["sections"]:
             if sec["name"] == fragment["section"]:

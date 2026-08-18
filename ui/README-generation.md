@@ -60,6 +60,14 @@ The measured comparison: transposing a 7-section spec deterministically takes
 `transpose` intentionally drops `scales` text — it's prose about the old key,
 and stale improv guidance is worse than none. A Tier 1 patch restores it.
 
+Patches cover edits ("darker bridge") and **insertion**: select a timeline
+block, describe the new section, hit *+ insert* — the agent composes a
+section that connects the selected block into the next one and it's spliced
+into the form at that position (`insert_after_index` shape). Timeouts are
+sized from claude measurements; a slower model behind opencode can need more —
+`COMPOSER_BRIEF_TIMEOUT_S` / `COMPOSER_PATCH_TIMEOUT_S` /
+`COMPOSER_PRIME_TIMEOUT_S` override the 420/180/150s defaults.
+
 **Tier 1 — scoped patches (~15–30s + one ~30s prime).** A persistent
 `claude -p --input-format stream-json` session per song, primed once on
 SKILL.md + the current spec. Asks return *only the changed object* (one

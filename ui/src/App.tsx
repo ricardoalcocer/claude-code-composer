@@ -40,6 +40,7 @@ export default function App() {
   const [transformBusy, setTransformBusy] = useState(false)
   const [patchBusy, setPatchBusy] = useState(false)
   const [flash, setFlash] = useState<string | null>(null)
+  const [showHelp, setShowHelp] = useState(false)
 
   const playback = usePlayback()
   const { engine, load, seek, setLoop } = playback
@@ -322,6 +323,11 @@ export default function App() {
         </div>
         <div className="topbar-right">
           {flash && <span className="flash-note">{flash}</span>}
+          <button
+            className={`ghost-btn help-toggle${showHelp ? ' is-on' : ''}`}
+            onClick={() => setShowHelp((v) => !v)}
+            title="Explain what each part of the UI is for"
+          >?</button>
           {!events.connected && <span className="warn">live updates reconnecting…</span>}
           {config && !config.output_root_exists && (
             <span className="warn">archive root does not exist yet</span>
@@ -338,6 +344,15 @@ export default function App() {
         onGenerate={doGenerate}
         onOpenResult={(rel) => { playback.stop(); void loadSong(rel) }}
       />
+      {showHelp && (
+        <div className="help-block help-block-bar">
+          <p><b>brief</b> — a sentence to the agent, same as you'd type in Claude Code. It reads
+            the SKILL.md catalogs, writes a spec, and the sketch appears in the archive when done
+            (~2–7 min depending on the model). The 1/2/4 picker asks for that many independent
+            takes — keep auditioning while they cook. Sketches Claude writes from a terminal
+            session appear here too, automatically.</p>
+        </div>
+      )}
 
       <div className="body">
         <Library
@@ -381,6 +396,16 @@ export default function App() {
                 onSelect={setSelectedIndex}
                 onSeek={seek}
               />
+              {showHelp && (
+                <div className="help-block">
+                  <p><b>timeline</b> — the song's form, each block one section at its true length,
+                    repeats sharing a colour. Click a block to select it (loop target, insert
+                    anchor, detail panel below); click anywhere on the rail to seek. The panels
+                    under it show each <b>layer</b> (M mutes, S solos — mute the lead and play the
+                    line yourself) and the selected <b>section</b>'s chords, with the
+                    <em> improv</em> scale line to read while you play.</p>
+                </div>
+              )}
 
               <Transport
                 playing={playback.playing}
@@ -405,6 +430,12 @@ export default function App() {
                 onDiscard={() => void doDiscard()}
                 hasRpp={song?.files.some((f) => f.name.toLowerCase().endsWith('.rpp')) ?? false}
                 patchBusy={patchBusy || agentJobs.some((j) => j.kind === 'patch' && j.status === 'running')}
+                insertAfter={selectedPosition ? {
+                  index: selectedPosition.index,
+                  name: selectedPosition.name,
+                  nextName: positions[selectedPosition.index + 1]?.name ?? null,
+                } : null}
+                help={showHelp}
               />
 
               <div className="panels">

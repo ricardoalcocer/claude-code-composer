@@ -15,6 +15,9 @@ interface Props {
   onDiscard: () => void
   hasRpp: boolean
   patchBusy: boolean
+  /** The timeline block currently selected — target for "insert after". */
+  insertAfter: { index: number; name: string; nextName: string | null } | null
+  help: boolean
 }
 
 /**
@@ -25,6 +28,7 @@ interface Props {
  */
 export function TransformBar({
   spec, busy, onTransform, onPatch, onPromote, onDiscard, hasRpp, patchBusy,
+  insertAfter, help,
 }: Props) {
   const [ask, setAsk] = useState('')
   const roles = specRoles(spec)
@@ -36,6 +40,24 @@ export function TransformBar({
     const text = ask.trim()
     if (!text) return
     onPatch(text)
+    setAsk('')
+  }
+
+  function submitInsert() {
+    const desc = ask.trim()
+    if (!desc || !insertAfter) return
+    // The primed session already holds the full spec; naming the positions
+    // and neighbours is enough context for a section that connects them.
+    const after = `form position ${insertAfter.index} (${insertAfter.name})`
+    const before = insertAfter.nextName
+      ? `position ${insertAfter.index + 1} (${insertAfter.nextName})`
+      : 'the end of the form'
+    onPatch(
+      `Compose a NEW section to insert between ${after} and ${before}: ${desc}. ` +
+      `It must connect out of ${insertAfter.name}'s last chord and lead into ` +
+      `${insertAfter.nextName ?? 'the ending'} smoothly. Give it a name not already ` +
+      `used, with move and scales fields. ` +
+      `Return the insert_after_index shape with insert_after_index: ${insertAfter.index}.`)
     setAsk('')
   }
 
@@ -64,17 +86,28 @@ export function TransformBar({
         </div>
 
         <div className="vgroup vgroup-patch">
-          <span className="vgroup-label vgroup-label-model" title="Scoped model patch — ~15–30s">patch</span>
+          <span className="vgroup-label vgroup-label-model" title="Scoped model edit — the agent changes only what you name">patch</span>
           <input
             className="patch-input"
-            placeholder='e.g. "darker bridge, Phrygian colour" — returns only the changed section'
+            placeholder='e.g. "darker bridge, Phrygian colour" — changes only what you name'
             value={ask}
             onChange={(e) => setAsk(e.target.value)}
             onKeyDown={(e) => { if (e.key === 'Enter') submitPatch() }}
             disabled={patchBusy}
           />
-          <button className="vbtn vbtn-model" onClick={submitPatch} disabled={patchBusy || !ask.trim()}>
+          <button className="vbtn vbtn-model" onClick={submitPatch} disabled={patchBusy || !ask.trim()}
+                  title="Edit the named section(s) — result lands as a new sibling sketch">
             {patchBusy ? 'patching…' : 'go'}
+          </button>
+          <button
+            className="vbtn vbtn-model"
+            onClick={submitInsert}
+            disabled={patchBusy || !ask.trim() || !insertAfter}
+            title={insertAfter
+              ? `Compose a new section that fits between ${insertAfter.name} and ${insertAfter.nextName ?? 'the end'}, described by the text on the left`
+              : 'Select a block on the timeline first'}
+          >
+            {insertAfter ? `+ insert after ${insertAfter.name}` : '+ insert'}
           </button>
         </div>
 
@@ -101,6 +134,20 @@ export function TransformBar({
       <p className="variant-note">
         every action writes a <em>sibling</em> variant — the original is never touched
       </p>
+
+      {help && (
+        <div className="help-block">
+          <p><b>instant</b> — pure math on the spec, no AI, ~100ms. Transpose to find the key
+            that sits under your hands; <b>thin</b> strips to bass + one layer + drums (does the
+            writing survive naked?); <b>to 7/8</b> re-bars the same harmony.</p>
+          <p><b>patch</b> — a sentence to the agent, which changes <em>only</em> what you name
+            (~15–90s depending on the model). Type a description, then <b>go</b> edits the section
+            you describe; <b>+ insert</b> composes a brand-new section that fits between the
+            selected timeline block and the next one.</p>
+          <p><b>✕ bin / → REAPER</b> — the verdict. Bin moves the sketch to .bin (recoverable)
+            and loads the next; REAPER renders the project from your template and opens it.</p>
+        </div>
+      )}
     </section>
   )
 }
