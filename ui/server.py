@@ -48,20 +48,24 @@ MAX_WALK_DEPTH = 6
 
 # ---------- config ----------
 
-def load_output_root(override=None):
-    """Resolve the archive root: --root wins, then config.json, then the default."""
-    if override:
-        return Path(override).expanduser().resolve()
+def load_config():
     cfg_path = REPO_ROOT / "config.json"
     if cfg_path.exists():
         try:
             with open(cfg_path) as f:
-                cfg = json.load(f)
-            root = cfg.get("output_root")
-            if root:
-                return Path(root).expanduser().resolve()
+                return json.load(f)
         except (json.JSONDecodeError, OSError):
             pass
+    return {}
+
+
+def load_output_root(override=None):
+    """Resolve the archive root: --root wins, then config.json, then the default."""
+    if override:
+        return Path(override).expanduser().resolve()
+    root = load_config().get("output_root")
+    if root:
+        return Path(root).expanduser().resolve()
     return (Path.home() / "Documents" / "MIDI-SONGS").resolve()
 
 
@@ -309,8 +313,12 @@ class Handler(BaseHTTPRequestHandler):
             if path == "/api/catalog":
                 return self._json(parse_catalogs())
             if path == "/api/jobs":
+                info = agent.backend_info()
                 return self._json({"jobs": agent.REGISTRY.snapshot()[1],
-                                   "claude_available": agent.claude_available()})
+                                   "backend": info["backend"],
+                                   "backend_available": info["available"],
+                                   # legacy key, kept for older UI builds
+                                   "claude_available": info["available"]})
             if path == "/api/events":
                 return self.api_events()
             if path.startswith("/api/"):
@@ -537,8 +545,8 @@ class Handler(BaseHTTPRequestHandler):
         if parent_rel:
             self._safe_song_dir(parent_rel)  # validates containment
         if not agent.claude_available():
-            raise ValueError("claude CLI not found on PATH — generation needs "
-                             "Claude Code installed on this machine")
+            raise ValueError("no agent CLI found — install Claude Code (claude) "
+                             "or opencode, or set agent_backend in config.json")
         jobs = []
         for i in range(count):
             variety = ("Make this take clearly different from other takes on the "
@@ -557,7 +565,7 @@ class Handler(BaseHTTPRequestHandler):
             raise ValueError("missing 'ask'")
         self._load_spec(rel)  # validates rel + spec presence
         if not agent.claude_available():
-            raise ValueError("claude CLI not found on PATH")
+            raise ValueError("no agent CLI found (claude or opencode)")
         job = agent.run_patch(ask, rel, self.root,
                               on_done=lambda j: bump_library())
         return self._json({"ok": True, "job": job.to_dict()})
@@ -688,10 +696,19 @@ def main():
     ap.add_argument("--verbose", action="store_true", help="log every request")
     ap.add_argument("--open", action="store_true",
                     help="open the UI in the default browser once serving")
+    ap.add_argument("--backend", choices=["auto", "claude", "opencode"],
+                    default=None,
+                    help="agent CLI for generation (default: agent_backend "
+                         "from config.json, else auto — claude if present, "
+                         "else opencode)")
     args = ap.parse_args()
 
     root = load_output_root(args.root)
     Handler.root = root
+
+    cfg = load_config()
+    agent.select_backend(args.backend or cfg.get("agent_backend") or "auto",
+                         cfg.get("agent_model"))
 
     # Background watcher: notices songs written by Claude in a terminal (or
     # anything else) and pushes them to /api/events subscribers.
@@ -700,7 +717,10 @@ def main():
     httpd = ThreadingHTTPServer((args.host, args.port), Handler)
     print(f"composer-ui api  → http://{args.host}:{args.port}")
     print(f"archive root     → {root}" + ("" if root.is_dir() else "  (does not exist yet)"))
-    print(f"claude CLI       → {'found — generation enabled' if agent.claude_available() else 'NOT FOUND — generation disabled, audition still works'}")
+    info = agent.backend_info()
+    print(f"agent backend    → {info['backend']}"
+          + (" — generation enabled" if info["available"]
+             else " NOT FOUND — generation disabled, audition still works"))
     if not DIST_DIR.is_dir():
         print("ui not built     → run `cd ui && npm install && npm run dev` in another terminal")
     if args.open:

@@ -70,7 +70,12 @@ export const discard = (rel: string) =>
   postJSON<{ ok: boolean; binned_to: string }>('/api/discard', { rel })
 
 export const getJobs = () =>
-  getJSON<{ jobs: AgentJob[]; claude_available: boolean }>('/api/jobs')
+  getJSON<{
+    jobs: AgentJob[]
+    claude_available: boolean
+    backend?: string
+    backend_available?: boolean
+  }>('/api/jobs')
 
 export async function compose(body: {
   spec: Spec

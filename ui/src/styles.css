@@ -101,6 +101,11 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .count-btn.is-on { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
 
+.backend-tag {
+  font-family: var(--mono); font-size: 10px; color: var(--text-faint);
+  white-space: nowrap;
+}
+
 .job-strip { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
 
 .job {

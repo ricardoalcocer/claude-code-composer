@@ -5,6 +5,31 @@ opening in REAPER?"*. This layer makes new sketches cheap enough that the
 question gets asked constantly. Everything below is measured, not estimated —
 the numbers were taken on this repo with `claude -p` headless.
 
+## Agent backends
+
+Generation shells out to a coding-agent CLI. Two are supported:
+
+- **claude** (Claude Code) — the measured reference path. Cold `claude -p`
+  per brief; a persistent stream-json session per song for patches.
+- **opencode** ([opencode.ai](https://opencode.ai)) — cold
+  `opencode run --auto` per brief; patches reuse a session id (`-s`),
+  opencode's equivalent of warmth. The model is whatever opencode is
+  configured with (any provider), or set `agent_model` ("provider/model")
+  in config.json. Verified against opencode 1.18.18's CLI contract; the
+  latency numbers below are claude's — opencode's depend on the model you
+  point it at.
+
+Selection: `agent_backend` in config.json (`"auto"` default — claude if
+installed, else opencode), the `--backend` flag on `ui/server.py`, or the
+`COMPOSER_AGENT_BACKEND` env var. The UI shows the active backend next to
+Generate. Both hit the same trust boundary (staging file → validation gate →
+composer.py), and SKILL.md itself is agent-agnostic — it's just a file the
+prompt tells the agent to read.
+
+Note on permissions: the opencode backend passes `--auto` (auto-approve
+tools) because headless generation needs file writes. Scope it further with
+a repo-level `opencode.json` permission block if you want e.g. bash denied.
+
 ## The cost model
 
 Four timed generation turns, warm session, SKILL.md cached:

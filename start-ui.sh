@@ -39,8 +39,9 @@ if [ "$needs_build" = 1 ]; then
 fi
 
 # --- gentle preflight ------------------------------------------------------
-command -v claude >/dev/null || \
-  echo "note: claude CLI not on PATH — generation will be disabled; audition still works"
+if ! command -v claude >/dev/null && ! command -v opencode >/dev/null; then
+  echo "note: no agent CLI on PATH (claude or opencode) — generation will be disabled; audition still works"
+fi
 [ -f config.json ] || \
   echo "note: no config.json — archive defaults to ~/Documents/MIDI-SONGS (cp config.example.json config.json to change)"
 

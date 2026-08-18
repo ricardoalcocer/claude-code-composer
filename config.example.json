@@ -5,5 +5,8 @@
 
   "template_path": "assets/starter_template.RPP",
 
-  "output_root": "~/Documents/MIDI-SONGS"
+  "output_root": "~/Documents/MIDI-SONGS",
+
+  "_agent_help": "Optional, for the ui/ generation loop. agent_backend: 'auto' (default — claude if installed, else opencode), 'claude', or 'opencode'. agent_model only applies to opencode, format 'provider/model' (e.g. 'anthropic/claude-sonnet-4-5'); omit to use opencode's own configured default. Env overrides: COMPOSER_AGENT_BACKEND, COMPOSER_AGENT_MODEL.",
+  "agent_backend": "auto"
 }

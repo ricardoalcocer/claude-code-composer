@@ -36,6 +36,7 @@ export default function App() {
 
   const [agentJobs, setAgentJobs] = useState<AgentJob[]>([])
   const [claudeAvailable, setClaudeAvailable] = useState(false)
+  const [backend, setBackend] = useState('')
   const [transformBusy, setTransformBusy] = useState(false)
   const [patchBusy, setPatchBusy] = useState(false)
   const [flash, setFlash] = useState<string | null>(null)
@@ -74,7 +75,11 @@ export default function App() {
 
   useEffect(() => {
     api.getJobs()
-      .then((r) => { setAgentJobs(r.jobs); setClaudeAvailable(r.claude_available) })
+      .then((r) => {
+        setAgentJobs(r.jobs)
+        setClaudeAvailable(r.backend_available ?? r.claude_available)
+        setBackend(r.backend ?? '')
+      })
       .catch(() => {})
   }, [events.jobs])
 
@@ -328,6 +333,7 @@ export default function App() {
       <GenerateBar
         jobs={agentJobs}
         claudeAvailable={claudeAvailable}
+        backend={backend}
         busy={false}
         onGenerate={doGenerate}
         onOpenResult={(rel) => { playback.stop(); void loadSong(rel) }}
