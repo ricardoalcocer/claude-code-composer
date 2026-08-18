@@ -2,6 +2,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import * as api from './api'
 import { parseSmf, type ParsedMidi } from './midi/parseSmf'
 import { usePlayback } from './hooks/usePlayback'
+import { useEvents } from './hooks/useEvents'
+import { GenerateBar } from './components/GenerateBar'
+import { TransformBar } from './components/TransformBar'
 import { Library } from './components/Library'
 import { FormTimeline } from './components/FormTimeline'
 import { Transport } from './components/Transport'
@@ -10,7 +13,7 @@ import { SectionDetail } from './components/SectionDetail'
 import { SpecEditor } from './components/SpecEditor'
 import { CatalogPanel } from './components/CatalogPanel'
 import type {
-  Catalog, ComposeResult, LibraryEntry, ServerConfig, SongPayload, Spec,
+  AgentJob, Catalog, ComposeResult, LibraryEntry, ServerConfig, SongPayload, Spec,
 } from './types'
 import { formTimeline, specRoles, totalBeats } from './types'
 
@@ -31,8 +34,15 @@ export default function App() {
   const [composeResult, setComposeResult] = useState<ComposeResult | null>(null)
   const [error, setError] = useState<string | null>(null)
 
+  const [agentJobs, setAgentJobs] = useState<AgentJob[]>([])
+  const [claudeAvailable, setClaudeAvailable] = useState(false)
+  const [transformBusy, setTransformBusy] = useState(false)
+  const [patchBusy, setPatchBusy] = useState(false)
+  const [flash, setFlash] = useState<string | null>(null)
+
   const playback = usePlayback()
   const { engine, load, seek, setLoop } = playback
+  const events = useEvents()
 
   // --- data loading ---
 
@@ -55,6 +65,30 @@ export default function App() {
     api.getConfig().then(setConfig).catch(() => {})
     api.getCatalog().then(setCatalog).catch(() => {})
   }, [refreshLibrary])
+
+  // SSE-driven refreshes: the archive changed (any writer) → rescan; agent
+  // jobs changed → refetch the job list. Both are cheap idempotent GETs.
+  useEffect(() => {
+    if (events.library > 0) void refreshLibrary()
+  }, [events.library, refreshLibrary])
+
+  useEffect(() => {
+    api.getJobs()
+      .then((r) => { setAgentJobs(r.jobs); setClaudeAvailable(r.claude_available) })
+      .catch(() => {})
+  }, [events.jobs])
+
+  // While any job runs, tick the elapsed counters locally between SSE frames.
+  useEffect(() => {
+    if (!agentJobs.some((j) => j.status === 'running')) return
+    const iv = window.setInterval(() => {
+      setAgentJobs((jobs) => jobs.map((j) =>
+        j.status === 'running' && j.started
+          ? { ...j, elapsed: (Date.now() / 1000) - j.started }
+          : j))
+    }, 1000)
+    return () => window.clearInterval(iv)
+  }, [agentJobs])
 
   const loadSong = useCallback(async (rel: string) => {
     setError(null)
@@ -174,6 +208,77 @@ export default function App() {
     }
   }, [selectedRel, loadSong, refreshLibrary, playback])
 
+  // --- generation actions ---
+
+  const showFlash = useCallback((msg: string) => {
+    setFlash(msg)
+    window.setTimeout(() => setFlash(null), 3200)
+  }, [])
+
+  const doGenerate = useCallback(async (brief: string, count: number) => {
+    try {
+      // New sketches land next to the current song when one is open, else at root.
+      const parent = selectedRel ? selectedRel.split('/').slice(0, -1).join('/') : ''
+      await api.generate(brief, count, parent || undefined)
+      showFlash(count > 1 ? `${count} takes generating — keep auditioning` : 'generating…')
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'generate failed')
+    }
+  }, [selectedRel, showFlash])
+
+  const doTransform = useCallback(async (op: string, arg?: unknown) => {
+    if (!selectedRel) return
+    setTransformBusy(true)
+    try {
+      const r = await api.transform(selectedRel, op, arg)
+      showFlash(`variant in ${r.ms}ms`)
+      await loadSong(r.rel)          // jump straight into the new variant
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'transform failed')
+    } finally {
+      setTransformBusy(false)
+    }
+  }, [selectedRel, loadSong, showFlash])
+
+  const doPatch = useCallback(async (ask: string) => {
+    if (!selectedRel) return
+    setPatchBusy(true)
+    try {
+      await api.patch(selectedRel, ask)
+      showFlash('patch running — result appears in the archive')
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'patch failed')
+    } finally {
+      setPatchBusy(false)
+    }
+  }, [selectedRel, showFlash])
+
+  const doPromote = useCallback(async () => {
+    if (!selectedRel) return
+    setTransformBusy(true)
+    try {
+      const r = await api.promote(selectedRel)
+      showFlash(r.rpp ? `rendered ${r.rpp}` : 'promoted')
+      await loadSong(selectedRel)   // refresh file list to show the .RPP
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'promote failed')
+    } finally {
+      setTransformBusy(false)
+    }
+  }, [selectedRel, loadSong, showFlash])
+
+  // A finished patch job auto-opens its result once (it's the thing you asked for).
+  const openedJobs = useRef(new Set<string>())
+  useEffect(() => {
+    for (const j of agentJobs) {
+      if (j.kind === 'patch' && j.status === 'done' && j.rel && !openedJobs.current.has(j.id)) {
+        openedJobs.current.add(j.id)
+        void loadSong(j.rel)
+        showFlash(`patch done → ${j.rel.split('/').pop()}`)
+      }
+    }
+  }, [agentJobs, loadSong, showFlash])
+
   // --- render ---
 
   return (
@@ -185,12 +290,22 @@ export default function App() {
           <span className="brand-sub">sketchpad</span>
         </div>
         <div className="topbar-right">
+          {flash && <span className="flash-note">{flash}</span>}
+          {!events.connected && <span className="warn">live updates reconnecting…</span>}
           {config && !config.output_root_exists && (
             <span className="warn">archive root does not exist yet</span>
           )}
           {error && <span className="warn">{error}</span>}
         </div>
       </header>
+
+      <GenerateBar
+        jobs={agentJobs}
+        claudeAvailable={claudeAvailable}
+        busy={false}
+        onGenerate={doGenerate}
+        onOpenResult={(rel) => { playback.stop(); void loadSong(rel) }}
+      />
 
       <div className="body">
         <Library
@@ -247,6 +362,16 @@ export default function App() {
                 onToggle={() => playback.toggle()}
                 onStop={() => { playback.stop(); seek(0) }}
                 onToggleLoop={toggleLoop}
+              />
+
+              <TransformBar
+                spec={spec}
+                busy={transformBusy}
+                onTransform={(op, arg) => { playback.stop(); void doTransform(op, arg) }}
+                onPatch={doPatch}
+                onPromote={() => void doPromote()}
+                hasRpp={song?.files.some((f) => f.name.toLowerCase().endsWith('.rpp')) ?? false}
+                patchBusy={patchBusy || agentJobs.some((j) => j.kind === 'patch' && j.status === 'running')}
               />
 
               <div className="panels">

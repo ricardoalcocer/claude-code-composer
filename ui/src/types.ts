@@ -101,6 +101,32 @@ export interface CatalogSection {
   entries: string[]
 }
 
+export interface AgentJob {
+  id: string
+  kind: 'brief' | 'patch' | 'prime'
+  label: string
+  status: 'queued' | 'running' | 'done' | 'error'
+  detail: string
+  rel: string | null
+  created: number
+  started: number | null
+  finished: number | null
+  elapsed: number
+}
+
+export interface TransformResult {
+  ok: boolean
+  rel: string
+  ms: number
+}
+
+export interface PromoteResult {
+  ok: boolean
+  rpp: string | null
+  path: string | null
+  error?: string
+}
+
 export type Catalog = Record<string, CatalogSection>
 
 // --- derived helpers -------------------------------------------------------

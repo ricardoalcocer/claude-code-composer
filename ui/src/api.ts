@@ -1,5 +1,6 @@
 import type {
-  Catalog, ComposeResult, LibraryEntry, ServerConfig, SongPayload, Spec,
+  AgentJob, Catalog, ComposeResult, LibraryEntry, PromoteResult,
+  ServerConfig, SongPayload, Spec, TransformResult,
 } from './types'
 
 async function getJSON<T>(url: string): Promise<T> {
@@ -35,6 +36,38 @@ export async function fetchMidi(rel: string, name: string): Promise<ArrayBuffer>
   if (!res.ok) throw new Error(`could not load ${name}`)
   return res.arrayBuffer()
 }
+
+async function postJSON<T>(url: string, body: unknown): Promise<T> {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  })
+  if (!res.ok) {
+    let detail = res.statusText
+    try {
+      const err = await res.json()
+      if (err?.error) detail = err.error
+    } catch { /* keep statusText */ }
+    throw new Error(detail)
+  }
+  return res.json() as Promise<T>
+}
+
+export const transform = (rel: string, op: string, arg?: unknown) =>
+  postJSON<TransformResult>('/api/transform', { rel, op, arg })
+
+export const generate = (brief: string, count: number, parent_rel?: string) =>
+  postJSON<{ ok: boolean; jobs: AgentJob[] }>('/api/generate', { brief, count, parent_rel })
+
+export const patch = (rel: string, ask: string) =>
+  postJSON<{ ok: boolean; job: AgentJob }>('/api/patch', { rel, ask })
+
+export const promote = (rel: string) =>
+  postJSON<PromoteResult>('/api/promote', { rel })
+
+export const getJobs = () =>
+  getJSON<{ jobs: AgentJob[]; claude_available: boolean }>('/api/jobs')
 
 export async function compose(body: {
   spec: Spec

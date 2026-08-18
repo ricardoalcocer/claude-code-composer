@@ -3,3 +3,5 @@ dist/
 *.local
 .vite/
 *.tsbuildinfo
+.staging/
+__pycache__/

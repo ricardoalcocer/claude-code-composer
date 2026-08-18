@@ -72,7 +72,10 @@ export function Library({ songs, selected, onSelect, onRefresh, loading, root }:
                 className={`song-row${selected === s.rel ? ' is-selected' : ''}`}
                 onClick={() => onSelect(s.rel)}
               >
-                <span className="song-name">{s.song_name || s.slug}</span>
+                {/* Prefer the dir-derived slug: transform variants share their
+                    parent's song_name, and the suffix (-t+2, -thin, -p2) is
+                    the only thing that tells them apart in a list. */}
+                <span className="song-name">{s.slug || s.song_name}</span>
                 <span className="song-meta">
                   {s.key && <span className="chip chip-key">{s.key}</span>}
                   {s.bpm != null && <span className="chip">{s.bpm}</span>}

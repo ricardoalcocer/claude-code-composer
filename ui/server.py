@@ -23,10 +23,15 @@ import re
 import subprocess
 import sys
 import threading
+import time
 import traceback
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse, parse_qs
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import agent  # noqa: E402
+import transforms  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 COMPOSER_PY = REPO_ROOT / "composer.py"
@@ -187,6 +192,47 @@ def parse_catalogs():
     return out
 
 
+# ---------- library change signal ----------
+# Bumped whenever anything rewrites the archive (transform, generate, patch,
+# promote, browser regenerate) so /api/events subscribers refresh instantly.
+# A slow mtime poll backs it up for songs written by Claude in a terminal.
+
+_library_version = 0
+_library_cond = threading.Condition()
+
+
+def bump_library():
+    global _library_version
+    with _library_cond:
+        _library_version += 1
+        _library_cond.notify_all()
+
+
+def _mtime_fingerprint(root):
+    """Cheap change detector for external writers (Claude in a terminal)."""
+    if not root.is_dir():
+        return 0
+    newest = 0.0
+    count = 0
+    for p in root.rglob("spec.json"):
+        count += 1
+        try:
+            newest = max(newest, p.stat().st_mtime)
+        except OSError:
+            pass
+    return hash((count, newest))
+
+
+def _watch_archive(root, interval=2.0):
+    last = _mtime_fingerprint(root)
+    while True:
+        time.sleep(interval)
+        cur = _mtime_fingerprint(root)
+        if cur != last:
+            last = cur
+            bump_library()
+
+
 # ---------- request handler ----------
 
 class Handler(BaseHTTPRequestHandler):
@@ -242,6 +288,11 @@ class Handler(BaseHTTPRequestHandler):
                 return self.api_file(qs)
             if path == "/api/catalog":
                 return self._json(parse_catalogs())
+            if path == "/api/jobs":
+                return self._json({"jobs": agent.REGISTRY.snapshot()[1],
+                                   "claude_available": agent.claude_available()})
+            if path == "/api/events":
+                return self.api_events()
             if path.startswith("/api/"):
                 return self._err(404, f"no such endpoint: {path}")
             return self.serve_static(path)
@@ -256,6 +307,14 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if parsed.path == "/api/compose":
                 return self.api_compose()
+            if parsed.path == "/api/transform":
+                return self.api_transform()
+            if parsed.path == "/api/generate":
+                return self.api_generate()
+            if parsed.path == "/api/patch":
+                return self.api_patch()
+            if parsed.path == "/api/promote":
+                return self.api_promote()
             return self._err(404, f"no such endpoint: {parsed.path}")
         except ValueError as e:
             return self._err(400, str(e))
@@ -367,6 +426,8 @@ class Handler(BaseHTTPRequestHandler):
             proc = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
 
         spec_file.unlink(missing_ok=True)
+        if proc.returncode == 0:
+            bump_library()
 
         return self._json({
             "ok": proc.returncode == 0,
@@ -376,6 +437,155 @@ class Handler(BaseHTTPRequestHandler):
             "rel": out_dir.relative_to(self.root).as_posix(),
             "midi_only": midi_only,
         })
+
+    def _read_body(self):
+        length = int(self.headers.get("Content-Length") or 0)
+        if length <= 0:
+            raise ValueError("empty request body")
+        return json.loads(self.rfile.read(length))
+
+    def _load_spec(self, rel):
+        song_dir = self._safe_song_dir(rel)
+        spec_path = song_dir / "spec.json"
+        if not spec_path.is_file():
+            raise ValueError("no spec.json in that folder")
+        with open(spec_path) as f:
+            return song_dir, json.load(f)
+
+    @staticmethod
+    def _unique_sibling(song_dir, suffix):
+        base = f"{song_dir.name}-{suffix}"
+        out = song_dir.parent / base
+        n = 2
+        while out.exists():
+            out = song_dir.parent / f"{base}-{n}"
+            n += 1
+        return out
+
+    def api_transform(self):
+        """Tier 0: apply a deterministic transform, render a sibling variant."""
+        body = self._read_body()
+        rel, op, arg = body.get("rel"), body.get("op"), body.get("arg")
+        song_dir, spec = self._load_spec(rel)
+        try:
+            out_spec = transforms.apply(spec, op, arg)
+        except transforms.TransformError as e:
+            raise ValueError(str(e))
+
+        # Variant folder name mirrors the op: em-135-iron-mile-t+7, -96bpm, -7-8…
+        def suffix_for(op, arg):
+            if op == "transpose":
+                return f"t{int(arg):+d}"
+            if op == "tempo":
+                return f"{int(float(arg))}bpm"
+            if op == "rebar":
+                return str(arg).replace("/", "-")
+            if op == "thin":
+                return "thin"
+            return re.sub(r"[^a-z0-9+-]+", "-", f"{op}-{arg}".lower()).strip("-")
+
+        out_dir = self._unique_sibling(song_dir, suffix_for(op, arg))
+
+        t0 = time.perf_counter()
+        out_dir.mkdir(parents=True)
+        staged = out_dir / ".transform-spec.json"
+        staged.write_text(json.dumps(out_spec, indent=2), encoding="utf-8")
+        proc = subprocess.run(
+            [sys.executable, str(COMPOSER_PY), "compose", "--midi-only",
+             str(staged), str(out_dir)],
+            capture_output=True, text=True, timeout=60)
+        staged.unlink(missing_ok=True)
+        if proc.returncode != 0:
+            return self._json({"ok": False, "error": proc.stderr.strip()[:400]}, 500)
+        bump_library()
+        return self._json({
+            "ok": True,
+            "rel": out_dir.relative_to(self.root).as_posix(),
+            "ms": round((time.perf_counter() - t0) * 1000, 1),
+        })
+
+    def api_generate(self):
+        """Tier 2: fan out N cold briefs. Returns job ids immediately."""
+        body = self._read_body()
+        brief = (body.get("brief") or "").strip()
+        if not brief:
+            raise ValueError("missing 'brief'")
+        count = max(1, min(int(body.get("count") or 1), 8))
+        parent_rel = body.get("parent_rel") or ""
+        if parent_rel:
+            self._safe_song_dir(parent_rel)  # validates containment
+        if not agent.claude_available():
+            raise ValueError("claude CLI not found on PATH — generation needs "
+                             "Claude Code installed on this machine")
+        jobs = []
+        for i in range(count):
+            variety = ("Make this take clearly different from other takes on the "
+                       "same brief: vary form, archetype, and harmonic strategy. "
+                       f"This is take {i + 1} of {count}.") if count > 1 else ""
+            jobs.append(agent.run_brief(
+                brief, self.root, parent_rel, variety,
+                on_done=lambda j: bump_library()).to_dict())
+        return self._json({"ok": True, "jobs": jobs})
+
+    def api_patch(self):
+        """Tier 1: scoped patch via the warm session. Returns job id."""
+        body = self._read_body()
+        rel, ask = body.get("rel"), (body.get("ask") or "").strip()
+        if not ask:
+            raise ValueError("missing 'ask'")
+        self._load_spec(rel)  # validates rel + spec presence
+        if not agent.claude_available():
+            raise ValueError("claude CLI not found on PATH")
+        job = agent.run_patch(ask, rel, self.root,
+                              on_done=lambda j: bump_library())
+        return self._json({"ok": True, "job": job.to_dict()})
+
+    def api_promote(self):
+        """Render the full REAPER project for a kept sketch (the keeper path)."""
+        body = self._read_body()
+        song_dir, spec = self._load_spec(body.get("rel"))
+        staged = song_dir / ".promote-spec.json"
+        staged.write_text(json.dumps(spec, indent=2), encoding="utf-8")
+        proc = subprocess.run(
+            [sys.executable, str(COMPOSER_PY), "compose", str(staged), str(song_dir)],
+            capture_output=True, text=True, timeout=120)
+        staged.unlink(missing_ok=True)
+        if proc.returncode != 0:
+            return self._json({"ok": False,
+                               "error": proc.stderr.strip()[:400] or "compose failed"}, 500)
+        bump_library()
+        rpp = next(song_dir.glob("*.RPP"), None)
+        return self._json({"ok": True, "rpp": rpp.name if rpp else None,
+                           "path": str(rpp) if rpp else None})
+
+    def api_events(self):
+        """SSE: pushes {library, jobs} versions so the UI refreshes live."""
+        self.send_response(200)
+        self.send_header("Content-Type", "text/event-stream")
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("Connection", "keep-alive")
+        self.end_headers()
+
+        lib_seen = -1
+        jobs_seen = -1
+        try:
+            while True:
+                with _library_cond:
+                    lib_now = _library_version
+                jobs_now = agent.REGISTRY.snapshot()[0]
+                if lib_now != lib_seen or jobs_now != jobs_seen:
+                    lib_seen, jobs_seen = lib_now, jobs_now
+                    payload = json.dumps({"library": lib_now, "jobs": jobs_now})
+                    self.wfile.write(f"data: {payload}\n\n".encode())
+                    self.wfile.flush()
+                else:
+                    # Wait on job changes (they're the frequent ones); the
+                    # timeout doubles as the library poll and keep-alive tick.
+                    agent.REGISTRY.wait_change(jobs_seen, timeout=2.0)
+                    self.wfile.write(b": ping\n\n")
+                    self.wfile.flush()
+        except (BrokenPipeError, ConnectionResetError, OSError):
+            return  # client went away — normal
 
     # -- static files (production build) --
 
@@ -426,9 +636,14 @@ def main():
     root = load_output_root(args.root)
     Handler.root = root
 
+    # Background watcher: notices songs written by Claude in a terminal (or
+    # anything else) and pushes them to /api/events subscribers.
+    threading.Thread(target=_watch_archive, args=(root,), daemon=True).start()
+
     httpd = ThreadingHTTPServer((args.host, args.port), Handler)
     print(f"composer-ui api  → http://{args.host}:{args.port}")
     print(f"archive root     → {root}" + ("" if root.is_dir() else "  (does not exist yet)"))
+    print(f"claude CLI       → {'found — generation enabled' if agent.claude_available() else 'NOT FOUND — generation disabled, audition still works'}")
     if not DIST_DIR.is_dir():
         print("ui not built     → run `cd ui && npm install && npm run dev` in another terminal")
     try:
