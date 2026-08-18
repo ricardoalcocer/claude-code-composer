@@ -714,7 +714,17 @@ def main():
     # anything else) and pushes them to /api/events subscribers.
     threading.Thread(target=_watch_archive, args=(root,), daemon=True).start()
 
-    httpd = ThreadingHTTPServer((args.host, args.port), Handler)
+    try:
+        httpd = ThreadingHTTPServer((args.host, args.port), Handler)
+    except OSError as e:
+        if e.errno in (48, 98):  # EADDRINUSE (macOS, Linux)
+            print(f"error: port {args.port} is already in use — probably a "
+                  "previous composer-ui server still running.", file=sys.stderr)
+            print(f"  stop it:   lsof -ti :{args.port} | xargs kill", file=sys.stderr)
+            print(f"  or:        ./start-ui.sh   (reclaims the port itself)", file=sys.stderr)
+            print(f"  or pick another port: --port {args.port + 1}", file=sys.stderr)
+            sys.exit(1)
+        raise
     print(f"composer-ui api  → http://{args.host}:{args.port}")
     print(f"archive root     → {root}" + ("" if root.is_dir() else "  (does not exist yet)"))
     info = agent.backend_info()

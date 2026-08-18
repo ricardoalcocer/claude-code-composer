@@ -45,6 +45,33 @@ fi
 [ -f config.json ] || \
   echo "note: no config.json — archive defaults to ~/Documents/MIDI-SONGS (cp config.example.json config.json to change)"
 
+# --- reclaim the port from a previous run ----------------------------------
+# Re-running the script should just work: if the port is held by an earlier
+# composer-ui server (orphaned terminal, backgrounded run), stop it and take
+# over. If it's some other app, say so instead of letting bind() traceback.
+PORT=8722
+prev=""
+for a in "$@"; do
+  [ "$prev" = "--port" ] && PORT="$a"
+  prev="$a"
+done
+
+if command -v lsof >/dev/null && lsof -ti "tcp:$PORT" >/dev/null 2>&1; then
+  if curl -s --max-time 2 "http://127.0.0.1:$PORT/api/config" 2>/dev/null \
+      | grep -q composer_present; then
+    echo "stopping previous composer-ui server on :$PORT…"
+    lsof -ti "tcp:$PORT" | xargs kill 2>/dev/null || true
+    for _ in 1 2 3 4 5 6 7 8 9 10; do
+      lsof -ti "tcp:$PORT" >/dev/null 2>&1 || break
+      sleep 0.5
+    done
+  else
+    echo "error: port $PORT is in use by something that isn't composer-ui." >&2
+    echo "Pick another port:  ./start-ui.sh --port 8723" >&2
+    exit 1
+  fi
+fi
+
 # --- run -------------------------------------------------------------------
 open_flag="--open"
 [ "${NO_OPEN:-0}" = 1 ] && open_flag=""
