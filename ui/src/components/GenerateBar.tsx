@@ -5,9 +5,12 @@ interface Props {
   jobs: AgentJob[]
   claudeAvailable: boolean
   backend: string
+  /** Which agent CLIs exist on this machine, from the server. */
+  backends: Record<string, boolean>
   busy: boolean
   onGenerate: (brief: string, count: number) => void
   onOpenResult: (rel: string) => void
+  onSetBackend: (backend: string) => void
 }
 
 /**
@@ -15,7 +18,9 @@ interface Props {
  * a form. The one knob is fan-out count: one cold brief is ~3 minutes, so the
  * rational move is asking for several takes and auditioning while they land.
  */
-export function GenerateBar({ jobs, claudeAvailable, backend, busy, onGenerate, onOpenResult }: Props) {
+export function GenerateBar({
+  jobs, claudeAvailable, backend, backends, busy, onGenerate, onOpenResult, onSetBackend,
+}: Props) {
   const [brief, setBrief] = useState('')
   const [count, setCount] = useState(2)
 
@@ -60,10 +65,20 @@ export function GenerateBar({ jobs, claudeAvailable, backend, busy, onGenerate, 
         >
           Generate
         </button>
-        {claudeAvailable && backend && (
-          <span className="backend-tag" title="Agent CLI used for generation — set agent_backend in config.json">
-            via {backend}
-          </span>
+        {backend && (
+          <label className="backend-pick" title="Agent CLI for new generations — running jobs finish on the one they started with">
+            <span>via</span>
+            <select
+              value={backend}
+              onChange={(e) => onSetBackend(e.target.value)}
+            >
+              {Object.entries(backends).map(([name, installed]) => (
+                <option key={name} value={name} disabled={!installed}>
+                  {name}{installed ? '' : ' (not installed)'}
+                </option>
+              ))}
+            </select>
+          </label>
         )}
       </div>
 

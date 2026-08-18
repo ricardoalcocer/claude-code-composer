@@ -125,10 +125,19 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .count-btn.is-on { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
 
-.backend-tag {
+.backend-pick {
+  display: flex; align-items: center; gap: 5px;
   font-family: var(--mono); font-size: 10px; color: var(--text-faint);
   white-space: nowrap;
 }
+.backend-pick select {
+  background: var(--bg); color: var(--text-dim);
+  border: 1px solid var(--line); border-radius: 6px;
+  font-family: var(--mono); font-size: 11px;
+  padding: 5px 6px; cursor: pointer;
+}
+.backend-pick select:hover { border-color: var(--accent); color: var(--accent); }
+.backend-pick select:focus { outline: none; border-color: var(--accent); }
 
 .job-strip { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
 

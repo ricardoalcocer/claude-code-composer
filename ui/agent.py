@@ -489,15 +489,19 @@ class OpencodeBackend:
 BACKEND = None
 
 
-def select_backend(choice="auto", model=None):
+def select_backend(choice="auto", model=None, respect_env=True):
     """Pick the agent backend. choice: auto | claude | opencode.
 
-    Env overrides (highest precedence): COMPOSER_AGENT_BACKEND,
-    COMPOSER_AGENT_MODEL. Returns the backend (possibly unavailable — the
-    HTTP layer reports that instead of failing at startup).
+    At startup, env overrides win (COMPOSER_AGENT_BACKEND,
+    COMPOSER_AGENT_MODEL); a runtime switch from the UI passes
+    respect_env=False so the user's explicit click beats a stale env var.
+    Returns the backend (possibly unavailable — the HTTP layer reports that
+    instead of failing at startup). Jobs already running keep the backend
+    they started on; only new jobs see the switch.
     """
     global BACKEND
-    choice = os.environ.get("COMPOSER_AGENT_BACKEND") or choice or "auto"
+    if respect_env:
+        choice = os.environ.get("COMPOSER_AGENT_BACKEND") or choice or "auto"
     if choice == "claude":
         BACKEND = ClaudeBackend()
     elif choice == "opencode":
@@ -510,7 +514,15 @@ def select_backend(choice="auto", model=None):
 
 def backend_info():
     b = BACKEND or select_backend()
-    return {"backend": b.name, "available": b.available}
+    return {
+        "backend": b.name,
+        "available": b.available,
+        # What the UI's backend picker can offer, with per-CLI presence.
+        "backends": {
+            "claude": shutil.which("claude") is not None,
+            "opencode": shutil.which("opencode") is not None,
+        },
+    }
 
 
 def claude_available():

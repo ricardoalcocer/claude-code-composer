@@ -317,6 +317,7 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json({"jobs": agent.REGISTRY.snapshot()[1],
                                    "backend": info["backend"],
                                    "backend_available": info["available"],
+                                   "backends": info["backends"],
                                    # legacy key, kept for older UI builds
                                    "claude_available": info["available"]})
             if path == "/api/events":
@@ -345,6 +346,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self.api_promote()
             if parsed.path == "/api/discard":
                 return self.api_discard()
+            if parsed.path == "/api/backend":
+                return self.api_backend()
             return self._err(404, f"no such endpoint: {parsed.path}")
         except ValueError as e:
             return self._err(400, str(e))
@@ -620,6 +623,27 @@ class Handler(BaseHTTPRequestHandler):
         bump_library()
         return self._json({"ok": True,
                            "binned_to": target.relative_to(self.root).as_posix()})
+
+    def api_backend(self):
+        """Switch the agent backend at runtime (the UI dropdown).
+
+        Jobs already running finish on the backend they started with; only
+        new briefs/patches use the switch. Runtime-only — the startup default
+        stays whatever config.json / --backend / the env say.
+        """
+        body = self._read_body()
+        choice = body.get("backend")
+        if choice not in ("claude", "opencode", "auto"):
+            raise ValueError("backend must be 'claude', 'opencode', or 'auto'")
+        b = agent.select_backend(choice, load_config().get("agent_model"),
+                                 respect_env=False)
+        if not b.available:
+            # Roll back to something usable rather than stranding generation.
+            agent.select_backend("auto", load_config().get("agent_model"),
+                                 respect_env=False)
+            raise ValueError(f"the {choice} CLI is not installed on this machine")
+        info = agent.backend_info()
+        return self._json({"ok": True, **info})
 
     def api_events(self):
         """SSE: pushes {library, jobs} versions so the UI refreshes live."""

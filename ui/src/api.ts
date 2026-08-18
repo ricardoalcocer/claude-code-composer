@@ -75,7 +75,12 @@ export const getJobs = () =>
     claude_available: boolean
     backend?: string
     backend_available?: boolean
+    backends?: Record<string, boolean>
   }>('/api/jobs')
+
+export const setBackend = (backend: string) =>
+  postJSON<{ ok: boolean; backend: string; available: boolean }>(
+    '/api/backend', { backend })
 
 export async function compose(body: {
   spec: Spec

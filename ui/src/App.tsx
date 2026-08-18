@@ -37,6 +37,7 @@ export default function App() {
   const [agentJobs, setAgentJobs] = useState<AgentJob[]>([])
   const [claudeAvailable, setClaudeAvailable] = useState(false)
   const [backend, setBackend] = useState('')
+  const [backends, setBackends] = useState<Record<string, boolean>>({})
   const [transformBusy, setTransformBusy] = useState(false)
   const [patchBusy, setPatchBusy] = useState(false)
   const [flash, setFlash] = useState<string | null>(null)
@@ -80,6 +81,7 @@ export default function App() {
         setAgentJobs(r.jobs)
         setClaudeAvailable(r.backend_available ?? r.claude_available)
         setBackend(r.backend ?? '')
+        setBackends(r.backends ?? {})
       })
       .catch(() => {})
   }, [events.jobs])
@@ -221,6 +223,17 @@ export default function App() {
     window.setTimeout(() => setFlash(null), 3200)
   }, [])
 
+  const switchBackend = useCallback(async (name: string) => {
+    try {
+      const r = await api.setBackend(name)
+      setBackend(r.backend)
+      setClaudeAvailable(r.available)
+      showFlash(`new generations via ${r.backend}`)
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'backend switch failed')
+    }
+  }, [showFlash])
+
   const doGenerate = useCallback(async (brief: string, count: number) => {
     try {
       // New sketches land next to the current song when one is open, else at root.
@@ -340,9 +353,11 @@ export default function App() {
         jobs={agentJobs}
         claudeAvailable={claudeAvailable}
         backend={backend}
+        backends={backends}
         busy={false}
         onGenerate={doGenerate}
         onOpenResult={(rel) => { playback.stop(); void loadSong(rel) }}
+        onSetBackend={(name) => void switchBackend(name)}
       />
       {showHelp && (
         <div className="help-block help-block-bar">
