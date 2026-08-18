@@ -381,10 +381,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 .loop-btn {
   margin-left: auto;
+  display: inline-flex; align-items: center; gap: 6px;
   background: var(--panel-2); border: 1px solid var(--line);
   border-radius: 7px; padding: 6px 11px; font-size: 12px; color: var(--text-dim);
   font-family: var(--mono);
 }
+.loop-icon { width: 15px; height: 15px; flex: none; }
 .loop-btn.is-on { border-color: var(--good); color: var(--good); background: #22c55e14; }
 .loop-btn:disabled { opacity: 0.35; cursor: default; }
 

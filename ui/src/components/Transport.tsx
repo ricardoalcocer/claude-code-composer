@@ -50,7 +50,17 @@ export function Transport({
         disabled={!canLoop}
         title={canLoop ? 'Loop the selected section' : 'Select a section on the timeline first'}
       >
-        ⟳ {loopLabel}
+        {/* Inline SVG rather than the ⟳ glyph — that codepoint renders as an
+            illegible blob in some system fonts. */}
+        <svg className="loop-icon" viewBox="0 0 24 24" aria-hidden="true"
+             fill="none" stroke="currentColor" strokeWidth="2.4"
+             strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="17 1 21 5 17 9" />
+          <path d="M3 11V9a4 4 0 0 1 4-4h14" />
+          <polyline points="7 23 3 19 7 15" />
+          <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+        </svg>
+        loop {loopLabel}
       </button>
 
       <span className="transport-hint">space play · ←/→ scrub a bar</span>
