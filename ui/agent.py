@@ -206,6 +206,11 @@ def _unique_dir(parent, name):
     return d
 
 
+def _strip_ansi(text):
+    """CLI error output arrives with colour codes; job details shouldn't."""
+    return re.sub(r"\x1b\[[0-9;]*m", "", text)
+
+
 def _strip_fence(raw):
     return re.sub(r"^```(?:json)?\s*|\s*```$", "", raw.strip())
 
@@ -375,6 +380,12 @@ class OpencodeBackend:
         self.binary = shutil.which("opencode")
         self.model = model or os.environ.get("COMPOSER_AGENT_MODEL")
         self._lock = threading.Lock()   # one patch at a time, same as claude
+        # opencode's local state is SQLite: two simultaneous `opencode run`
+        # processes fail with "database is locked" (seen live on a 2-take
+        # fan-out). Serialize every opencode invocation through this lock —
+        # briefs queue instead of failing. claude has no such constraint and
+        # keeps true parallel fan-out.
+        self._exec_lock = threading.Lock()
         self.session_id = None
         self.primed_rel = None
 
@@ -389,12 +400,27 @@ class OpencodeBackend:
             cmd += ["-m", self.model]
         return cmd
 
+    def _exec(self, cmd, timeout):
+        """Run one opencode invocation, serialized; retry once on a db lock.
+
+        The serialization prevents our own runs from colliding; the retry
+        covers an interactive opencode (the TUI) briefly holding the lock.
+        """
+        with self._exec_lock:
+            proc = subprocess.run(cmd, cwd=REPO_ROOT, capture_output=True,
+                                  text=True, timeout=timeout)
+        if proc.returncode != 0 and \
+                "database is locked" in ((proc.stderr or "") + (proc.stdout or "")):
+            time.sleep(2)
+            with self._exec_lock:
+                proc = subprocess.run(cmd, cwd=REPO_ROOT, capture_output=True,
+                                      text=True, timeout=timeout)
+        return proc
+
     def run_brief_blocking(self, prompt, out_path, timeout):
-        proc = subprocess.run(self._base_cmd() + [prompt],
-                              cwd=REPO_ROOT, capture_output=True, text=True,
-                              timeout=timeout)
+        proc = self._exec(self._base_cmd() + [prompt], timeout)
         if not out_path.exists():
-            tail = (proc.stderr or proc.stdout or "").strip()[-300:]
+            tail = _strip_ansi((proc.stderr or proc.stdout or "").strip())[-300:]
             return f"agent wrote no spec (exit {proc.returncode}). {tail}"
         return None
 
@@ -405,15 +431,15 @@ class OpencodeBackend:
             job = REGISTRY.add(Job("prime", f"prime on {song_name}"))
             REGISTRY.update(job, status="running", started=_now())
             try:
-                proc = subprocess.run(
+                proc = self._exec(
                     self._base_cmd() + ["--title", f"composer:{song_name}",
                                         PRIME_PROMPT.format(spec_path=spec_path,
                                                             song_name=song_name)],
-                    cwd=REPO_ROOT, capture_output=True, text=True,
-                    timeout=PRIME_TIMEOUT_S)
+                    PRIME_TIMEOUT_S)
                 if proc.returncode != 0:
-                    raise RuntimeError((proc.stderr or proc.stdout or "").strip()[-300:]
-                                       or f"exit {proc.returncode}")
+                    raise RuntimeError(
+                        _strip_ansi((proc.stderr or proc.stdout or "").strip())[-300:]
+                        or f"exit {proc.returncode}")
                 sid = None
                 for line in proc.stdout.splitlines():
                     try:
@@ -443,12 +469,12 @@ class OpencodeBackend:
             out_path = _staging_dir() / f"patch-{uuid.uuid4().hex[:8]}.json"
             cont = ["-s", self.session_id] if self.session_id else ["-c"]
             try:
-                proc = subprocess.run(
+                proc = self._exec(
                     self._base_cmd() + cont +
                     [PATCH_PROMPT_FILE.format(ask=ask, out_path=out_path)],
-                    cwd=REPO_ROOT, capture_output=True, text=True, timeout=timeout)
+                    timeout)
                 if not out_path.exists():
-                    tail = (proc.stderr or proc.stdout or "").strip()[-200:]
+                    tail = _strip_ansi((proc.stderr or proc.stdout or "").strip())[-200:]
                     raise RuntimeError(f"agent wrote no fragment. {tail}")
                 return _parse_fragment(out_path.read_text(encoding="utf-8"))
             finally:
