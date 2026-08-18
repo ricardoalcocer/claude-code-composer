@@ -73,7 +73,8 @@ Write a spec file to `/tmp/composer_spec.json`. Full example:
     },
     {
       "name": "verse",
-      "feel": "halftime",
+      "feel": "half-chug",
+      "voicing": "power-color",
       "chords": [
         {"name": "Em9",    "beats": 4},
         {"name": "D",      "beats": 4},
@@ -87,7 +88,8 @@ Write a spec file to `/tmp/composer_spec.json`. Full example:
     },
     {
       "name": "chorus",
-      "feel": "driving",
+      "feel": "chug",
+      "voicing": "power-color",
       "chords": [
         {"name": "C",   "beats": 4},
         {"name": "G",   "beats": 4},
@@ -109,15 +111,18 @@ Write a spec file to `/tmp/composer_spec.json`. Full example:
 - **`tempo`** — BPM.
 - **`time_sig`** — `[num, den]`, defaults `[4, 4]`. Try odd time (5/4, 7/8) for Plini/Polyphia.
 - **`sections[].feel`** — Rhythmic pattern for the rhythm guitars + default drum pattern:
-  - `"driving"` *(default)* — Constant 8th-note chops. Energetic rock engine.
+  - `"driving"` *(default)* — Constant 8th-note chops, every hit even. Energetic pop/funk/fusion engine. **NOT the rock engine** — for actual rock rhythm guitar use `chug`/`half-chug`/`open` below.
+  - `"chug"` — **The rock engine.** Constant palm-muted 8th notes, every hit a chug (no ring/chug alternation). THE rhythm-guitar texture for rock verses and choruses. Defaults to `rock` drums (ride cymbal 8ths, punchier kick). Pairs with `"voicing": "power-color"`.
+  - `"half-chug"` — Palm-muted downbeats only — heavier, more open halftime rock feel. Breakdowns, half-time choruses, the "big slow" sections. Defaults to `rock-half` drums.
+  - `"open"` — One full-ringing strum per bar. Anthemic lifts, final choruses, the moment the palm-mute releases. Defaults to `rock` drums.
   - `"sparse"` — One hit per chord, ringing. Atmospheric intros, breathing verses.
   - `"halftime"` — Two hits per bar (beats 1 and 3), held. Big and slow-feeling at same tempo.
   - `"pushed"` — Syncopated stabs on 1, *and of 2*, 3, *and of 4*. Funk-rock push.
   - `"skank"` — Reggae chord chops ONLY on the upbeats (and-of-2, and-of-4). Silent downbeats are the point. Pairs with the `one-drop` drum pattern. For fusion: put Dorian or Lydian-dom changes under it.
   - `"montuno"` — Salsa engine. On the `pad` (piano) role this triggers a syncopated chord-tone arpeggio (root/3rd/5th) in mid-register — the actual montuno figure. On `rhy_l`/`rhy_r` it becomes a syncopated guitar comp doubling the figure. Pairs with `latin-fusion` drums and a `clave-3-2` chugg.
   - `"locked-16"` — J-fusion (Casiopea / T-Square) tight 8th-note pocket. Choked-short chord stabs with **upbeats accented louder than downbeats** — the Japanese-fusion lift. Pairs with the `j-fusion-kit` drum pattern (16th hi-hat underneath). This is the feel that makes the J-fusion pack actually *sound* like Casiopea instead of generic rock.
-- **`sections[].drums`** — Optional override. Defaults from `feel` (sparse→halftime, driving→basic-rock, halftime→halftime, pushed→basic-rock, skank→one-drop, montuno→latin-fusion, locked-16→j-fusion-kit). Values: `"basic-rock"`, `"halftime"`, `"four-on-floor"`, `"one-drop"` (reggae — kick+snare together on beat 3), `"latin-fusion"` (kit + cowbell + open conga on the "ands"), `"j-fusion-kit"` (16th hi-hat + syncopated kick — Akira Jimbo / Hiroyuki Noritake style), `"none"`.
-- **`sections[].voicing`** — Rhythm guitar chord voicing. `"power"` *(default)* plays root+fifth power chords (rock/metal). `"full"` plays the full chord tones (root + 3rd + 5th + 7th) — required for jazz-funk/fusion comping; otherwise power chords kill the genre.
+- **`sections[].drums`** — Optional override. Defaults from `feel` (sparse→halftime, driving→basic-rock, halftime→halftime, pushed→basic-rock, chug→rock, half-chug→rock-half, open→rock, skank→one-drop, montuno→latin-fusion, locked-16→j-fusion-kit). Values: `"basic-rock"`, `"rock"` (ride cymbal 8ths + punchier kick — cuts through palm-muted guitars where basic-rock's hi-hat disappears), `"rock-half"` (half-time rock — kick 1+3, snare on 3, ride 8ths), `"halftime"`, `"four-on-floor"`, `"one-drop"` (reggae — kick+snare together on beat 3), `"latin-fusion"` (kit + cowbell + open conga on the "ands"), `"j-fusion-kit"` (16th hi-hat + syncopated kick — Akira Jimbo / Hiroyuki Noritake style), `"none"`.
+- **`sections[].voicing`** — Rhythm guitar chord voicing. `"power"` *(default)* plays root+fifth power chords (rock/metal). `"power-color"` plays the power chord at low rock octave PLUS the 3rd or 7th one octave above — the Plini trick: the low end stays all palm-mute chug, but the chord's identity (major/minor, maj7/m7, sus) rings audibly on top without sounding like jazz comping. **The voicing for the rock engine** — color chords (m9, maj7, sus2) survive it, so the Rock pack's color-chord doctrine and heavy guitars coexist. `"full"` plays the full chord tones (root + 3rd + 5th + 7th) — required for jazz-funk/fusion comping; otherwise power chords kill the genre.
 - **`sections[].move`** *(optional but strongly recommended)* — Short human-readable description of the harmonic strategy AND/OR the intra-section arrangement variation. Goes into the Reaper project notes so the user can read what each section is doing when they open the .RPP. Examples: `"pedal-tone vamp (F# in bass)"`, `"diatonic descending bass E→D→C→B→A→G→F#→B"`, `"bVI-bVII-i lift"`, `"chromatic descending bass"`, `"Phrygian-dom (Em-F-Em-B7)"`. **For sections longer than 8 bars, also include an intra-section arrangement move** from the catalog below (e.g. `"… + mid-section drop: kick out for bars 5-8"`, `"… + delayed lead entry bar 9"`, `"… + single-bar silence reset before next section"`). The script can't auto-execute these arrangement moves — they're documentation for the user to wire manually in REAPER (mute slices, automation, FX bypass). **Fill this in for every section** — it's the "bandmate handing you a sketch" part of the experience.
 - **`sections[].scales`** *(strongly recommended — improvisation guidance)* — Which scale(s) to play over this section when soloing. Goes into the Reaper project notes as an `improv:` line below the chords. Format: name the scale with its note spelling, and optionally a second scale option for color. Examples:
   - `"G Aeolian (G-A-Bb-C-D-Eb-F)"`
@@ -141,7 +146,7 @@ Write a spec file to `/tmp/composer_spec.json`. Full example:
 
 ### Chord names
 
-Parser supports: `C`, `Cm`, `C7`, `Cmaj7`, `Cm7`, `Cmmaj7`, `Cm7b5`, `Cdim`, `Cdim7`, `Caug`, `Csus2`, `Csus4`, `C6`, `Cm6`, `Cadd9`, `Cmadd9`, `C9`, `Cmaj9`, `Cm9`. Slash chords (`G/B`) supported. Sharps/flats with `#`/`b`. Anything else errors.
+Parser supports: `C`, `Cm`, `C7`, `Cmaj7`, `Cm7`, `Cmmaj7`, `Cm7b5`, `Cdim`, `Cdim7`, `Caug`, `Csus2`, `Csus4`, `C7sus4`, `Cmaj7sus4`, `C6`, `Cm6`, `Cadd9`, `Cmadd9`, `C9`, `Cmaj9`, `Cm9`. Slash chords (`G/B`) supported. Sharps/flats with `#`/`b`. `REST` (or `N.C.`) as a chord name writes silence for its beats — the stop-time hit, the breath before a drop. Anything else errors.
 
 ### 5. Run the generator
 
@@ -236,17 +241,19 @@ The instrumental-melodic-rock idiom evolved POST-classic-rock and absorbed:
 - **Tempo:** 88–140 (typically 100–135)
 - **Key:** minor preferred — `Em`, `Bm`, `F#m`, `Am`, `Dm`. Use harmonic minor's raised 7th for V7 tension. **Major keys are allowed BUT only with modal/Lydian frame** (see below) — never as straight Ionian diatonic.
 - **Roles:** all five — `bass, pad, rhy_l, rhy_r, drums`
+- **THE ROCK ENGINE — this is what "rock song" means.** When the brief says rock, the guitars chug: the section feels are `chug` / `half-chug` / `open` (NOT `driving` — that's the even-strummed pop/fusion engine), the drums are `rock` / `rock-half` (ride-driven; let them default from the feel), the bass locks 8th-note roots to the kick automatically, and the guitar voicing is `"voicing": "power-color"` so the color-chord doctrine below survives heavy guitars. The dynamic vocabulary is the palm-mute itself: `chug` = mute on, `open` = mute released (the lift), `half-chug` = the heavy half-time drop, `sparse` = the band breathes. A rock song that never chugs isn't one; reserve `driving` for deliberate funk/fusion-leaning sections and say so in `move`.
 - **Feel archetypes** *(pick one — DO NOT default to the same arc every time)*:
-  - **A. Classic contrast** (my historical default — overused): `sparse` intro → `halftime` verse → `driving` chorus → `sparse` bridge → `driving` chorus. Use this MAX once every few songs.
-  - **B. Driving throughout**: all sections `driving` — the band never stops. Build via density/voicing/harmony, not feel. (Foo Fighters, AC/DC, AAL "Cafo".)
-  - **C. Inverse halftime chorus**: verse `driving`, chorus `halftime`. The SLOWDOWN at the chorus is the impact (Plini "Selenium Forest" vibe).
-  - **D. Pushed throughout**: all sections `pushed`. Funk-rock, jazz-fusion energy.
+  - **A. Classic contrast** (my historical default — overused): `sparse` intro → `half-chug` verse → `chug` chorus → `sparse` bridge → `chug` chorus. Use this MAX once every few songs.
+  - **B. Chug throughout**: all sections `chug` — the band never stops. Build via density/voicing/harmony, not feel. (Foo Fighters, AC/DC, AAL "Cafo".)
+  - **C. Inverse halftime chorus**: verse `chug`, chorus `half-chug`. The SLOWDOWN at the chorus is the impact (Plini "Selenium Forest" vibe).
+  - **D. Pushed throughout**: all sections `pushed`. Funk-rock, jazz-fusion energy — the one archetype that deliberately leaves the chug engine.
   - **E. Sparse throughout**: cinematic instrumental, post-rock. Build via track-by-track entry (no rhythm guitars in verse 1, adding in verse 2, etc.).
-  - **F. Mid-song hard drop**: verses/chorus 1 `driving`, then a `sparse` bridge that completely strips back, final chorus `driving` reborn. The drop IS the bridge.
-  - **G. Pre-chorus build**: verse `halftime`, pre-chorus `driving`, chorus `halftime` (big slow lift), final chorus `driving`. The pre-chorus and chorus swap their expected energies.
+  - **F. Mid-song hard drop**: verses/chorus 1 `chug`, then a `sparse` bridge that completely strips back, final chorus `open` reborn — the palm-mute never comes back, it RINGS. The drop IS the bridge.
+  - **G. Pre-chorus build**: verse `half-chug`, pre-chorus `chug`, chorus `open` (the release), final chorus `chug` + `open` alternating bars via two chorus sections. The mute/release cycle is the arc.
   - **DON'T:** Pick A by reflex. Before composing, look at recent outputs (`ls <output_root>/_<year>/composer/ | tail -5` + read their `spec.json`) — if the last 2 songs used archetype A, pick B-G for this one. Variety in dynamic SHAPE matters as much as variety in chord choice.
+- **Stop-time:** a `REST` chord for 1–2 beats before a chorus or at a riff's turnaround is the classic rock punctuation — band hits, silence, band returns. Use sparingly, once per song.
 - **Moves to reach for:** Aeolian descent, pedal-tone vamps, Polyphia common-tone, bVI-bVII-i lift, Phrygian-dom V7, Picardy 3rd ending, Lydian #4 IV-chord
-- **Voicings:** m7/m9/maj7/sus2/sus4/add9 — color chords are the default. Plain triads only on resolution arrivals (chorus landings).
+- **Voicings:** m7/m9/maj7/sus2/sus4/add9 — color chords are the default, carried by `power-color` on the rhythm guitars. Plain triads only on resolution arrivals (chorus landings).
 
 #### FORBIDDEN — even when the request says "anthem" / "epic" / "driving"
 
