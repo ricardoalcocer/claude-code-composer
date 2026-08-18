@@ -196,6 +196,28 @@ def parse_catalogs():
     return out
 
 
+# ---------- quiet server ----------
+
+class QuietHTTPServer(ThreadingHTTPServer):
+    """ThreadingHTTPServer that doesn't traceback on routine disconnects.
+
+    Browsers drop keep-alive and SSE connections constantly — refresh, tab
+    close, EventSource reconnect — and each drop surfaces here as
+    ConnectionResetError/BrokenPipeError while the handler thread reads or
+    writes the socket. That's normal lifecycle, not an error; the stock
+    handle_error prints a 20-line traceback for every one of them.
+    """
+
+    daemon_threads = True
+
+    def handle_error(self, request, client_address):
+        exc = sys.exc_info()[1]
+        if isinstance(exc, (ConnectionResetError, BrokenPipeError,
+                            ConnectionAbortedError, TimeoutError)):
+            return
+        super().handle_error(request, client_address)
+
+
 # ---------- OS integration ----------
 
 def _open_with_os(path):
@@ -327,6 +349,8 @@ class Handler(BaseHTTPRequestHandler):
             return self.serve_static(path)
         except ValueError as e:
             return self._err(400, str(e))
+        except (ConnectionResetError, BrokenPipeError, ConnectionAbortedError):
+            raise  # client hung up mid-response — QuietHTTPServer swallows it
         except Exception as e:  # surface real errors to the UI instead of a blank 500
             traceback.print_exc()
             return self._err(500, f"{type(e).__name__}: {e}")
@@ -351,6 +375,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._err(404, f"no such endpoint: {parsed.path}")
         except ValueError as e:
             return self._err(400, str(e))
+        except (ConnectionResetError, BrokenPipeError, ConnectionAbortedError):
+            raise  # client hung up mid-response — QuietHTTPServer swallows it
         except Exception as e:
             traceback.print_exc()
             return self._err(500, f"{type(e).__name__}: {e}")
@@ -739,7 +765,7 @@ def main():
     threading.Thread(target=_watch_archive, args=(root,), daemon=True).start()
 
     try:
-        httpd = ThreadingHTTPServer((args.host, args.port), Handler)
+        httpd = QuietHTTPServer((args.host, args.port), Handler)
     except OSError as e:
         if e.errno in (48, 98):  # EADDRINUSE (macOS, Linux)
             print(f"error: port {args.port} is already in use — probably a "
